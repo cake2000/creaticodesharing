@@ -21,11 +21,15 @@ const s3client = new S3Client({
 });
 
 // S3 bucket and folder path
-const BUCKET_NAME = "ccdn.creaticode.com";
+// const BUCKET_NAME = "ccdn.creaticode.com";
+// const S3_PATH = "scratch-gui-projects/forum/";
+
+// older folder
+const BUCKET_NAME = "scratch-gui-projects";
 const S3_PATH = "scratch-gui-projects/forum/";
 
 // Local directory to save files
-const LOCAL_DIR = path.join(__dirname, "../images/");
+const LOCAL_DIR = path.join(__dirname, "../images2/");
 
 // Ensure the local directory exists
 if (!fs.existsSync(LOCAL_DIR)) {
