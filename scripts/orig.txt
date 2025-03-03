@@ -1,0 +1,237 @@
+## Introduction
+
+In the previous tutorials, you learned how to build a simple chat app with ChatGPT. In this tutorial, we will build an interesting app that can determine the user's MBTI type by asking a few questions.
+
+&nbsp;
+### MBTI Types
+
+The MBTI, or Myers-Briggs Type Indicator, is a test that helps you understand yourself better. It tells you about your personality by sorting you into one of 16 types. Each type has four letters, like "INTJ" or "ESFP," that say something about how you think, feel, and act.
+
+The first letter, "E" or "I," stands for **Extraverted** or **Introverted**: "E" means you're outgoing and like socializing, while "I" means you're more reserved and enjoy time alone.
+
+The second letter is "S" or "N," for **Sensing** or **Intuition**: "S" people focus on facts and details, while "N" people are more about ideas and possibilities.
+
+The third letter is "T" or "F," which is **Thinking** or **Feeling**: "T" means you make decisions based on logic, and "F" means you consider people's feelings.
+
+The fourth letter is "J" or "P," for **Judging** or **Perceiving**: "J" people like to plan and be organized, while "P" people are more spontaneous and flexible.
+
+
+&nbsp;
+### How ChatGPT Can Help
+
+Traditionally, to find out your MBTI type accurately, you have to answer a questionnaire with tons of questions, and many of the questions are abstract and hard to relate to. For example: *do you find it more satisfying to finalize decisions or to keep your options open?*
+
+Now we can use ChatGPT to design the questions to be much more interesting and relatable.
+
+Here is what the app looks like:
+
+![p.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/356d917c-f6d6-40b7-b888-8210faacc3a4.gif) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 1 - The Starting Project
+
+You can remix the following project to use it as a starting point:
+
+play.creaticode.com/projects/6519f719fc9a5a6d14882a11
+
+&nbsp;
+This project allows us to use a **system request** at the beginning to explain what we are trying to do, then carry out the chat between the user and ChatGPT.
+
+
+&nbsp;
+&nbsp;
+## Step 2 - First Version of Our Prompt
+
+We need to do only one thing to build this app: design a great prompt (request). It will take a few revisions. To get started, here is our first version, which tells ChatGPT what it should do:
+
+```text
+determine the user's MBTI type by asking some questions.
+```
+
+&nbsp;
+Put that prompt into the system request block:
+
+![6e6e344f-0d7d-45c1-b30e-8f5aaa08b80e-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a6ae15fd-54d2-4936-b63d-612b261c195a.png) 
+
+&nbsp;
+When you run the program, you will sometimes get a statement like this:
+
+![f227886d-45bd-4f83-adbc-127b69a5b8da-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ca2ada56-513f-462d-a14e-d77e5d8ee807.png) 
+
+&nbsp;
+Clearly, ChatGPT is being cautious, but that is not necessary here, since the user already knows this is an MBTI test. 
+
+**How to improve our prompt?**
+
+
+
+
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+## Step 3 - Make ChatGPT Ask the First Question
+
+To make sure ChatGPT would dive into the questions directly, we can request it to start asking the first question like this:
+
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the first question.
+```
+
+&nbsp;
+Now ChatGPT will indeed start asking the first question:
+
+![546d1835-23fc-482f-800c-bfd33cc52afa-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3936d30c-f9f2-4a75-ba52-d75efac7021d.png) 
+
+&nbsp;
+&nbsp;
+&nbsp;
+## Step 4 - Change the First Question
+
+The first question from ChatGPT is almost always this: "Do you prefer spending time alone or being around other people?". The issue is that everyone would get the same questions, and it is not very interesting to the user.
+
+To fix that issue, we can ask ChatGPT to start by asking the user for his/her favorite activity. Suppose the user answers "reading books", then ChatGPT will follow up with additional questions all related to reading books. That'll make the test much more enjoyable for the user.
+
+We can change the prompt like this:
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the user a question on his/her favorite activity
+```
+
+Here is the updated question from ChatGPT:
+
+![32615a80-8b69-48c8-834a-23b7163b7caa-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c8989c5f-c402-4ba8-bbb1-31f79f86a5ae.png) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 5 - Control Follow-up Questions
+
+After the user answers the first question, you may find that ChatGPT would continue to focus on that activity, and "forget" about the task of MBTI testing. This is mostly due to the training given to ChatGPT, so it feels it should keep chatting about what the user is interested in.
+
+To fix this issue and refocus ChatGPT back to the main task, we need to add an additional instruction:
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the user a question on his/her favorite activity. After that, ask follow-up questions regarding that activity to find out the user's MBTI type.
+```
+
+&nbsp;
+Now we managed to get ChatGPT back to the MBTI questions:
+
+![1f9e9b20-b3b9-417d-9247-684ef0fdac7b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/2d66604e-af3f-4046-a7a3-76ba95b45cf5.png) 
+
+&nbsp;
+However, it is too much to ask all questions at once. Can you try to change ChatGPT to ask one question at a time?
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+## Step 6 - One Question at a Time
+
+To make ChatGPT ask one question each time, you can add some additional instructions of "only one question each time":
+
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the user a question on his/her favorite activity. After that, ask follow-up questions, only one question each time, regarding that activity to find out the user's MBTI type. 
+```
+&nbsp;
+Now we will only get one question:
+
+![e987c9b4-86ad-433e-9694-bb22506474dd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/045ab0c1-5a44-465c-8424-a437d6f5a8a1.png) 
+
+&nbsp;
+Another example:
+
+![a2985d60-0454-4b40-abc6-93fea3771f69-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/29192b51-a648-4983-b440-b34dd949e989.png) 
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Multi-Choice Questions
+
+Currently, all the questions are open-ended. The user would need to type a few words to do the test. To make it easier, we can ask ChatGPT to offer multiple choices, so the user only needs to type a letter to answer each question.
+
+We can make that happen with this change:
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the user a question on his/her favorite activity. After that, ask follow-up questions, only one question each time, regarding that activity to find out the user's MBTI type. The questions should have multiple choices.
+```
+
+Now the questions will look like this:
+
+![e784feb1-30c3-42bd-b3a8-19074b23bc15-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/4bfc3c05-60f9-4ae0-be6c-a3a3024f1cd8.png) 
+
+&nbsp;
+However, sometimes even the first question becomes a multiple-choice question like this:
+
+![9f73ed26-cda6-43c2-bf4f-3e17715dbedd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f7403c07-091c-4e0b-88ce-17619b662f62.png) 
+
+&nbsp;
+That's not ChatGPT's fault. In our prompt, we said "The questions should have multiple choices", which indeed include the first question. To fix that, we need to exclude the first question:
+
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the user a question on his/her favorite activity. After that, ask follow-up questions, only one question each time, regarding that activity to find out the user's MBTI type. The questions should have multiple choices, except that the first question is open-ended.
+```
+
+
+
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 8 - The Test Result
+
+Last but not least, we will ask ChatGPT to report the test result after a few questions. To keep the test quick, we can limit it to up to 5 questions like this:
+
+```text
+determine the user's MBTI type by asking some questions. Now greet the user and ask the user a question on his/her favorite activity. After that, ask follow-up questions, only one question each time, regarding that activity to find out the user's MBTI type. The questions should have multiple choices, except that the first question is open-ended. After at most 5 questions, report your prediction on the user's MBTI type with detailed explanations.
+```
+
+&nbsp;
+Here is the final demo of our app:
+
+![p.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/356d917c-f6d6-40b7-b888-8210faacc3a4.gif) 
+
+
+
+
+
+&nbsp;
+&nbsp;
+## Enhancements
+
+Although this app works, there are many aspects of it that can be improved. Here are some ideas for you to explore:
+
+* Add text-to-speech and speech-to-text, so the user can use it without typing or reading on the screen.
+* Remove unnecessary words: ChatGPT is often very "chatty", and it would say extra things to make the chat smooth. For example, the last sentence here is unnecessary. Can you try to make ChatGPT more concise?
+
+![a9cb9bed-a63a-40ed-aa28-37e69b509a0f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/2dfe31b1-ebad-4b61-95e1-52e60574f755.png) 
+
+* Besides "favorite activity", can you think of other fun ways to kick off the conversation? How to get your users more engaged as they use your app?
