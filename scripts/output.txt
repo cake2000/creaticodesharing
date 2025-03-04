@@ -15,7 +15,7 @@
 
 In this tutorial, we'll have some fun playing with dancing aliens:
 
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/ada838b6-d69d-41b0-9144-6957c1e27d36.gif
+![ada838b6-d69d-41b0-9144-6957c1e27d36.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/ada838b6-d69d-41b0-9144-6957c1e27d36.gif?raw=true)
 
 &nbsp;  
 &nbsp;
@@ -23,7 +23,7 @@ ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/ada838b6-d69d-
 
 Please create a new project, and remove the dog sprite. In the "Empty1" sprite, add the green-flag block, the "[initialize 3D scene](/topic/5/initializing-a-3d-scene)" block, and the "add 3D axis" block. Note that you need to click the input box and choose the "Grass Land" scene. This is a lightweight scene with a large grassland and a blue sky.
 
-ccimg2||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/35e64a77-5128-4d98-9815-8751b283ad3c.gif
+![35e64a77-5128-4d98-9815-8751b283ad3c.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/35e64a77-5128-4d98-9815-8751b283ad3c.gif?raw=true)
 
 
 As shown, the X-axis points to the right, the Y-axis points forward (into the screen), and the Z-axis points up. You can drag your mouse on the stage to rotate the camera around it:
@@ -35,7 +35,7 @@ As shown, the X-axis points to the right, the Y-axis points forward (into the sc
 
 Avatars are human-like models that can perform various kinds of animations. Here is how to [add an alien avatar](/topic/11/loading-an-avatar-into-a-scene):
 
-ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/cac54a57-9d42-4e28-be0d-cef635c9fd73.gif
+![cac54a57-9d42-4e28-be0d-cef635c9fd73.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/cac54a57-9d42-4e28-be0d-cef635c9fd73.gif?raw=true)
 
 
 &nbsp;  
@@ -44,7 +44,7 @@ ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/cac54a57-9d42
 
 The alien avatar only knows how to "idle". We need to "teach" it how to do some dancing animations by "[adding animations](/topic/12/avatar-animations)" to it. Here is how to browse through the animations and add the "Breakdance Ready Dance" animation.
 
-ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/e5a2bb60-ba31-470a-8836-0ef7b24c10be.gif
+![e5a2bb60-ba31-470a-8836-0ef7b24c10be.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/e5a2bb60-ba31-470a-8836-0ef7b24c10be.gif?raw=true)
 
 
 &nbsp;
@@ -53,7 +53,7 @@ ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/e5a2bb60-ba31
 
 Now after adding the dance animation, we can start the animation at any time. By default, the animation will restart after it completes one round, so it will keep going repeatedly.
 
-ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/a4ee9c6e-5d30-4f80-b92e-540d7ac602c5.gif
+![a4ee9c6e-5d30-4f80-b92e-540d7ac602c5.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a4ee9c6e-5d30-4f80-b92e-540d7ac602c5.gif?raw=true)
 
 
 &nbsp;
@@ -76,7 +76,7 @@ ccimg3||700||https://cdn.creaticode.com/scratch-gui-projects/forum/e871c15a-e70e
 
 Now we have 2 avatars that are dancing side by side:
 
-ccimg||470||https://cdn.creaticode.com/scratch-gui-projects/forum/65250e2c-b4f0-431b-9af6-3396d344afc0.gif
+![65250e2c-b4f0-431b-9af6-3396d344afc0.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/65250e2c-b4f0-431b-9af6-3396d344afc0.gif?raw=true)
 
 
 
@@ -86,7 +86,7 @@ ccimg||470||https://cdn.creaticode.com/scratch-gui-projects/forum/65250e2c-b4f0-
 
 Next, can you try to add another alien like this?
 
-ccimg||470||https://cdn.creaticode.com/scratch-gui-projects/forum/fc118329-0ce0-4392-9fa7-2c2e21f6cfb0.gif
+![fc118329-0ce0-4392-9fa7-2c2e21f6cfb0.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/fc118329-0ce0-4392-9fa7-2c2e21f6cfb0.gif?raw=true)
 
 Here is one way to do it. We just need to set its X to -100 instead of 100.
 
@@ -111,7 +111,7 @@ Our dance party is still missing some dancing beats. We can [add some drum beats
 
 Lastly, let's make the aliens blink with red eyes:
 
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/ada838b6-d69d-41b0-9144-6957c1e27d36.gif
+![ada838b6-d69d-41b0-9144-6957c1e27d36.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/ada838b6-d69d-41b0-9144-6957c1e27d36.gif?raw=true)
 
 To make the eyes change color, you need to use the "[update color](/topic/136/update-object-colors)" block, and select the "second" area, which represents the eyes of the avatars.
 
