@@ -1,165 +1,370 @@
 ## Introduction
+&nbsp;
+Traditionally, AI characters in games are fairly "boring". They usually say the same sentences repeatedly, because they are driven by predefined "scripts" written by the game developers.
 
-Now you should know how to build a chat-based project using ChatGPT. One of the key skills is to write great prompts so that ChatGPT will behave as you expect.
+That problem can now be fixed using ChatGPT. ChatGPT can help our game characters to talk to users in natural languages, which will make the games much more interesting and unpredictable.
 
-In this tutorial, you will practice composing a new prompt, which will make ChatGPT play a role-playing game with the user. The game is called "Yes Minister!". In the game, the user pretends to be the Prime Minister of the United Kingdom and makes many important decisions.
+In this tutorial, we will build a simple game called "Who's the Spy?". The player will talk to a few AI characters to guess who is the spy, and we will use ChatGPT to generate answers for these characters.
 
 
-![obj.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/52c5dffd-8b1a-41f6-8c28-71425bba0350.gif?raw=true) 
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/63ea0a72-02da-4e9d-9f69-0b2d6babc306.gif?raw=true) 
 
 
 &nbsp;
 &nbsp;
-## Step 1 - Create a Starting Project
-
-
-We will use the project from the [previous tutorial](https://www.forum.creaticode.com/topic/942/chatgpt-ai-guess-a-historical-figure-difficulty-3) as the starting point. If you don’t have it, you can follow that tutorial to build one, or remix the following project:
-
-https://play.creaticode.com/projects/1d035cd905c5a5c4f878f48a
-
-
-
+## Step 1 - Remix the Template Project
 &nbsp;
-&nbsp;
-## Step 2 - Describe the Scenario
+Please start by remixing the following project, which contains 4 sprites that we will use: a doctor and 3 animal agents (a dog, a reindeer and a monkey).
 
-Now let's go directly into writing the prompt. The goal is to make sure ChatGPT "understands" who the user is and what it is expected to do at a high level. We will still use the comment box to write up the prompt. You can clear any existing words in the comment and add the following sentences:
-
-```html
-You will play a role-playing game. The user is a 6th-grade student. Pretend the user is the Prime Minister of the United Kingdom, and the time is January 1st, 2030.
-```
-
-&nbsp;
-Your editor should look like this:
-
-![31e8ff12-fa10-43c5-adbc-d95bee53dc5a-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b6c79276-2375-47e3-865f-d73fc8f46592.png?raw=true) 
+https://play.creaticode.com/projects/31abbb3f6b05f826173310d1
 
 
 
 &nbsp;
 &nbsp;
-## Step 3 - Describe the Game Format
+## Step 2 - Prepare the Game Description for ChatGPT
+&nbsp;
+When the player starts the game, we first need to explain the game to ChatGPT. This can be sending a "system message" to ChatGPT. The description should include a few parts:
 
-Next, we need to tell ChatGPT exactly how the game plays: what it is supposed to do, and what the user is supposed to do. We can add the following description:
+1. **Role Assignment**: We will make ChatGPT play the role of "game master", which will help us run the game. 
+2. **Game Context**: We will tell ChatGPT this is a guessing game, and what's the back story. ChatGPT will then help us maintain this storyline throughout the game.
+3. **Instruction**: We will need to give ChatGPT some very detailed rules on what it should and should not do. Otherwise, the player could easily trick ChatGPT into revealing the answer.
 
-```html
-Game format: you ask the user to make a decision among a few options. The user will make a choice, then you ask the next question. 
-```
+&nbsp;
+Here is an example game description:
+
+---
+
+You are the "game master" running a game named "Who's the Spy". 
+
+Context:
+
+There is a secret lab run by the "doctor", and the doctor works with 3 smart assistants (dog, reindeer and monkey). Recently, the blueprint of a revolutionary, world-changing robot was stolen from the lab.  Rumors suggest that one of the animal agents has gone rogue and is the spy who stole the design. The doctor has invited the player to help find out who's the spy. Somehow the security cameras were not working, so we can not rely on that.
+
+Instruction:  
+
+Randomly pick one of the three animal assistants as the spy. Only you and the spy know who is the spy. The player can ask the doctor or any assistant any question. You will come up with the answer on behalf of them. Note that the spy might lie. When you answer, always use this format:  
+
+dog: it is not me.  
+
+The game ends when the player makes a guess, and you will reveal who's the spy after that.
+
+---
+
+&nbsp;
+Note that we are giving ChatGPT a specific format for answering our questions: "dog: it is not me.". The reason is that ChatGPT may give us answers from any of the characters, so to make it easier to process its response, we need the response to be well-formatted. 
 
 
 &nbsp;
 &nbsp;
-## Step 4 - Ask the user to start the game
+## Step 3 - Send Game Description to ChatGPT
+&nbsp;
+Now let's send the game description to ChatGPT. We can add the following code %(#f20707)[in the "Doctor" sprite]:
 
-Lastly, we need to make ChatGPT to wait for the user to start the game. We can add this line to the end of the prompt:
-
-```html
-Now ask if the user is ready to start.
-```
-
-
+![c65b39b5-d1cb-44ca-b84d-e2995a78a07e-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/7bd4c22d-390b-411b-ade2-4158612e8b00.png?raw=true) 
 
 &nbsp;
-&nbsp;
-## Step 5 - Copy the Prompt
+We are using a "system" request, which carries a stronger weight than a normal request. We will store the response from ChatGPT in the "response" variable.
 
-Now we are ready to actually try this prompt. Copy the entire content of the comment box, select the input of the "system request" block, paste the prompt, and then press ENTER or TAB to confirm.
-
-![obj.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/3de3b5f9-8f69-415d-bf19-d94472fd5087.gif?raw=true) 
-
-
-
-
-&nbsp;
-&nbsp;
-## Step 6 - Display an initial message
-
-Now we still need to ask the user if he or she is ready to start. We just need to add this sentence to the beginning of the chat:
-
-![726cb328-6972-46d3-b47a-57c7c4ee61b6-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/cf7c581b-7fec-4d55-8ebe-3f8aacfc3c76.png?raw=true) 
-
-&nbsp;
-You can use the robot icon for the AI this time, and feel free to pick a new color for the message. 
-
-Now if you run the program, it looks like this:
-
-![obj.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/9fa5cd42-a4b3-4751-b72d-d4e052592f52.gif?raw=true) 
+Now please copy the game description into the system request block. Recall that you can use a comment box to help if you would like to edit the description.
 
 
 
 
 &nbsp;
 &nbsp;
-## Step 7 - Improve the questions
-
-Although our game is already playable, we can improve the questions in a few aspects.
-
-First, the questions seem a bit too long. We can make ChatGPT more concise.
-
-Second, currently we may get questions that are not related to previous questions. To make the user's decisions count, ChatGPT should ask questions based on the user's decisions.
-
-We can address both issues with the following new paragraph in the prompt:
-
-```html
-Keep the descriptions clear and concise. Make sure all your questions are directly related, and different user choices would lead to very different follow-up questions.
-```
+## Step 4 - Print Out ChatGPT's Response for Debugging
 &nbsp;
-Add the new paragraph to the comment box like this:
+To review ChatGPT's responses while developing the project, we can simply print the response in the console panel like this:
 
-![ae75437b-bfb3-45cf-8ae0-baaa6a020583-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/11f3f214-70fd-40cb-9e47-0f56f44ae994.png?raw=true) 
+![f7b38de4-e892-467b-a33b-b599fe61bd88-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/25845cf4-be27-47dc-9e03-44195a2d23c7.png?raw=true) 
 
 &nbsp;
-Copy the whole prompt into the system request block, then run the project again. You might get a conversation like this:
+When you run the project, it will take a while, and you may see a response like this (try a few times if you don't):
 
-![obj.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/487d9ce1-fa78-4a21-a692-a2a3e82f285c.gif?raw=true) 
- 
-&nbsp;
-The description is more concise, and the follow-up questions are directly based off the earlier choices.
-
-
+![7861510b-c460-4742-afe4-abd99e04be90-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f07658fd-1abd-438f-b94a-07263c9779fd.png?raw=true) 
 
 &nbsp;
-&nbsp;
-## Step 8 - Say "Yes Minister!"
 
-To make the game fun, we can even ask ChatGPT to always start its response with "Yes Minister!". Add the following sentence to the prompt, then copy it again to the input box:
+This is happening because ChatGPT is trying to give a very long response and reached the token limit. For example, it might be repeating the game description to show that it gets it, or it might even start to generate some example conversations between the player and the characters.
 
-![658eaeb3-8372-4bdd-96e2-d341143ce8f3-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ed0a743f-130a-4dcd-bcff-b144618e68ed.png?raw=true) 
-
-&nbsp;
-Now let's test it again:
-
-![obj.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/4b6b92e2-760e-4bfb-a183-e6f766206cf5.gif?raw=true) 
+We should try to avoid it for 2 reasons:
+* We don't need ChatGPT to generate any responses yet since we won't show it to the player;
+* The longer the response, the longer we have to make the player wait.
 
 &nbsp;
-It turns out the first response we get started with "Yes Minister!", but the second time it changes to "Great choice, Minister!". This is most likely because ChatGPT tries to vary its response to sound more human. This is still acceptable, so we can keep it like this.
+To avoid this issue, the solution is very simple. We just need to modify our prompt to tell ChatGPT how to respond. For example, we can %(#f50f0f)[append this sentence] at the end of the system request message:
+
+---
+
+Now say "Ready" and wait for the player to ask a question.
+
+---
+
+&nbsp;
+This is a commonly used technique to make ChatGPT say as little as possible. If you run the project again, it should get the full response very quickly:
+
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/ecfa9441-7b04-427e-8248-689dce661ac5.gif?raw=true) 
 
 
 &nbsp;
 &nbsp;
-## Step 9 - Game Scores
+## Step 5 - Greet the Player
+&nbsp;
+Now that ChatGPT is ready, we also need to tell the player about the game. We can ask the "Doctor" to greet the player and explain how to play the game. For example, we can add a "say" block with the following words:
 
-To make the game complete, it is important to give the player a goal to achieve. In this case, let's ask ChatGPT to evaluate our player and give a score:
+---
 
-```html
-After the user makes exactly 3 choices, evaluate how well the user did and generate a score between 1 and 100.
-```
+Thanks for coming, Detective! As we discussed on the phone, a blueprint of a highly secretive robot has been stolen, and I believe one of my three assistants is the spy who took it. You can click on any of us to ask a question.
+
+---
+
+This is what you would get:
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/dfea2728-0aea-499b-a40a-1018f1b275ed.gif?raw=true) 
+
+
 
 &nbsp;
-Now we will get a score after making 3 choices:
+&nbsp;
+## Step 6 - Click the Doctor to Ask a Question
+&nbsp;
+Now let's allow the player to click on the Doctor to ask a question. Specifically, when the player clicks the Doctor sprite, it asks the player to input the question. We can use the "print to console" block again to review the answer. Note that it may be a bit confusing that the "answer" is the player's input, not the answer from ChatGPT.
 
-![obj.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/52c5dffd-8b1a-41f6-8c28-71425bba0350.gif?raw=true) 
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/126b5cc5-13b9-4fdd-87ec-d3f0c16bbc94.gif?raw=true) 
 
+&nbsp;
+This is what the console panel looks like afterward:
+
+![2beafea9-397e-4f43-9de4-e84022123b56-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f1cee471-d29d-4d87-a464-5ffc48d8d739.png?raw=true) 
+
+&nbsp;
+As shown, if the user did not input anything, then the "answer" block will just be empty.
+
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Get ChatGPT's answer
+&nbsp;
+
+Now let's send the user input to ChatGPT, so it will generate an answer for the Doctor character. We should only do it if the user input is not empty:
+
+![078aaad8-3000-41d0-9e0d-486efca5636b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/5f015083-8736-4a8c-b982-2a8824d8c4df.png?raw=true) 
+
+&nbsp;
+Explanations:
+* We are joining the words "Doctor, " with the user's input, so ChatGPT knows we are talking to the Doctor.
+* We are using the "waiting" mode, so we will not run the next block until we get the full response from ChatGPT stored in the "response" variable.
+* The session type is "continue" since we want ChatGPT to remember the game description we gave it before.
+
+&nbsp;
+Now our doctor is talking to us, and the conversation is completely natural and unscripted. In fact, as the game developer, we don't even know the answer at this point, since we have asked ChatGPT to secretly pick an animal as the spy.
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/f8ad5158-1db1-4e16-aa7e-74489544da37.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Clean Up ChatGPT's Answer
+&nbsp;
+
+Currently, ChatGPT's answer starts with "Doctor:". That's good to know for us (the game developer), but we should not show that to the player. We can remove it this way: we split the response into 2 parts using the ":" as the separator, then we only show the second part to the player:
+
+![d657f525-48fe-444a-85e6-8402d64ef7d8-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/05836330-aaad-422f-b5a7-bb9aa5917ad6.png?raw=true) 
+
+&nbsp;
+Now the doctor's answer will not contain the "Doctor:" prefix:
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/74dce9d2-6978-4f50-9593-2576302a928a.gif?raw=true) 
+
+
+
+&nbsp;
+**%(#ed0202)[Special Note: with a recent update of ChatGPT's model, you may find that sometimes the model would respond without the "Doctor:" prefix . In that case, the code above would not say anything.]**
+
+**%(#ec0404)[A more robust solution is to check if the response starts with "doctor:" first, such as this:]**
+
+![829fda88-3fb6-4f6c-b736-dcd97d0b58cb-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/56c5d405-dda4-404e-bcc9-0294695231f3.png?raw=true) 
+
+
+
+&nbsp;
+In addition, sometimes ChatGPT may not answer as the right character. For example, we may ask the Doctor a question, but the answer is from the dog. We can fix this by updating the initial instructions to ensure ChatGPT answers on behalf of the character we are addressing. In addition, instead of prefixing "Doctor," to the question, we can change it to "To Doctor:".
+
+
+&nbsp;
+&nbsp;
+## Step 9 - Highlight the Doctor by Mouse
+&nbsp;
+
+Since the game is played by clicking on the characters, it is common to highlight a character when the mouse pointer is over that character, so the player knows what is clickable. We can trigger this using the "when touching mouse pointer" block. To highlight a sprite, we just need to set its "brightness" to a positive number. We can also play a sound when the doctor is highlighted (You need to go to the "Sounds" tab on the left top, and add the "Hit 5" sound clip to each sprite first):
+
+![c507bfdc-5f2a-4e8d-a922-75dd491b6016-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/19759c66-9474-43ea-b435-70bd4a287153.png?raw=true) 
+
+&nbsp;
+This is the result:
+
+&nbsp;
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/12399d35-e145-4b7e-8303-6901ea190c7c.gif?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 10 - Remove the Highlight
+&nbsp;
+
+When the mouse pointer is no longer touching the doctor, we should remove the highlight. We can use a "wait until" block that keeps on checking if the sprite is no longer touching the mouse pointer. After that, we reset the brightness to 0.
+
+![2b4755c4-6a43-4fba-b37e-a745445fdb04-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f2d16161-ffb0-467c-96e0-81db9da83a91.png?raw=true) 
+
+&nbsp;
+Here is the result:
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/82202760-b10b-44f2-acb9-34128b59d332.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 11 - Copy Code to the Dog
+&nbsp;
+
+By this time, we are done with changing the Doctor. We can reuse a big chunk of the code in the other sprites by "copy" and "paste". Let's start with the dog first. The only thing we need to change is the name of the sprite when we send the question to ChatGPT. We also need to add the "Hit 5" sound to the dog sprite.
+&nbsp;
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/68c114b4-8080-4c58-9cc5-cabd095ff695.gif?raw=true) 
+
+&nbsp;
+Now the dog sprite has both highlighting and question answering:
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/0cf2ec38-2362-41c8-932d-9c272433eeac.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 12 - Copy Code to the Reindeer and Monkey
+&nbsp;
+
+Now please make similar changes to the Reindeer and Monkey sprites. Don't forget to change the character name when you send the request to ChatGPT.
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 13 - Hide the Speech Bubble
+&nbsp;
+
+There is a new issue: when the player switches to talk to a different sprite, the previous sprite may still be showing the speech bubble.
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/787e884d-2df8-4391-ba60-b07ef7ab43e9.gif?raw=true) 
+
+&nbsp;
+To fix this issue, we need to ask all sprites to hide their speech bubbles whenever any sprite is clicked. This can be done by broadcasting a message to all sprites when a sprite is clicked, and waiting for the message to be handled. When receiving this message, the sprite just needs to say "nothing" to hide the speech bubble. In case the sprite is asking for user input, we should also make it hide the question by "stop asking".
+
+![eb040f01-49e9-460a-bdb3-9c5bdef90b8b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/080262cc-b6ec-4d6f-9dc1-3f4567e16e3a.png?raw=true) 
+
+
+
+&nbsp;
+Note that this change needs to be done to all 4 sprites.
+
+
+&nbsp;
+&nbsp;
+## Step 14 - A Button to Submit the Final Answer
+&nbsp;
+
+At this point, the player can keep chatting with all the characters to investigate the case. We just need to provide a way for the player to submit the final answer. 
+
+First, let's %(#f00a0a)[switch to the Stage], and add a new button when the project starts:
+
+![1634806b-7d2a-4f26-9ac6-8e724ed29e5d-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/fc6706c8-daab-4fab-be46-8a6b0fbccda8.png?raw=true) 
+
+&nbsp;
+Don't forget you can use the "Widget Position" tool to help you adjust the button position and size. 
+
+This is what the button looks like:
+
+![86ea1f63-77a0-40a1-8851-e3910453ce28-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/06ee4508-40ca-4c35-919c-65493c5a7ba4.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 15 - Show the Options
+&nbsp;
+
+When the player clicks the "Answer" button, we need to show a few radio buttons for the player to select. Besides the 3 animals, we should give the user an option to take a step back and think about it more:
+
+![bb7828b6-58e1-4856-8481-57725a98c645-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/3d97bd63-c97c-4d35-9ae3-a9b338f62ebe.png?raw=true) 
+
+&nbsp;
+Here is the output:
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a6104582-d95b-4427-abf6-996b2f6f3b9e.gif?raw=true) 
+
+
+&nbsp;
+&nbsp;
+## Step 16 - Handle Player Selection
+&nbsp;
+
+To handle the player's selection, we can watch for the "click" event of the radio buttons. The player's selection can be retrieved using the "value of widget" block. If the player has chosen to think about it more, we should simply remove the radio button group.
+
+![9ef592c5-f586-4761-bc02-7a85002115d0-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/3ea3f91d-7f57-4902-bb0e-db853ae0e53d.png?raw=true) 
+
+&nbsp;
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/45839df6-72c7-4707-ba52-08f695e7f82e.gif?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 17 - Submit Player Selection to ChatGPT
+&nbsp;
+
+If the player has picked one of the three animals, then we will submit it as the answer to ChatGPT, and ask it to tell us whether that's correct.
+
+![85b00bee-3da2-4567-b9c8-1b60c3536887-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/69db80cf-76b3-4d1e-beee-05d204021e71.png?raw=true) 
+
+&nbsp;
+Note that we are addressing the "Game Master" since only it can make the final call on the game result.
+
+
+&nbsp;
+&nbsp;
+## Step 18 - Display the Final Result
+&nbsp;
+
+Now for the last step, we will use a textbox to display the response from ChatGPT. We will make sure the textbox is big enough to show the entire response. We will also remove the other widgets so the player can not re-submit the answer.
+
+![c2362e6e-699a-4b6d-83ff-20505b087ab4-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/9e9cddfb-32f4-435c-9510-7fed6d22f4b1.png?raw=true) 
+
+&nbsp;
+Here is the final demo of the game:
+
+![rr.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/63ea0a72-02da-4e9d-9f69-0b2d6babc306.gif?raw=true) 
 
 
 
 &nbsp;
 &nbsp;
 ## Creative Ideas
+&nbsp;
 
-In this tutorial, you practiced how to design and improve your prompt to make ChatGPT respond in a certain way. Here are some ideas for you to practice more:
+Here are some ideas worth exploring based on the project:
 
-* **Bad Choices**: to make the game fun, you can try to ask ChatGPT to add some awful choices in each question, so if the player is not thoughtful, he or she may get a really low score.
-* **Choice List**: sometimes, ChatGPT would format the questions as open-ended. You can try to force ChatGPT to always list the options as A), B), C), etc.
-* **Limit the Policy Scope**: you can further limit the questions to a certain area of interest, such as education policy, foreign policy, etc.
-* **Other Leaders**: it should be fairly easy to change the user's role to some other leaders, such as the CEO of a company or the principal of a school.
+* The doctor sometimes refers to himself as "Dcotor", not "me". Think about how to improve the prompt to avoid that.
+* If the player asks a question to more than one character, such as "Everyone, where were you at that time?", we need to show all the answers.
+* You can use one of the text-to-speech blocks to make the characters speak to the player.
+* You can change the characters and the background stories of the game, such as a stolen book from the library, or a gift box sent from a secret friend. You can even use historical figures to play the game.
+* Try to break the game by asking some tricky questions and see if you can trick one of the characters into telling you the name of the spy. If you manage to do that, then try to improve the prompts to fix this issue.
