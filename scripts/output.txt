@@ -1,302 +1,337 @@
-## 简介
+## Introduction
 
-在本教程中，你将学习构建一个简单但实用的应用程序：书籍作者。用户可以指定任何主题，然后程序将使用 ChatGPT 自动编写整本书。
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a20ee7ba-bc77-4358-8b86-a048fa848b6d.gif?raw=true) 
-
-&nbsp;
-
-我们将首先添加一些小部件，允许用户指定他/她想要什么类型的书，然后使用 ChatGPT 块相应地编写这本书。
+In this tutorial, you will learn to build a simple but very useful app: a book writer. The user can specify any topic, and the app will use AI to write an entire book automatically.
 
 
+![chapter123.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/bookwriterchapter123.gif?raw=true)
 
 
 &nbsp;
-&nbsp;
-## 步骤 0 - 编写书籍策略讨论
 
-在开始编写任何代码之前，我们需要讨论如何使用 ChatGPT 编写书籍的基本思路。众所周知，ChatGPT 的响应存在字数限制：我们的输入加上它的输出不能超过 4096 个标记，大约是 3000 个单词。因此，如果我们的书长度超过 3000 个单词，我们无法在单个请求中从 ChatGPT 获得完整的书。
+We will first add some widgets to allow the user to specify what kind of book he/she wants, then use an AI block to write the book accordingly.
 
-为了解决这个问题，有一个简单而巧妙的解决方案。我们将把这个过程分解成 2 个步骤：
-* 我们将首先要求 ChatGPT 编写一个目录，其中包括每个章节的标题
-* 然后我们反复要求 ChatGPT 编写每个章节。
 
-&nbsp;
-现在让我们开始吧。
+
 
 &nbsp;
 &nbsp;
-## 步骤 1 - 一个空项目
+## Book Writing Strategy Discussion
 
-创建一个新项目，并将其命名为“ChatGPT- Book Writer”。删除带有狗的精灵，我们将只使用“Empty1”精灵进行编码。
+Before we start writing any code, we need to discuss the basic idea of how to use AI to write books. You might think it is as easy as telling the AI to "write an entire book for me". However, this would not work well for 2 reasons:
+* Output Length Limit: all AI models have limits on how many words they can generate each time, so they can not generate a book with many words.
+* Output Quality: The user may not like the book written by AI, so they may wait a long time for nothing.
+
+To solve these issues, there is a simple but clever solution. We will breakdown the process into 2 steps:
+* we will first ask AI to write a **table of content**, which includes the title of each chapter
+* we then repeatedly ask AI to write each chapter.
+
+&nbsp;
+Now, let's get started.
+
+
+&nbsp;
+&nbsp;
+## Step 1 - Create an Empty Project
+
+Create a new project, and name it "ChatGPT- Book Writer". Delete the sprite with the dog, and we will just use the "Empty1" sprite for coding.
 
  
 
-&nbsp;
-&nbsp;
-## 步骤 2 - 标题标签
-
-首先，我们将添加一个标签，上面写着“标题：”。它将告诉用户在哪里输入书的标题。如下图所示，确保将标签的背景设置为 100% 透明，并将其边框宽度设置为 0。你将在舞台的中心获得一个标签。
-
-![3bbd1b39-b342-490c-b745-652a1de1403f-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ba07a479-9dda-4ee6-8c83-6ffca3047ab6.png?raw=true) 
 
 &nbsp;
 &nbsp;
-## 步骤 3 - 移动标题标签
+## Step 2 - The Topic Label
 
-我们需要将标签移动到左上角。最简单的方法是使用“小部件位置”工具，它允许我们更改小部件的大小并将其拖动到新位置。新位置和大小将直接存储在块中，因此下次程序运行时，小部件将自动出现在新位置。
+First, we will add a label that says "Topic:". It will tell the user where to input the topic of the book. As shown below, make sure you set the background of the label to 100% transparent, and set its border width to 0. You will get a label at the center of the stage.
 
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/ce147fe8-b4c3-4fbc-ad62-8a419d1dc647.gif?raw=true) 
-
-&nbsp;
-&nbsp;
-## 步骤 4 - 添加标题输入文本框
-
-接下来，我们将添加一个文本框供用户输入书名。我们将采取相同的 2 个步骤：添加小部件，然后调整其大小和位置。
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/9b771285-779a-44cd-a16b-dd8fafdc9b97.gif?raw=true) 
-
-
+![374cddee-0216-4c77-9655-fe02a1abaa23-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/515d0aaf-23a1-4fcc-8a16-032412da7fd3.png?raw=true)
 
 
 &nbsp;
 &nbsp;
-## 步骤 5 - 添加章节数标签
+## Step 3 - Move the Topic Label
 
-接下来，我们需要允许用户从下拉菜单中选择章节数。它不仅可以让用户控制书的长度，还可以让我们轻松地逐个浏览每个章节。
+We need to move the label to the left top. The easiest way is to use the "Widget Position" tool, which allows us to change the size of a widget and drag it to a new position. The new position and size will be stored in the block directly, so the next time the program runs, the widget will appear at the new position automatically.
 
-我们将首先添加一个如下所示的标签：
-
-![db79978c-da93-45de-9653-ffcb866805f6-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/76f14c4c-5c42-4594-820c-62bb2b6920d4.png?raw=true) 
-
+![positionlabel1.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/label1.gif?raw=true)
 
 
 &nbsp;
-以下是执行此操作的块：
+&nbsp;
+## Step 4 - Add the Topic Input Textbox
 
-![43b3f1c0-4eac-489e-8d28-e757ddd01f6c-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/95cfca9e-9969-440a-9dd1-9728fd979cc2.png?raw=true) 
+Next, we will add a textbox for the user to input the topic of the book. Please take the same two steps: add the textbox widget, and then adjust its size and position. It should look like this:
+
+![b8a6fdeb-be8e-41d8-925c-29546415203f-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/bc547238-cea3-468f-af1b-c56347a197e5.png?raw=true)
+
+&nbsp;
+Here is the example code:
+
+![1bd213a4-a863-41e9-9917-f438a3d4d9aa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/bbada5d6-c6a1-414d-8c33-0192b433eb73.png?raw=true)
 
 
 
 
 &nbsp;
 &nbsp;
-## 步骤 6 - 添加下拉菜单
+## Step 5 - Add the Chapter Count Label
 
-接下来，我们将添加一个下拉菜单，允许用户选择 3 到 10 之间的数字：
+Next, we will need to allow the user to select the number of chapters from a dropdown menu. It will not only allow the user to control the length of the book, but also allow us to easily go through each chapter one by one.
 
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/fc8450c9-d4e0-4504-9cec-51bc337a099b.gif?raw=true) 
+We will first add a label that looks like this:
 
-&nbsp;
-为此，我们首先需要添加一个名为“numbers”的新列表，并将数字 3 到 10 插入其中：
+![23666a6c-bef3-43fb-8158-80e587e891a4-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b3ca826d-fe0c-4c12-bcde-feb9ef7a3763.png?raw=true)
 
-![7d7c5edb-30f0-4c2e-89f3-1cd7794defaa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b044b492-6b09-432a-bf4c-b265d4c2f090.png?raw=true) 
 
 &nbsp;
-接下来，我们可以添加使用“numbers”列表的“下拉菜单”小部件，并将其移动到所需位置：
+Here are the blocks to do that:
 
-![4b4b2ef1-7984-4e73-9954-eed4e3355b93-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/d6ffb0cf-8018-488d-8c72-5ffd6cf990a2.png?raw=true) 
+![344fa59f-5589-4f28-b03d-edf505322195-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/7868fbb3-2d4a-437b-ba86-1784ea274cd7.png?raw=true)
 
 
 
 
 &nbsp;
 &nbsp;
-## 步骤 7 - 添加“目录”按钮和“内容”按钮
+## Step 6 - Add the Dropdown Menu
 
-接下来，我们需要再添加 2 个按钮：
-* “目录”按钮将生成目录。
-* “内容”按钮将根据目录生成书的章节。
+Next, we will add a dropdown to allow the user to pick a number between 3 and 10:
 
-它们将如下所示：
-
-![3f69ac5f-ee40-4c06-999f-31b9657d5e87-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/01e6ff98-43f8-45f6-8451-dc1278824d2a.png?raw=true) 
-
+![4b0fd679-14f7-4ac3-87b8-681e504a7026-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e511ec38-6fdd-49c0-b43b-b7fbcfc1a020.png?raw=true) 
 &nbsp;
-以下是添加按钮并更新其样式的新块：
+To do that, we first need to add a new list named "numbers", and insert the numbers 3 to 10 into it:
 
-![dbcdb31b-ccb0-404d-8ca3-4312d3d7925c-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e42fa89d-e4df-4f99-af97-6873c12893d5.png?raw=true) 
-
-
+![7d7c5edb-30f0-4c2e-89f3-1cd7794defaa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b044b492-6b09-432a-bf4c-b265d4c2f090.png?raw=true)
 
 
 &nbsp;
-&nbsp;
-## 步骤 8 - 添加用于输出的文本框
+Next, we can add the "dropdown menu" widget that uses the "numbers" list, and move it to the desired position. The items in the "numbers" list becomes the options in the dropdown automatically.
 
-最后，我们需要的小部件是另一个用于显示书籍的文本框。它需要有多行并允许滚动。
-
-![37ba16be-06a3-4f0e-ba5b-e858181f758c-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/06c499cd-7b2b-432d-89b3-a9e26899b493.png?raw=true) 
-
-&nbsp;
-以下是添加文本框的新块：
-
-![c75ae064-2718-49e7-8eb6-167a354e0227-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/5fe72bae-5b63-432c-8612-f741b047df35.png?raw=true) 
+![6caad46a-2c06-4b39-be37-184d5b1427c4-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/16230273-e066-4763-a8d1-5c9b8ed2da00.png?raw=true) 
 
 
 
 
 &nbsp;
 &nbsp;
-## 步骤 9 - 将标题添加到书中
+## Step 7 - Add the "TOC" Button and "Content" Button
 
-在用户输入书名（随意选择任何标题）和章节数后，他/她将首先单击“目录”按钮。当发生这种情况时，我们首先需要将书名从输入文本框复制到输出文本框：
+Next, we need to add 2 more buttons:
+* The "TOC" button will generate the table of contents.
+* The "Content" button will generate the chapters of the book based on the table of contents.
 
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/d7972cee-631f-4b3e-b614-2557c11cefaf.gif?raw=true) 
+They will look like this:
 
-&nbsp;
-为此，我们需要使用“当小部件被点击时”块来检测用户何时单击“目录”按钮。当发生这种情况时，我们需要将输出文本框（“booktextbox”）的值设置为输入文本框（“textbox1”）的值。为了表明这是标题，我们可以使用连接块将“<”和“>”添加到标题：
-
-![677d6ced-68ba-4f5b-b2a2-5ba2cd1b5335-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/3c1a3396-9d39-4769-80a1-dd64e5d2fd3b.png?raw=true) 
-
-
-
-
-
+![8647e3ad-b455-49b2-97f0-525446875fb4-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ded6d3dd-e38f-4e90-9d7a-052c62ccc28d.png?raw=true) 
 
 &nbsp;
-&nbsp;
-## 步骤 10 - 要求 ChatGPT 生成目录
+Here are the new blocks to add the buttons. Feel free to update their styles if you like.
 
-现在我们终于准备好使用 ChatGPT API 了。为了让它编写目录，我们只需要告诉它书名和章节数。例如，这是我们的第一个版本的提示：
+![89433247-50b5-451d-be39-347c959654df-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b5747c16-a753-458a-8eab-569ff3d60848.png?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Add the Rich Textbox for the Output
+
+Finally, the last widget we need is a rich textbox for displaying the book content. A rich textbox is better than a plain textbox because it can display text in **markdown** format, which makes it easier to read. So here is the complete stage:
+
+![d58dfdb2-285f-40f1-b835-290bbdef0c15-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/09a54e25-7d8d-4589-8155-9677f6ddf790.png?raw=true) 
+
+&nbsp;
+Here is the new block to add the rich textbox:
+
+![6959f13f-6fb9-4550-91ce-310eedcc97bc-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/78ddd8d9-e381-4931-b926-f8fe9eb6e324.png?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 9 - Clear the Rich Textbox
+
+After the user inputs the book title (feel free to pick any title) and the number of chapters, he/she will first click the "TOC" button. When that happens, we first need to clear any existing content in the rich textbox:
+
+&nbsp;
+To do that, we need to use the 'when widget clicked' block to detect when the user clicks the "TOC" button. When that happens, we need to set the value of the output rich textbox ("richtextbox1") to an empty value:
+
+![e1b25aad-5f96-484f-b672-5653644a31c8-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/0c9c700e-6969-4216-8c53-6dc2df27571b.png?raw=true) 
+
+
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 10 - Compose the Initial Prompt
+&nbsp;
+
+Now, let's prepare the initial prompt for AI. To make it write the title and table of contents, we need to specify the book topic and the number of chapters. For example, the prompt may look like this:
 
 ```text
-你正在帮我写一本书。标题是 <时间旅行 101>。它将有 4 个章节。现在编写目录。
+You are helping me write a book with [X] chapters about this topic: 
+
+[X]
+
+Now give me the title and table of contents.
 ```
 
-现在让我们将此提示放入名为“request”的变量中，然后将此请求发送给 ChatGPT，并将响应存储在名为“response”的变量中。然后我们可以将此响应“追加”到输出文本框：
+In this prompt, we have 2 placeholders marked as [X] for the number of chapters and the book topic. 
 
-![9a60b3ea-99bc-4b9d-bc19-c25706a5e07e-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/90a37ac1-d775-45e4-b8bb-f2cd39d10a30.png?raw=true) 
+Let's put this prompt into a variable named "request", and use the "join" block to compose this prompt dynamically based on user input. Since it contains 5 parts joined together, the block is quite long, so we need 2 images to show it:
 
-&nbsp;
-这是我们将得到的：
+![910abadb-7e92-4f7a-a276-e3174d355a6b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/156327e7-4327-4558-98a2-0bda3b97674a.png?raw=true) 
 
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/91414865-66c4-456c-a361-070349401c68.gif?raw=true) 
-
-&nbsp;
-这是一个好的开始。我们将逐一修复这些问题。
+![d50a2405-2023-480c-b050-013ae3299deb-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ad237f35-bd4f-4b00-9aff-b3ebf23dfdbf.png?raw=true) 
 
 &nbsp;
+As shown, we are reading the number of topics using "value of widget menu1", and also reading the book top using "value of widget textbox1". We use "\n\n" to add some empty lines for better formatting. For testing, we can print the "request" variable into the console. Suppose we input "time travel" as the book topic, these 2 blocks should print the following into the console panel:
+
+![34fe14ad-1803-425e-88fb-70f53f885ebd-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e432cf04-3c25-40b5-9f0f-164c8cbfb9dd.png?raw=true) 
+
 &nbsp;
-## 步骤 11 - 让 ChatGPT 只返回目录
+&nbsp;
+## Step 11 - Send Prompt to AI
+&nbsp;
 
-显然，最大的问题是 ChatGPT 的响应不“干净”。由于它被训练为“聊天”，它自然会在目录之前和之后添加一些句子。
+Next, let's send this request to AI. Instead of using ChatGPT, we will be using the "LLM" AI block. It works almost the same way as the ChatGPT block. The only difference is that you need to specify which AI model to use: 
+* **small**: this is a small and fast model, which is good enough for most common use cases;
+* **large**: this is a large and slow model, but it is smarter than the small model, so you can use it if you need AI to work on some very challenging task.
 
-现在让我们尝试改进我们的请求，以便它只返回目录。例如，我们可以尝试这样说：
+The specific model to be used may be ChatGPT or some other AI models, which may change over time as newer and better AI models emerge.
+
+Here is the code to send our request to the small LLM AI, store the response in a variable named "response", and then "append" this response to the rich textbox:
+
+![2e9a0bd8-b748-4409-8927-d33c7b057d00-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/438c21c2-cf30-4b22-bd39-706bd76e1cb4.png?raw=true) 
+
+&nbsp;
+Here is what we will get:
+
+![positionlabel1.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/bookwritertoc.gif?raw=true)
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 12 - Remove Extra Comments
+
+A very common and annoying problem with ChatGPT and other AI models is that they tend to "chat" with us. So whenever we ask them to write something, they tend to say something before or after the exact content we need. Such sentences are often called "introductory commentary" and "concluding commentary".
+
+For example, in the screenshot above, we see that the AI model's output contains some introductory commentary like "Okay, here's a title and table of contents for a book about time travel ...", and some concluding commentary like "I hope it inspires you to write a great book ...". 
+
+Such comments make the AI sound more natural when it is chatting with a human, but they become unnecessary when we are using AI as a tool.
+
+To fix this issue, we need to explicitly tell the AI model not to say these things. For example, we can update the last part of the prompt like this:
 
 ```text
-你正在帮我写一本书。标题是 <时间旅行 101>。它将有 4 个章节。现在只返回目录，不要在它之前或之后添加任何内容。除了目录，我不想要任何其他内容！
+\n\nNow write the title and table of contents in 100 words with no introductory or concluding commentary.
 ```
 
-不幸的是，我们总是得到一个“健谈”的响应：
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/8b354c9b-a6e5-4f14-bbcc-3340aec8c0a7.gif?raw=true) 
-
-&nbsp;
-你能找到一个**总是**有效的好的提示吗？
-
-
 
 
 &nbsp;
-&nbsp;
-## 步骤 12 - 标记目录的开头和结尾
+Now we get the book title and TOC without any unnecessary comments:
 
-坏消息是，对于当前版本的 ChatGPT 来说，几乎不可能找到一个能让我们得到干净目录的提示。所以我们必须找到另一种解决方案。我们的想法是，我们接受在目录之前和之后可能存在不需要的句子，并且我们要求 ChatGPT 告诉我们目录在哪里。具体来说，我们可以要求 ChatGPT 在目录之前和之后添加 ```，如下所示：
+
+![46cdf0aa-0e30-4609-be72-c4d5a78043b3-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/9f70e766-8e32-427d-84f7-36a6e3940642.png?raw=true) 
+
+
+&nbsp;
+&nbsp;
+## Step 13 - Write the First Chapter
+
+Now let's try to ask AI to write chapter 1 when the second button is clicked. Later we will ask it to write more chapters.
+
+The prompt will ask the AI to write chapter 1 and also avoid giving us any commentary:
 
 ```text
-你正在帮我写一本书。标题是 <时间旅行 101>。它将有 4 个章节。现在编写目录。在它之前和之后添加 ```。
+Write chatper 1 in 200 words with no introductory or concluding commentary.
+``` 
+
+
+&nbsp;
+Note that since we are developing the program, we can limit the word count to a small number like 200, so we don't have to wait too long for the response to come back.
+
+After we receive the new response, we will first add 2 new lines using "<br><br>", and then append the new response to the rich textbox.
+
+![920fb47f-3422-41c5-8e65-205c81041511-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/5ca33346-69ec-4382-880d-de75599a0bc9.png?raw=true) 
+
+![a0fb9de1-4fcb-4509-b1f9-a137cbb8ce13-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/bab4b991-518b-4a2b-a45f-2f319ba4c2ae.png?raw=true) 
+
+&nbsp;
+Note that we are using the "continue" session type, so that the AI model will remember the previous request we sent to it and its response, which contains the book topic, title and TOC.
+
+Now it can successfully generate Chapter 1:
+
+
+![chapter1.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/bookwriterchapter1.gif?raw=true)
+
+
+&nbsp;
+&nbsp;
+## Step 14 - 2 Improvements
+&nbsp;
+
+If you test the program a few times, you may find that the AI model still adds some comments before the content we want. In addition, the book content is in plain text, so it is kind of hard to read:
+
+![93285312-9610-4ae7-b025-37fb33bdcc4e-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/93710620-b684-4c61-bc76-634772b771fe.png?raw=true) 
+
+&nbsp;
+To solve both issues, we can add some additional requirements in our second prompt like this:
+
+```text
+Write chatper 1 in 200 words in markdown format with absolutely no introductory or concluding commentary.
 ```
 
-&nbsp;
-现在我们发现 ChatGPT 几乎总是在一对 ``` 之间给出目录：
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/cd5d2ab3-497c-483d-912b-40370daa20dd.gif?raw=true) 
+We are asking the AI to write **in markdown format**, which will lead to better formatting. We are also telling it to add **absolutely** no commentary. 
 
 
-
-&nbsp;
-现在我们只需要提取响应中 2 个 ``` 标记之间的部分。我们可以使用“part N of T by X”块轻松地做到这一点：
-
-![9ec77f78-28ea-4e97-b8e3-5b4528701b57-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/c5b33445-d5b6-4885-83ca-c8553c137ed0.png?raw=true) 
-
-&nbsp;
-它的工作方式是，它将首先通过 ``` 标记拆分响应。由于响应中有 2 个标记，此步骤会将响应拆分为 3 个部分，中间部分（第 2 部分）将是目录本身。
-
-&nbsp;
-这是更改后你应该得到的：
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/8b677857-4fd7-4384-b2b2-2cd34f7731af.gif?raw=true) 
 
 
 
 &nbsp;
 &nbsp;
-## 步骤 13 - 使用用户输入组成请求
+## Step 15 - Write All Chapters with a Loop
+&nbsp;
 
-另一个小问题是我们的提示是“硬编码的”。它根本没有使用用户的输入。要更改这一点，我们需要使用“连接”块来使用文本框和下拉菜单的值组成请求：
+For the last step, we need to use a loop to write all the chapters one by one. We can use a for-loop to make a variable 'chapter' go from 1 to the total number of chapters, then compose the request to ChatGPT using the 'chapter' variable in the loop:
 
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/7e198453-27c2-48e0-bac6-4a2953cec025.gif?raw=true) 
+![3944865e-ad2a-4490-ba91-237f07532066-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/06c5d8ad-11b5-4dc7-8d2f-bce7db91a2ff.png?raw=true) 
 
 &nbsp;
-之后，我们将始终获取用户指定的标题和章节数：
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/2580070e-25d2-4ef8-b37a-20abe4c971be.gif?raw=true) 
+Note that each chapter doesn't have to be only 200 words. Here is a demo of the program, where we set each chapter to be within **800** words:
 
 
-
-&nbsp;
-&nbsp;
-## 步骤 14 - 编写第一章
-
-现在让我们尝试要求 ChatGPT 编写第一章。我们只需要告诉它书名和目录，这恰好是输出文本框的当前值。所以我们只需要将它保存到一个名为“toc”的新变量中，然后像这样组成请求：
-
-![13109a8b-8453-4952-90be-7c23228a5607-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ee1ef755-2313-42f9-9a76-e012cef4dfa4.png?raw=true) 
-
-&nbsp;
-请注意，由于我们正在开发程序，我们可以将字数限制为一个较小的数字，例如 100，这样我们就不必等待太长时间才能得到响应。
-
-如果我们将 request2 变量打印到控制台面板，它将如下所示：
-
-![df02681c-4026-4252-b7da-5e78747bbe0b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/74d22443-4294-46ec-9499-40779c51f20e.png?raw=true) 
-
-&nbsp;
-由于它看起来不错，现在我们只需要将此 request2 发送给 ChatGPT，并将新的响应追加到书籍文本框。
-
-![7ae84d31-8578-4ce4-9d3b-e5a1b5cfc4fa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e1bab9c5-01e9-402e-9063-c1b1cc2a4b06.png?raw=true) 
-
-&nbsp;
-现在我们可以成功生成第 1 章：
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/4372d14a-550f-4edb-99f6-e9a1d9bb4ba3.gif?raw=true) 
+![chapter123.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/bookwriterchapter123.gif?raw=true)
 
 
 
 &nbsp;
 &nbsp;
-## 步骤 15 - 使用循环编写所有章节
+## Step 16 - Add Additional Details to the Topic
+&nbsp;
 
-对于最后一步，我们需要使用循环逐个编写所有章节。我们可以使用 for 循环使变量“chapter”从 1 到章节总数，然后在循环中使用“chapter”变量组成对 ChatGPT 的请求：
+Since AI models can follow our instructions very well, we can give it additional details when we describe the book topic.
 
-![b11b1101-d035-4d3b-bce7-9fdbbd76a9c9-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f6c321d9-4d56-4de1-978d-a30287dd2f83.png?raw=true) 
+For example, we can expand the "time travel" topic to the following:
+
+```text
+time travel, an exciting fiction book for teenagers that talks about 2 middle-school students that travel back to the dinosaur age.
+```
+
+Here is the book written by the AI: 
+[Dino-Dash: A Middle School Time Warp](https://docs.google.com/document/d/14rXyiTWu29N0kTJRB3Z-AG_E_h6GQcJq0Sqnp4q-Ugo/edit?usp=sharing)
 
 &nbsp;
-这是该程序的最终演示：
-
-![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a20ee7ba-bc77-4358-8b86-a048fa848b6d.gif?raw=true) 
-
-
-
 &nbsp;
+## Challenges
 &nbsp;
-## 增强功能
+There are many places where this book writer can be enhanced. Here are some examples:
 
-这个版本的书籍作者非常粗糙。有很多地方可以增强它。以下是一些示例：
+* **Streaming Mode**: Instead of waiting for the entire chapter to come back, we can display its content as the AI writes it. You will need to make sure the entire chapter is complete before asking the AI to write the next chapter.
 
-* 有时 ChatGPT 无法正确生成目录。我们如何改进请求以避免这种情况？
-
-![b5e39227-9ef0-434a-8de1-3a3d18438204-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/35389d06-0b38-4d27-9739-956658d76d97.png?raw=true) 
-
-* 输出文本框中的书籍格式不正确。尝试在书的不同部分之间添加一些空行。
-
-* 有时目录在给定的章节数之后包含一个“结论”，但我们的程序尚未生成任何结论。你可以尝试在最后添加它。
+* **Rewriting a chapter**: This means instead of writing all chapters automatically, only write one chapter at a time, then pause to ask the user's approval before continuing to the next chapter. If the user does not like it, he/she can provide some additional comments, and the AI writer will rewrite the given chapter based on the comment.
