@@ -1,370 +1,528 @@
 ## Introduction
-&nbsp;
-Traditionally, AI characters in games are fairly "boring". They usually say the same sentences repeatedly, because they are driven by predefined "scripts" written by the game developers.
+
+In a "cloze game" (also called the "cloze test"), you fill in missing words in a sentence. It is a great exercise for learning the difference between similar words.
 
-That problem can now be fixed using ChatGPT. ChatGPT can help our game characters to talk to users in natural languages, which will make the games much more interesting and unpredictable.
+In this tutorial, you will build an app that uses ChatGPT to generate cloze games for any words the user inputs. You will learn how to design the request (prompt) to ChatGPT so it is easy to process the response in your code.
 
-In this tutorial, we will build a simple game called "Who's the Spy?". The player will talk to a few AI characters to guess who is the spy, and we will use ChatGPT to generate answers for these characters.
+The completed project will look like this:
 
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/63ea0a72-02da-4e9d-9f69-0b2d6babc306.gif) 
+![s3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/bd840fa2-30e4-4ac6-a676-2c42a326b19a.gif) 
 
+&nbsp;
+&nbsp;
+## Step 1 - A New Project
+&nbsp;
+In the CreatiCode playground, create a new project named "Cloze Game". Remove the "Sprite1", since we'll only need the "Empty1" block.
 
 &nbsp;
 &nbsp;
-## Step 1 - Remix the Template Project
+## Step 2 - Send Prompt and Print Response
 &nbsp;
-Please start by remixing the following project, which contains 4 sprites that we will use: a doctor and 3 animal agents (a dog, a reindeer and a monkey).
+In the first few steps, we will focus on designing a good prompt for ChatGPT. After that, we will add the blocks for processing the response from ChatGPT.
 
-https://play.creaticode.com/projects/31abbb3f6b05f826173310d1
+Since our users will not talk to ChatGPT directly, we won't need to send any system requests. We will only need a normal request block like this:
 
+![f6cd154a-1df9-49a9-8e5a-dd6fdb57e9a7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0bfab099-ad5c-4a0a-84fe-fee211f488a3.png) 
 
+&nbsp;
+Recall that in the "waiting" mode we wait for the entire response to be stored in the "response" variable before running the next block, which prints it out in the console.
 
+
 &nbsp;
 &nbsp;
-## Step 2 - Prepare the Game Description for ChatGPT
+## Step 3 - Start with A Simple Prompt
 &nbsp;
-When the player starts the game, we first need to explain the game to ChatGPT. This can be sending a "system message" to ChatGPT. The description should include a few parts:
+Since the cloze game (or cloze test) is a very common learning method, ChatGPT has already seen plenty of examples of it. We can start by directly asking ChatGPT to create the cloze game for us. We will refine our prompt later based on what we get.
 
-1. **Role Assignment**: We will make ChatGPT play the role of "game master", which will help us run the game. 
-2. **Game Context**: We will tell ChatGPT this is a guessing game, and what's the back story. ChatGPT will then help us maintain this storyline throughout the game.
-3. **Instruction**: We will need to give ChatGPT some very detailed rules on what it should and should not do. Otherwise, the player could easily trick ChatGPT into revealing the answer.
+For this step, we can simply "hardcode" 3 words ourselves, like "run, runs, ran". We will work on the user input later.
 
 &nbsp;
-Here is an example game description:
 
----
+![d273d4d7-df43-44aa-a198-c9880f62bc00-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/e686a2f8-6575-4a22-97fe-0336f227433d.png)
 
-You are the "game master" running a game named "Who's the Spy". 
+&nbsp;
+**Please try to run your project a few times. Observe the issues in ChatGPT's output, and think about how you can fix them by improving the prompt.**
 
-Context:
 
-There is a secret lab run by the "doctor", and the doctor works with 3 smart assistants (dog, reindeer and monkey). Recently, the blueprint of a revolutionary, world-changing robot was stolen from the lab.  Rumors suggest that one of the animal agents has gone rogue and is the spy who stole the design. The doctor has invited the player to help find out who's the spy. Somehow the security cameras were not working, so we can not rely on that.
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-Instruction:  
 
-Randomly pick one of the three animal assistants as the spy. Only you and the spy know who is the spy. The player can ask the doctor or any assistant any question. You will come up with the answer on behalf of them. Note that the spy might lie. When you answer, always use this format:  
 
-dog: it is not me.  
 
-The game ends when the player makes a guess, and you will reveal who's the spy after that.
+&nbsp;
+&nbsp;
+## Step 4 - Analyze ChatGPT's Response
+&nbsp;
+Here are a few example outputs from ChatGPT:
+&nbsp;
 
----
+![b9e07157-392a-4fe1-88df-2f024cae176f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f42b51b9-f84d-4d75-bee5-c85e6d4072e4.png) 
 
 &nbsp;
-Note that we are giving ChatGPT a specific format for answering our questions: "dog: it is not me.". The reason is that ChatGPT may give us answers from any of the characters, so to make it easier to process its response, we need the response to be well-formatted. 
 
+![b5683c96-1207-411a-8eb0-a63fe37fe928-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/19239023-46dc-447d-a312-21073358bf9b.png) 
 
-&nbsp;
 &nbsp;
-## Step 3 - Send Game Description to ChatGPT
+
+![1445df4c-90f3-46d7-a661-e8a293abc1c5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/58d6007a-5ed3-4260-b2b6-d88fff445fa8.png) 
+
+
 &nbsp;
-Now let's send the game description to ChatGPT. We can add the following code %(#f20707)[in the "Doctor" sprite]:
 
-![c65b39b5-d1cb-44ca-b84d-e2995a78a07e-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/7bd4c22d-390b-411b-ade2-4158612e8b00.png) 
+![3d14fd3b-8f0d-4ba2-9511-3d6615b83412-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8602f8c3-2aaf-434d-afd1-d6e6d69de98c.png) 
 
 &nbsp;
-We are using a "system" request, which carries a stronger weight than a normal request. We will store the response from ChatGPT in the "response" variable.
 
-Now please copy the game description into the system request block. Recall that you can use a comment box to help if you would like to edit the description.
+![66308bee-099d-481b-94f8-7c753eb17dbb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/53dabb06-c2a4-4f66-964d-1c9c1ac782a0.png) 
 
+
+&nbsp;
+Here is a summary of the key issues:
+1. The response may be too long. This will not only exceed the word limit, but also make the user wait too long.
+2. The number of questions is not fixed, and sometimes a single paragraph is given instead of a list of questions. It makes it harder for us to create the user interface later.
+3. The answers are sometimes not given, and sometimes given. We do not want to show the answers to the user, yet our program does need to get the answers from ChatGPT.
 
+&nbsp;
+The first 2 issues are fairly easy to fix. Can you give it a try before moving to the next step?
 
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
-## Step 4 - Print Out ChatGPT's Response for Debugging
 &nbsp;
-To review ChatGPT's responses while developing the project, we can simply print the response in the console panel like this:
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-![f7b38de4-e892-467b-a33b-b599fe61bd88-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/25845cf4-be27-47dc-9e03-44195a2d23c7.png) 
 
-&nbsp;
-When you run the project, it will take a while, and you may see a response like this (try a few times if you don't):
 
-![7861510b-c460-4742-afe4-abd99e04be90-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f07658fd-1abd-438f-b94a-07263c9779fd.png) 
 
+&nbsp;
 &nbsp;
+## Step 5 - Fix Issues with Token Count and Question Count
+&nbsp;
 
-This is happening because ChatGPT is trying to give a very long response and reached the token limit. For example, it might be repeating the game description to show that it gets it, or it might even start to generate some example conversations between the player and the characters.
+We can use the following request to fix some of the problems fairly easily:
 
-We should try to avoid it for 2 reasons:
-* We don't need ChatGPT to generate any responses yet since we won't show it to the player;
-* The longer the response, the longer we have to make the player wait.
+```html
+in 60 words, create a cloze game with 3 questions for these words: run, ran, runs
+```
 
 &nbsp;
-To avoid this issue, the solution is very simple. We just need to modify our prompt to tell ChatGPT how to respond. For example, we can %(#f50f0f)[append this sentence] at the end of the system request message:
-
----
-
-Now say "Ready" and wait for the player to ask a question.
+Here are some new example outputs:
 
----
+![ab33e94f-82c6-4558-a5cf-6f7d54532268-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/073e8f3f-8ed5-46e0-976f-9dba39195753.png) 
 
 &nbsp;
-This is a commonly used technique to make ChatGPT say as little as possible. If you run the project again, it should get the full response very quickly:
+![5a03bdba-840e-45ba-a52e-ea57d3dc6fa7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/adbbfe60-f5ec-48a0-9641-d81d0502d214.png) 
 
-
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/ecfa9441-7b04-427e-8248-689dce661ac5.gif) 
+&nbsp;
+![2af68e52-ddb1-4bf3-87a3-89602c481146-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/5d5a77cf-bc90-47b1-af1b-74c3de741bfc.png) 
 
 
 &nbsp;
 &nbsp;
-## Step 5 - Greet the Player
+## Step 6 - Specify Response Format
 &nbsp;
-Now that ChatGPT is ready, we also need to tell the player about the game. We can ask the "Doctor" to greet the player and explain how to play the game. For example, we can add a "say" block with the following words:
 
----
+To make it easy for our program to process the response, we need to make the response strictly follow some predefined format. To do that, the best solution is to specify the format ourselves. For example, this is an updated request. Note that you can use a comment in your project to serve as the text editor, so that you can format the output format using multiple lines.
 
-Thanks for coming, Detective! As we discussed on the phone, a blueprint of a highly secretive robot has been stolen, and I believe one of my three assistants is the spy who took it. You can click on any of us to ask a question.
+```html
 
----
+in 60 words, create a cloze game with 3 questions for these words: run, ran, runs
 
-This is what you would get:
+use this output format:
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/dfea2728-0aea-499b-a40a-1018f1b275ed.gif) 
+QUESTIONS:
 
+1.
+2.
+3.
 
+ANSWERS:
 
-&nbsp;
-&nbsp;
-## Step 6 - Click the Doctor to Ask a Question
+1.
+2.
+3.
+```
+
 &nbsp;
-Now let's allow the player to click on the Doctor to ask a question. Specifically, when the player clicks the Doctor sprite, it asks the player to input the question. We can use the "print to console" block again to review the answer. Note that it may be a bit confusing that the "answer" is the player's input, not the answer from ChatGPT.
+Now the output looks better (still not perfect):
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/126b5cc5-13b9-4fdd-87ec-d3f0c16bbc94.gif) 
+&nbsp;
+![f16b3ae1-4938-4018-bab0-fad323b3d399-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/91492d63-6f64-4b13-be7c-00b9fba8373a.png) 
 
 &nbsp;
-This is what the console panel looks like afterward:
+![7e25cb03-3d06-44b9-9eb5-d2df823c3edb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/88373495-b48b-4a57-8fc4-dbcdc257f6c7.png) 
 
-![2beafea9-397e-4f43-9de4-e84022123b56-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f1cee471-d29d-4d87-a464-5ffc48d8d739.png) 
+&nbsp;
+To keep it simple, **we need the answers to be the hidden words themselves, not sentences**. In addition, shorter answers would shorten the response time of ChatGPT. Can you try to make this change?
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
-As shown, if the user did not input anything, then the "answer" block will just be empty.
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 
 
 &nbsp;
 &nbsp;
-## Step 7 - Get ChatGPT's answer
+## Step 7 - Answer Format
 &nbsp;
 
-Now let's send the user input to ChatGPT, so it will generate an answer for the Doctor character. We should only do it if the user input is not empty:
+There are at least 2 ways to tell ChatGPT the answer format we need. 
 
-![078aaad8-3000-41d0-9e0d-486efca5636b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/5f015083-8736-4a8c-b982-2a8824d8c4df.png) 
-
-&nbsp;
-Explanations:
-* We are joining the words "Doctor, " with the user's input, so ChatGPT knows we are talking to the Doctor.
-* We are using the "waiting" mode, so we will not run the next block until we get the full response from ChatGPT stored in the "response" variable.
-* The session type is "continue" since we want ChatGPT to remember the game description we gave it before.
+First, we can describe it like this: for each answer, only show the hidden word.
 
-&nbsp;
-Now our doctor is talking to us, and the conversation is completely natural and unscripted. In fact, as the game developer, we don't even know the answer at this point, since we have asked ChatGPT to secretly pick an animal as the spy.
+Second, we can modify the output format example to show ChatGPT what we need.
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/f8ad5158-1db1-4e16-aa7e-74489544da37.gif) 
+Here is an updated request with both changes:
 
+```html
 
+in 60 words, create a cloze game with 3 questions for these words: run, ran, runs
 
-&nbsp;
-&nbsp;
-## Step 8 - Clean Up ChatGPT's Answer
-&nbsp;
+use this output format (for each answer, only show the hidden word):
 
-Currently, ChatGPT's answer starts with "Doctor:". That's good to know for us (the game developer), but we should not show that to the player. We can remove it this way: we split the response into 2 parts using the ":" as the separator, then we only show the second part to the player:
+QUESTIONS:
+1.
+2.
+3.
 
-![d657f525-48fe-444a-85e6-8402d64ef7d8-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/05836330-aaad-422f-b5a7-bb9aa5917ad6.png) 
+ANSWERS:
+1. hidden word
+2. hidden word
+3. hidden word
+```
 
 &nbsp;
-Now the doctor's answer will not contain the "Doctor:" prefix:
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/74dce9d2-6978-4f50-9593-2576302a928a.gif) 
+With this new request, the response from ChatGPT will be fairly consistently formatted like this:
 
+![e4817c1a-d11d-469a-97d7-d88d48fc83a2-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/aea57520-1cd6-4fa0-bb67-4643a312e87b.png) 
 
 
 &nbsp;
-**%(#ed0202)[Special Note: with a recent update of ChatGPT's model, you may find that sometimes the model would respond without the "Doctor:" prefix . In that case, the code above would not say anything.]**
+Now we are done with optimizing the ChatGPT request, so we can start to work on the user interface.
 
-**%(#ec0404)[A more robust solution is to check if the response starts with "doctor:" first, such as this:]**
+&nbsp;
+&nbsp;
+## Step 8 - Word Inputs
+&nbsp;
+First, we need to allow the user to input 3 words. This can be done using "textbox" widgets. We will also use label widgets to label these words as "A", "B" and "C". So later the user just needs to select from A/B/C when they try to guess the hidden word.
 
-![829fda88-3fb6-4f6c-b736-dcd97d0b58cb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/56c5d405-dda4-404e-bcc9-0294695231f3.png) 
+&nbsp;
+![d6c6760c-9c5a-4269-9524-fd437a54e5b4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1a18a404-7d62-452f-a93b-6bcaf0f23e4c.png) 
+&nbsp;
 
+To keep the main program short, we will define a new block named "word inputs". Note that **you should detach the ChatGPT block for now**, since we don't need to run ChatGPT while building the user interface. It will be too slow.
 
+![e8cb68c3-4bb2-4aa1-b823-9048f2ecd71d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3e336296-6b14-40bf-b895-5574ed44bba6.png) 
 
 &nbsp;
-In addition, sometimes ChatGPT may not answer as the right character. For example, we may ask the Doctor a question, but the answer is from the dog. We can fix this by updating the initial instructions to ensure ChatGPT answers on behalf of the character we are addressing. In addition, instead of prefixing "Doctor," to the question, we can change it to "To Doctor:".
 
 
+
 &nbsp;
 &nbsp;
-## Step 9 - Highlight the Doctor by Mouse
+## Step 9 - Add Questions
 &nbsp;
-
-Since the game is played by clicking on the characters, it is common to highlight a character when the mouse pointer is over that character, so the player knows what is clickable. We can trigger this using the "when touching mouse pointer" block. To highlight a sprite, we just need to set its "brightness" to a positive number. We can also play a sound when the doctor is highlighted (You need to go to the "Sounds" tab on the left top, and add the "Hit 5" sound clip to each sprite first):
 
-![c507bfdc-5f2a-4e8d-a922-75dd491b6016-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/19759c66-9474-43ea-b435-70bd4a287153.png) 
+After the user has input the 3 words, he/she will click a "Create" button to create the cloze game. When we receive the questions from ChatGPT, we will display them in a multi-line read-only textbox. 
 
 &nbsp;
-This is the result:
-
+![7b0097c6-2642-4159-8e29-cf6cc50051bd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/978f25c5-03da-47f7-8bfc-94d3c9d35208.png) 
 &nbsp;
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/12399d35-e145-4b7e-8303-6901ea190c7c.gif) 
+
+
+We will define a new custom block "add questions":
 
+![403ddde5-2b67-49de-8ac5-f8bbced7974e-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/5c3adb82-830c-4c9d-81de-908695693dab.png) 
 
 
 
+
 &nbsp;
 &nbsp;
-## Step 10 - Remove the Highlight
+## Step 10 - The "choices" List
 &nbsp;
 
-When the mouse pointer is no longer touching the doctor, we should remove the highlight. We can use a "wait until" block that keeps on checking if the sprite is no longer touching the mouse pointer. After that, we reset the brightness to 0.
+The bottom of the stage will contain dropdowns for the user to choose which word goes to which question. We need to create a new list named "choices", and add the letters "A", "B" and "C" to it. 
 
-![2b4755c4-6a43-4fba-b37e-a745445fdb04-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f2d16161-ffb0-467c-96e0-81db9da83a91.png) 
+One issue you might have is that the stage is already covered by widgets, so you won't see the list. To clear up the stage, the trick is to click the green flag button without running any block like this:
 
-&nbsp;
-Here is the result:
+![choic.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/3c81558e-6fcd-4a82-b4ba-40268d929374.gif) 
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/82202760-b10b-44f2-acb9-34128b59d332.gif) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 11 - Copy Code to the Dog
+## Step 11 - Add Answers
 &nbsp;
 
-By this time, we are done with changing the Doctor. We can reuse a big chunk of the code in the other sprites by "copy" and "paste". Let's start with the dog first. The only thing we need to change is the name of the sprite when we send the question to ChatGPT. We also need to add the "Hit 5" sound to the dog sprite.
-&nbsp;
+Now we can add the answer dropdowns for the 3 questions, and a "Submit" button:
+
+
+![85d3280c-0911-417a-b44a-fb6e60d16026-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/4ecf2b56-2639-4d6d-a796-84348b74a422.png) 
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/68c114b4-8080-4c58-9cc5-cabd095ff695.gif) 
+&nbsp;
+We can use a new custom block "add answers" for this step:
 
 &nbsp;
-Now the dog sprite has both highlighting and question answering:
+![3ac2bed3-b251-489a-a516-2a0a1cac4de3-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/e2bcdc41-5f51-42c2-82ac-8ece09375989.png) 
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/0cf2ec38-2362-41c8-932d-9c272433eeac.gif) 
 
+&nbsp;
 
+By now, we have completed the game interface. For the last few steps, we will need to handle user actions with the help of ChatGPT. 
 
 &nbsp;
 &nbsp;
-## Step 12 - Copy Code to the Reindeer and Monkey
+## Step 12 - Compose the ChatGPT Request
 &nbsp;
-
-Now please make similar changes to the Reindeer and Monkey sprites. Don't forget to change the character name when you send the request to ChatGPT.
 
+In the first few steps, we have "hardcoded" the 3 words to "run, runs, ran". Now we will need to make our request "dynamic": no matter which words the user input, we will include them in the request. To make our code easy to read, we will create 3 variables and join them together: **task**, **words** and **format**. We will store the final request in another new variable called "request".
 
+* **task** will be the part of the request before the 3 words. It describes what we need:
 
-
+```html
+in 60 words, create a cloze game with 3 questions for these words: 
+```
 &nbsp;
-&nbsp;
-## Step 13 - Hide the Speech Bubble
+* **words** will contain the 3 words from the user input, **separated by commas**.
+
 &nbsp;
+* **format** will describe the output format for ChatGPT:
 
-There is a new issue: when the player switches to talk to a different sprite, the previous sprite may still be showing the speech bubble.
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/787e884d-2df8-4391-ba60-b07ef7ab43e9.gif) 
+```html
+use this output format (for each answer, only show the hidden word):
 
-&nbsp;
-To fix this issue, we need to ask all sprites to hide their speech bubbles whenever any sprite is clicked. This can be done by broadcasting a message to all sprites when a sprite is clicked, and waiting for the message to be handled. When receiving this message, the sprite just needs to say "nothing" to hide the speech bubble. In case the sprite is asking for user input, we should also make it hide the question by "stop asking".
+QUESTIONS:
+1.
+2.
+3.
 
-![eb040f01-49e9-460a-bdb3-9c5bdef90b8b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/080262cc-b6ec-4d6f-9dc1-3f4567e16e3a.png) 
+ANSWERS:
+1. hidden word
+2. hidden word
+3. hidden word
+```
 
 
 
+&nbsp;
 &nbsp;
-Note that this change needs to be done to all 4 sprites.
+Here are the blocks to compose the request when the user clicks the "Create" button:
 
+![59d115ba-3aa6-4a7a-bf41-18bc9b397aed-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/05577371-fb38-4b66-856c-b2b9a1394438.png) 
 
+
+
 &nbsp;
 &nbsp;
-## Step 14 - A Button to Submit the Final Answer
+## Step 13 - Get the Response from ChatGPT
 &nbsp;
-
-At this point, the player can keep chatting with all the characters to investigate the case. We just need to provide a way for the player to submit the final answer. 
 
-First, let's %(#f00a0a)[switch to the Stage], and add a new button when the project starts:
+Now we can use the ChatGPT block to send the request, then we will display the response in the "questions" textbox to review it:
 
-![1634806b-7d2a-4f26-9ac6-8e724ed29e5d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/fc6706c8-daab-4fab-be46-8a6b0fbccda8.png) 
+![db862df2-802e-4eb0-850f-e61aa478c101-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a1e4ca92-6119-4005-8352-0b928a01ebd8.png) 
 
 &nbsp;
-Don't forget you can use the "Widget Position" tool to help you adjust the button position and size. 
+Try to test it out with some new words:
 
-This is what the button looks like:
+![s1.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/dea3577b-8e3a-4593-99ed-7000600d18d6.gif) 
 
-![86ea1f63-77a0-40a1-8851-e3910453ce28-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/06ee4508-40ca-4c35-919c-65493c5a7ba4.png) 
+&nbsp;
 
 
 
 &nbsp;
 &nbsp;
-## Step 15 - Show the Options
+## Step 14 - Remove the "QUESTIONS:" header
 &nbsp;
 
-When the player clicks the "Answer" button, we need to show a few radio buttons for the player to select. Besides the 3 animals, we should give the user an option to take a step back and think about it more:
+Let's first fix a small issue with the response. It always starts with "QUESTIONS:", which makes our question numbers not aligned. Although we can adapt our request to ChatGPT to fix it, it is also fairly easy to fix it using a "replace" operator block like this:
 
-![bb7828b6-58e1-4856-8481-57725a98c645-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3d97bd63-c97c-4d35-9ae3-a9b338f62ebe.png) 
+&nbsp;
+![23d15780-f605-48ed-b49a-d08fa0520b6b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3fd3b700-7ff8-40c3-aa11-6244f1b42982.png) 
 
 &nbsp;
-Here is the output:
+Note that you can detach these blocks from the ChatGPT request, so we won't need to rerun the request. Now we get a better-formatted question list:
+
+![54909182-4372-4ca2-8130-9c4cbe123de1-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c74e59ef-3a02-4caf-a692-c3c9f6b87528.png) 
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/a6104582-d95b-4427-abf6-996b2f6f3b9e.gif) 
 
 
 &nbsp;
 &nbsp;
-## Step 16 - Handle Player Selection
+## Step 15 - Extract Questions and Answers
+&nbsp;
+
+Since the response includes both questions and answers, we need to split it into 2 parts, and only show the questions to the user. We can use the "split" operator, and use "ANSWERS:" as the separator. All words before "ANSWERS:" will be stored in the "questions" variable, and all words after "ANSWERS:" will be stored in the "answers" variable.
+
+![6ab8d834-42aa-4de4-b933-fa7d271aa12a-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/55eb4949-14e2-4498-86d6-6df030b32255.png) 
+
 &nbsp;
+And now we are only showing the "questions" variable in the textbox:
 
-To handle the player's selection, we can watch for the "click" event of the radio buttons. The player's selection can be retrieved using the "value of widget" block. If the player has chosen to think about it more, we should simply remove the radio button group.
+![007f752d-be1a-4789-b9a3-33b1c93a7cbe-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a26507e8-2594-4b06-9373-24fdf08c2c85.png) 
 
-![9ef592c5-f586-4761-bc02-7a85002115d0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3ea3f91d-7f57-4902-bb0e-db853ae0e53d.png) 
 
+&nbsp;
+&nbsp;
+## Step 16 - Compose the User Answer for Question 1
 &nbsp;
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/45839df6-72c7-4707-ba52-08f695e7f82e.gif) 
+When the user clicks the "Submit" button, we need to check the choices made in the 3 dropdowns at the bottom against the correct answer from ChatGPT. We can define a new block "check answer 1", which checks the answer to the first question. It will first need to compose the user's answer into a phrase based on the user's choice, and store it in a variable named "user answer":
 
+![31f37f7f-1ca5-455b-ab80-6497e5eba0ce-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ebe86a85-668f-4a98-9d31-45ff05f0f56e.png) 
 
+&nbsp;
+For example, suppose the 3 words are A) "word1", B) "word2" and C) "word3". if the user has chosen "B" for the first question, then the "user answer" will be set to "1. word2". Note there is a space after the dot.
 
+ 
 
 &nbsp;
 &nbsp;
-## Step 17 - Submit Player Selection to ChatGPT
+## Step 17 - Verify the User's Answer
 &nbsp;
 
-If the player has picked one of the three animals, then we will submit it as the answer to ChatGPT, and ask it to tell us whether that's correct.
+Now we can check if this user's answer is part of the answers provided by ChatGPT. Depending on whether the user got a question right or wrong, we can set the dropdown to a different color:
 
-![85b00bee-3da2-4567-b9c8-1b60c3536887-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/69db80cf-76b3-4d1e-beee-05d204021e71.png) 
+![s2.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/a938a641-765b-48d4-b51e-d4e9d8a8bd37.gif) 
 
 &nbsp;
-Note that we are addressing the "Game Master" since only it can make the final call on the game result.
+Here is how to achieve this:
+
+![59537168-784b-4879-b0f2-38ab255cf54f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/2c0ddf86-e537-43f6-9830-ecbd290d523a.png) 
+
 
 
 &nbsp;
 &nbsp;
-## Step 18 - Display the Final Result
+## Step 19 - Check the Other 2 Answers
 &nbsp;
 
-Now for the last step, we will use a textbox to display the response from ChatGPT. We will make sure the textbox is big enough to show the entire response. We will also remove the other widgets so the player can not re-submit the answer.
+Lastly, we just need to check answer 2 and answer 3 in a similar way.
 
-![c2362e6e-699a-4b6d-83ff-20505b087ab4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/9e9cddfb-32f4-435c-9510-7fed6d22f4b1.png) 
+![826052f0-53a9-4641-872f-fc66da01e264-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/28410b03-54b6-476b-8e3f-0ec1ea06dd38.png) 
 
-&nbsp;
-Here is the final demo of the game:
 
-![rr.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/63ea0a72-02da-4e9d-9f69-0b2d6babc306.gif) 
+&nbsp;
+Here is the final demo of the project:
 
+![s3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/bd840fa2-30e4-4ac6-a676-2c42a326b19a.gif) 
 
 
 &nbsp;
 &nbsp;
-## Creative Ideas
+## Enhancements
 &nbsp;
+
+This tutorial only covers the core logic of the project to keep it short. There are a lot of areas where you can improve upon it or adapt it. Here are some ideas for you to try: 
 
-Here are some ideas worth exploring based on the project:
+* You might find that ChatGPT tends to order the 3 questions the same way as the 3 input words, so the correct answers are always A/B/C. Can you modify the prompt so the 3 questions are randomized? Alternatively, can you change the order of these 3 input words in your prompt sent to ChatGPT?
+* Instead of having the user choose the 3 words, use a predefined list of words. For example, define a list of 30 words, and run through them 3 by 3. This would be useful for a teacher who wants to test students on some specific words.
+* Use the "streaming" mode for ChatGPT, so that the user can see the questions as they get generated. It will reduce the waiting time a lot.
+* Add colors to the widgets to make them look better.
+* Make sure the questions from ChatGPT are properly formatted. For example, you need to avoid getting questions like this:
+
+ccimg3||500||https://cdn.creaticode.com/scratch-gui-projects/forum/9f3e12a9-e7da-44cf-85c1-2106046ec30d.png||40
+
+&nbsp;
+ccimg3||500||https://cdn.creaticode.com/scratch-gui-projects/forum/932534fc-5d04-416b-8c21-db6c046de24b.png||40 
 
-* The doctor sometimes refers to himself as "Dcotor", not "me". Think about how to improve the prompt to avoid that.
-* If the player asks a question to more than one character, such as "Everyone, where were you at that time?", we need to show all the answers.
-* You can use one of the text-to-speech blocks to make the characters speak to the player.
-* You can change the characters and the background stories of the game, such as a stolen book from the library, or a gift box sent from a secret friend. You can even use historical figures to play the game.
-* Try to break the game by asking some tricky questions and see if you can trick one of the characters into telling you the name of the spy. If you manage to do that, then try to improve the prompts to fix this issue.
+* Fix "run" vs "runs": sometimes one of the words from the user input **contains** another word. For example, suppose the words are "run, ran and runs", and an answer is "1. runs". Then when we check if the correct answers contain "1. run", we would get a match, though that's the wrong answer.
