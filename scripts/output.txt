@@ -112,12 +112,12 @@ Image generation is a random process, and it often takes a few iterations to ref
 
 For example, suppose you need an icecream truck in the parking lot, you can modify the description to this: **"a large and empty parking lot, with an icecream truck at the center"**. Here is what you will get:
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/icecream_truck_in_parking_lot_44199165_426911.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/icecream_truck_in_parking_lot_44199165_426911.webp?raw=true)
 
 &nbsp;
 Now, suppose we want to add some kids waiting to buy the ice cream, and we change the description to this: **"a large and empty parking lot, with an icecream truck at the center, with a few kids waiting"**. The updated image will look like this:
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/ice_cream_truck_gathering_17845207_579032.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/ice_cream_truck_gathering_17845207_579032.webp?raw=true)
 
 &nbsp;
 As you can see, when we add more details, the image generator will try to include them in the image, but it might fail, so we need to regenerate the image or change the description repeatedly.
@@ -171,7 +171,7 @@ By default, a 2D cartoon-like style will be used to generate the backdrop. Howev
 
 Description: a large and empty parking lot, 3D cartoon style
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/empty_parking_lot_scene_18671703_823622.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/empty_parking_lot_scene_18671703_823622.webp?raw=true)
 
 
 
@@ -182,7 +182,7 @@ Description: a large and empty parking lot, 3D cartoon style
 
 Description: a large and empty parking lot, 3D isometric
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/isometric_parking_lot_43157847_829695.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/isometric_parking_lot_43157847_829695.webp?raw=true)
 
 
 
@@ -192,7 +192,7 @@ Description: a large and empty parking lot, 3D isometric
 
 Description: a large and empty parking lot, Minecraft Style
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/minecraft_style_parking_lot_53154476_913741.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/minecraft_style_parking_lot_53154476_913741.webp?raw=true)
 
 
 
@@ -202,7 +202,7 @@ Description: a large and empty parking lot, Minecraft Style
 
 Description: a large and empty parking lot, cartoon style for a supercell game
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/cartoon_style_parking_lot_30963865_902998.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/cartoon_style_parking_lot_30963865_902998.webp?raw=true)
 
 
 &nbsp;
@@ -210,7 +210,7 @@ Description: a large and empty parking lot, cartoon style for a supercell game
 
 Description: a large and empty parking lot, comic book style
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/comic_book_style_parking_lot_65981524_608099.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/comic_book_style_parking_lot_65981524_608099.webp?raw=true)
 
 
 
@@ -219,7 +219,7 @@ Description: a large and empty parking lot, comic book style
 
 Description: a large and empty parking lot, retro-futuristic
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/retro-futuristic_parking_lot_55030465_960251.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/retro-futuristic_parking_lot_55030465_960251.webp?raw=true)
 
 
 
@@ -228,7 +228,7 @@ Description: a large and empty parking lot, retro-futuristic
 
 Description: a large and empty parking lot, play-doh style
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/play-doh_parking_lot_65842806_317687.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/play-doh_parking_lot_65842806_317687.webp?raw=true)
 
 
 
@@ -238,7 +238,7 @@ Description: a large and empty parking lot, play-doh style
 
 Description: a large and empty parking lot, Van Gogh style
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/van_gogh_style_parking_lot_92046137_598901.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/van_gogh_style_parking_lot_92046137_598901.webp?raw=true)
 
 
 
@@ -248,7 +248,7 @@ Description: a large and empty parking lot, Van Gogh style
 
 Description: a large and empty parking lot, line drawing, no color
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/empty_parking_lot_69365631_249680.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/empty_parking_lot_69365631_249680.webp?raw=true)
 
 
 
@@ -257,14 +257,14 @@ Description: a large and empty parking lot, line drawing, no color
 
 Description: a large and empty parking lot, fantasy art
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/fantasy_parking_lot_53369883_555298.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/fantasy_parking_lot_53369883_555298.webp?raw=true)
 
 &nbsp;
 ### Photo Realistic
 
 Description: a large and empty parking lot, photorealistic
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/expansive_empty_parking_lot_96255307_663323.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/expansive_empty_parking_lot_96255307_663323.webp?raw=true)
 
 
 
@@ -273,7 +273,7 @@ Description: a large and empty parking lot, photorealistic
 
 Description: a large and empty parking lot, advertising poster style
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/empty_parking_lot_poster_71908898_146349.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/empty_parking_lot_poster_71908898_146349.webp?raw=true)
 
 
 &nbsp;
@@ -281,4 +281,4 @@ Description: a large and empty parking lot, advertising poster style
 
 Description: a large and empty parking lot, watercolor
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/watercolor_parking_lot_56335178_203676.webp)
+![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/watercolor_parking_lot_56335178_203676.webp?raw=true)
