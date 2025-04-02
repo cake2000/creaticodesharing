@@ -1,143 +1,234 @@
+## 简介
 
-&nbsp;  
-## Key Topics Covered
-* [Initializing 3D scenes](/topic/5/initializing-a-3d-scene)
-* [Using avatars](/topic/11/loading-an-avatar-into-a-scene)
-* [Avatar animations](/topic/12/avatar-animations)
-* [Camera configuration](/topic/72/setting-camera-properties)
-* [Copying Objects](/topic/110/copying-objects)
-* [Playing drums](/topic/434/music-extension-beats-and-play-drum)
-* [Updating object color](/topic/136/update-object-colors)
-
-&nbsp;  
-&nbsp;  
-## Introduction
-
-In this tutorial, we'll have some fun playing with dancing aliens:
-
-![ada838b6-d69d-41b0-9144-6957c1e27d36.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/ada838b6-d69d-41b0-9144-6957c1e27d36.gif?raw=true)
-
-&nbsp;  
-&nbsp;
-## Step 1 - Initialize A "Grass Land" Scene with 3D Axes
-
-Please create a new project, and remove the dog sprite. In the "Empty1" sprite, add the green-flag block, the "[initialize 3D scene](/topic/5/initializing-a-3d-scene)" block, and the "add 3D axis" block. Note that you need to click the input box and choose the "Grass Land" scene. This is a lightweight scene with a large grassland and a blue sky.
-
-![35e64a77-5128-4d98-9815-8751b283ad3c.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/35e64a77-5128-4d98-9815-8751b283ad3c.gif?raw=true)
-
-
-As shown, the X-axis points to the right, the Y-axis points forward (into the screen), and the Z-axis points up. You can drag your mouse on the stage to rotate the camera around it:
-
+在之前的教程中，你学习了如何使用 ChatGPT 构建一个简单的聊天应用程序。在本教程中，我们将构建一个有趣的应用程序，它可以通过问几个问题来确定用户的 MBTI 类型。
 
 &nbsp;
-&nbsp;  
-## Step 2 - Add an alien avatar
+### MBTI 类型
 
-Avatars are human-like models that can perform various kinds of animations. Here is how to [add an alien avatar](/topic/11/loading-an-avatar-into-a-scene):
+MBTI，即迈尔斯-布里格斯类型指标，是一种帮助你更好地了解自己的测试。它通过将你归类为 16 种类型之一来告诉你你的性格。每种类型都有四个字母，例如“INTJ”或“ESFP”，这些字母代表了你的思维、感觉和行为方式。
 
-![cac54a57-9d42-4e28-be0d-cef635c9fd73.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/cac54a57-9d42-4e28-be0d-cef635c9fd73.gif?raw=true)
+第一个字母，“E”或“I”，代表**外向**或**内向**：“E”表示你外向且喜欢社交，而“I”表示你更内敛且喜欢独处。
 
+第二个字母是“S”或“N”，代表**感觉**或**直觉**：“S”型人关注事实和细节，而“N”型人更关注想法和可能性。
 
-&nbsp;  
-&nbsp;
-## Step 3 - Teach the alien to dance
+第三个字母是“T”或“F”，代表**思考**或**感觉**：“T”表示你根据逻辑做出决策，而“F”表示你会考虑人们的感受。
 
-The alien avatar only knows how to "idle". We need to "teach" it how to do some dancing animations by "[adding animations](/topic/12/avatar-animations)" to it. Here is how to browse through the animations and add the "Breakdance Ready Dance" animation.
-
-![e5a2bb60-ba31-470a-8836-0ef7b24c10be.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/e5a2bb60-ba31-470a-8836-0ef7b24c10be.gif?raw=true)
-
+第四个字母是“J”或“P”，代表**判断**或**感知**：“J”型人喜欢计划和有条理，而“P”型人更随性且灵活。
 
 &nbsp;
-&nbsp;  
-## Step 4 - Start the dance
+### ChatGPT 如何提供帮助
 
-Now after adding the dance animation, we can start the animation at any time. By default, the animation will restart after it completes one round, so it will keep going repeatedly.
+传统上，要准确地找出你的 MBTI 类型，你必须回答一份包含大量问题的问卷，而且许多问题都很抽象且难以理解。例如：*你觉得最终做出决定还是保持选择开放更令人满意？*
 
-![a4ee9c6e-5d30-4f80-b92e-540d7ac602c5.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a4ee9c6e-5d30-4f80-b92e-540d7ac602c5.gif?raw=true)
+现在我们可以使用 ChatGPT 来设计问题，使问题更加有趣和易于理解。
 
+以下是该应用程序的界面：
 
-&nbsp;
-&nbsp;  
-## Step 5 - Better position for the camera
+![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/356d917c-f6d6-40b7-b888-8210faacc3a4.gif?raw=true) 
 
-Since the alien is facing forward and it is quite small, we can move the camera to watch in front of the alien. We can [set the distance and angle of the camera](/topic/72/setting-camera-properties) using this block:
-
-![18ee9127-bb68-4954-bd82-8530f81651bc-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/0f21806e-9118-40ee-81f8-275e6570d99d.png?raw=true)
-
-&nbsp;
-&nbsp;  
-## Step 6 - Copy and Move
-
-Next, let's add another alien avatar. We can [make a copy of it](/topic/110/copying-objects), and choose to share the data between these 2 avatars. This will make your program run faster, since all the avatars will reuse the same color and animation data.
-
-We also need to move the copied avatar to a different position, otherwise, it will overlap with the original avatar.
-
-ccimg3||700||https://cdn.creaticode.com/scratch-gui-projects/forum/e871c15a-e70e-4975-b9df-79159efb70fe.png
-
-Now we have 2 avatars that are dancing side by side:
-
-![65250e2c-b4f0-431b-9af6-3396d344afc0.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/65250e2c-b4f0-431b-9af6-3396d344afc0.gif?raw=true)
-
-
-
-&nbsp;  
-&nbsp;
-## Step 7 - A Third Alien
-
-Next, can you try to add another alien like this?
-
-![fc118329-0ce0-4392-9fa7-2c2e21f6cfb0.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/fc118329-0ce0-4392-9fa7-2c2e21f6cfb0.gif?raw=true)
-
-Here is one way to do it. We just need to set its X to -100 instead of 100.
-
-ccimg3||300||https://cdn.creaticode.com/scratch-gui-projects/forum/39510b2f-e7c1-40e3-8048-152720ac1ede.png
 
 
 
 &nbsp;
-&nbsp;  
-## Step 8 - Dancing Beats
+&nbsp;
+## 步骤 1 - 初始项目
 
-Our dance party is still missing some dancing beats. We can [add some drum beats](/topic/434/music-extension-beats-and-play-drum) to match the alien's movement:
+你可以改编以下项目以将其用作起点：
+
+https://play.creaticode.com/projects/6519f719fc9a5a6d14882a11
+
+&nbsp;
+该项目允许我们在开始时使用**系统请求**来解释我们想要做什么，然后在用户和 ChatGPT 之间进行聊天。
+
+我们为你准备了一个**“草稿区”**，用于编写你的系统提示的草稿，然后将其复制到“系统请求”块中。
+
+![f42342b8-a660-49ca-8626-67e98a21fcc3-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/04152adf-4af4-4ed6-93e4-4c639044d6a3.png?raw=true) 
+
+&nbsp;
+&nbsp;
+## 步骤 2 - 我们的第一个提示版本
+
+我们只需做一件事就可以构建这个应用程序：设计一个很棒的提示（请求）。这将需要几次修改。首先，这是我们的第一个版本，它只是告诉 ChatGPT 它应该做什么：
+
+```text
+通过问一些问题来确定用户的 MBTI 类型。
+```
+
+&nbsp;
+将该提示放入系统请求块中：
+
+![6e6e344f-0d7d-45c1-b30e-8f5aaa08b80e-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/a6ae15fd-54d2-4936-b63d-612b261c195a.png?raw=true) 
+
+&nbsp;
+当你运行程序时，你有时会得到这样的陈述：
+
+![f227886d-45bd-4f83-adbc-127b69a5b8da-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ca2ada56-513f-462d-a14e-d77e5d8ee807.png?raw=true) 
+
+&nbsp;
+显然，ChatGPT 很谨慎，但这在这里没有必要，因为用户已经知道这是一个 MBTI 测试。
+
+**如何改进我们的提示？**
 
 
-![7b96cb47-8abf-45fa-8adb-5b9ef209d49f-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/d9459f79-0b7a-4a25-8619-e18815d52a42.png?raw=true) 
+
+
 
 
 
 &nbsp;
-&nbsp;  
-## Step 9 - Change Eye Colors
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+## 步骤 3 - 让 ChatGPT 提出第一个问题
 
-Lastly, let's make the aliens blink with red eyes:
+为了确保 ChatGPT 直接进入问题，我们可以简单地要求它开始提出第一个问题，如下所示：
 
-![ada838b6-d69d-41b0-9144-6957c1e27d36.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/ada838b6-d69d-41b0-9144-6957c1e27d36.gif?raw=true)
-
-To make the eyes change color, you need to use the "[update color](/topic/136/update-object-colors)" block, and select the "second" area, which represents the eyes of the avatars.
-
-ccimg3||900||https://cdn.creaticode.com/scratch-gui-projects/forum/232cb18c-89d0-4cc8-a067-ac37bc0c0794.png
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并提出第一个问题。
+```
 
 &nbsp;
-In the forever loop, we can switch the eye color between black and red in between the drum beats:
+现在 ChatGPT 确实会开始提出第一个问题：
 
-
-![6f660556-8dbb-4164-ae83-a81583257f98-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/9cfaac78-0083-4d60-8bc3-70b6a62970fb.png?raw=true) 
-
-&nbsp;
-Here is the final program for your reference. 
-
-ccimg2||1200||https://cdn.creaticode.com/scratch-gui-projects/forum/d36f1393-3b11-4c14-873d-69634bfc1425.png
+![546d1835-23fc-482f-800c-bfd33cc52afa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/3936d30c-f9f2-4a75-ba52-d75efac7021d.png?raw=true) 
 
 &nbsp;
 &nbsp;
-## Creative Ideas
+&nbsp;
+## 步骤 4 - 更改第一个问题
 
-There are many ways you can extend this project. Here are some ideas for your inspiration:
+ChatGPT 的第一个问题几乎总是：“你更喜欢独处还是与他人相处？”。问题是每个人都会得到相同的问题，这对用户来说不是很感兴趣。
 
-1. **Changing Body Colors**: you can try to change the alien's body color randomly on each step.
+为了解决这个问题，我们可以让 ChatGPT 首先询问用户的最喜欢的活动。假设用户回答“阅读书籍”，那么 ChatGPT 将跟进与阅读书籍相关的其他问题。这将使用户更喜欢该测试。
 
-2. **More Aliens**: you can try to add much more avatars, and move/rotate them to form an interesting formation.
+我们可以像这样更改提示：
 
-3. **Make a New Scene**: you can switch to a new scene and create something more interesting. For example, this scene looks like the 2 aliens are arguing about whether to eat pizza:
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并询问用户他/她最喜欢的活动
+```
 
-![alt text](https://github.com/cake2000/creaticodesharing/blob/main/images/hocscreen2.jpg?raw=true)
+这是 ChatGPT 更新后的问题：
+
+![32615a80-8b69-48c8-834a-23b7163b7caa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/c8989c5f-c402-4ba8-bbb1-31f79f86a5ae.png?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## 步骤 5 - 控制后续问题
+
+在用户回答第一个问题后，你可能会发现 ChatGPT 会继续关注该活动，并“忘记”MBTI 测试的任务。这主要是由于 ChatGPT 的训练，因此它觉得它应该继续谈论用户感兴趣的内容。
+
+为了解决这个问题并将 ChatGPT 重新集中到主要任务上，我们需要添加一个额外的说明：
+
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并询问用户他/她最喜欢的活动。然后，询问有关该活动的后续问题，以找出用户的 MBTI 类型。
+```
+
+&nbsp;
+现在我们设法让 ChatGPT 回到 MBTI 问题：
+
+![1f9e9b20-b3b9-417d-9247-684ef0fdac7b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/2d66604e-af3f-4046-a7a3-76ba95b45cf5.png?raw=true) 
+
+&nbsp;
+但是，一次问所有问题太多了。你能尝试将 ChatGPT 更改为一次问一个问题吗？
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+## 步骤 6 - 一次一个问题
+
+要让 ChatGPT 每次问一个问题，你可以添加一些额外的说明“每次只有一个问题”：
+
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并询问用户他/她最喜欢的活动。然后，每次只询问一个有关该活动的后续问题，以找出用户的 MBTI 类型。
+```
+&nbsp;
+现在我们只会得到一个问题：
+
+![e987c9b4-86ad-433e-9694-bb22506474dd-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/045ab0c1-5a44-465c-8424-a437d6f5a8a1.png?raw=true) 
+
+&nbsp;
+另一个例子：
+
+![a2985d60-0454-4b40-abc6-93fea3771f69-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/29192b51-a648-4983-b440-b34dd949e989.png?raw=true) 
+
+&nbsp;
+&nbsp;
+## 步骤 7 - 多项选择题
+
+目前，所有问题都是开放式的。用户需要输入几个单词才能进行测试。为了更轻松，我们可以让 ChatGPT 提供多个选项，因此用户只需输入一个字母即可回答每个问题。
+
+我们可以通过此更改来实现这一点：
+
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并询问用户他/她最喜欢的活动。然后，每次只询问一个有关该活动的后续问题，以找出用户的 MBTI 类型。问题应该有多个选项。
+```
+
+现在问题将如下所示：
+
+![e784feb1-30c3-42bd-b3a8-19074b23bc15-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/4bfc3c05-60f9-4ae0-be6c-a3a3024f1cd8.png?raw=true) 
+
+&nbsp;
+但是，有时甚至第一个问题也会变成一个多项选择题，如下所示：
+
+![9f73ed26-cda6-43c2-bf4f-3e17715dbedd-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f7403c07-091c-4e0b-88ce-17619b662f62.png?raw=true) 
+
+&nbsp;
+这不是 ChatGPT 的错。在我们的提示中，我们说“问题应该有多个选项”，这确实包括第一个问题。为了解决这个问题，我们需要排除第一个问题：
+
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并询问用户他/她最喜欢的活动。然后，每次只询问一个有关该活动的后续问题，以找出用户的 MBTI 类型。问题应该有多个选项，但第一个问题是开放式的。
+```
+
+
+
+
+
+
+
+&nbsp;
+&nbsp;
+## 步骤 8 - 测试结果
+
+最后但同样重要的是，我们将要求 ChatGPT 在几个问题后报告测试结果。为了保持测试快速，我们可以将其限制为最多 5 个问题，如下所示：
+
+```text
+通过问一些问题来确定用户的 MBTI 类型。现在问候用户并询问用户他/她最喜欢的活动。然后，每次只询问一个有关该活动的后续问题，以找出用户的 MBTI 类型。问题应该有多个选项，但第一个问题是开放式的。在最多提出 5 个问题后，报告你对用户 MBTI 类型的预测并提供详细解释。
+```
+
+&nbsp;
+这是我们应用程序的最终演示：
+
+![p.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/356d917c-f6d6-40b7-b888-8210faacc3a4.gif?raw=true) 
+
+
+
+
+
+&nbsp;
+&nbsp;
+## 增强功能
+
+虽然这个应用程序可以运行，但它的许多方面都可以改进。以下是一些供你探索的想法：
+
+* 添加文本转语音和语音转文本，以便用户可以在不键入或在屏幕上阅读的情况下使用它。
+* 删除不必要的单词：ChatGPT 通常非常“健谈”，它会说一些额外的东西来使聊天流畅。例如，此处的最后一个句子是不必要的。你能尝试让 ChatGPT 更简洁吗？
+
+![a9cb9bed-a63a-40ed-aa28-37e69b509a0f-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/2dfe31b1-ebad-4b61-95e1-52e60574f755.png?raw=true) 
+
+* 除了“最喜欢的活动”，你还能想到其他有趣的方式来开始对话吗？如何让你的用户在使用你的应用程序时更投入？
