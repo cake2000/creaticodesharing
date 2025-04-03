@@ -1,354 +1,146 @@
-在之前的教程中，你学习了如何搜索人工智能生成的背景或生成你自己的背景。在本教程中，你可以遵循一些简单的步骤来学习一个类似但更强大的工具来生成角色造型。
-
-%(#ea0606)[请注意，系统会进行强有力的审核，以确保所有图片都适合 K-12 学生。如果任何用户试图生成不适当的图片，该请求将被拒绝。请负责任地使用这个强大的工具。此外，CreatiCode 有权在未经创作者批准的情况下从库中删除任何不适当的图片。]
-
-请注意，你可以使用人工智能生成背景或角色。**主要区别在于%(#ec1313)[背景始终是与整个舞台大小相同的矩形图片]，而%(#ee1717)[角色是具有透明背景的单个角色或对象]。**在本教程中，我们将重点介绍角色。要生成背景，请阅读[这篇文章](https://www.forum.creaticode.com/topic/1153/search-or-generate-backdrop-images-using-ai)。
-
-&nbsp;
-## 步骤 1 - 打开 AI 图片库窗口
-&nbsp; 
-首先，将鼠标指针悬停在游乐场右下角用于添加角色的圆形按钮上，然后选择“AI”选项：
-
-![s1.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/52f6be3d-4702-41fb-bca2-976cd72fcf68.gif) 
-
-&nbsp;
-&nbsp;
-## 步骤 2 - 从社区搜索角色图片
-&nbsp; 
-
-在生成新的角色造型之前，你应该首先在社区生成的现有角色图片中进行搜索。这比你自己生成新图片要快得多。
-
-请注意，有 2 种不同的模型用于生成角色：
-* 人物：在搜索或生成类似人物的角色或任何带有手/腿/眼睛/嘴巴等的角色时，应选择此选项。
-* 非人物：对于所有其他类型的对象，例如椅子、汽车、动物等，应选择此选项。
-
-例如，你可以在文本框中输入“穿蓝色衬衫的男孩”，选择“**人物**”选项，然后单击“搜索”按钮。系统将显示一些与“穿蓝色衬衫的男孩”最相关的现有角色图片。然后，你可以单击其中任何一个将其添加到你的项目中：
-
-![s2.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/2c6f1df2-9db6-4f24-99ec-e84634379af0.gif) 
-
-&nbsp;
-再举一个例子，你可以搜索“一辆红色汽车”，并确保选择“**非人物**”：
-
-![s4.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/7e17f673-30f4-43f0-bb45-4be3b7aa4dcc.gif) 
-
-&nbsp;
-你可能会注意到，有些图片不是汽车，例如“红狐狸”。这是因为“搜索”按钮会按图片描述进行搜索，因此红狐狸被视为与红色汽车有些相关，因为它们都是红色的。当然，真正的红色汽车在结果列表中排名更高。
-
-
-
-
-&nbsp;
-&nbsp;
-## 步骤 3 - 优化你的查询
-&nbsp; 
-
-当有许多相关图片时，你可以优化查询以缩小列表范围。例如，当我们搜索“穿蓝色衬衫的男孩”时，有几张图片是金发男孩。如果我们在查询中添加“黑发”，那么排名靠前的结果都是穿蓝色衬衫、黑头发的男孩：
-
-![s6.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/66177ee9-7976-42a6-91d3-40b902c52e0f.gif) 
-
-
-
-
-&nbsp;
+## Introduction
 &nbsp;
-## 步骤 4 - 按名称搜索
-&nbsp; 
+With the AI image generation tools in the CreatiCode playground, it is much easier now to create stories using customized costumes and backdrops. In this tutorial, you will learn how to build a simple animation about the life of a waterdrop:
 
-如上所述，“搜索”按钮按图片描述进行搜索。例如，当我们之前搜索“穿蓝色衬衫的男孩”时，结果图片可能有不同的名称。
+![wa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/5260aba5-2a38-473d-9921-1e9875f2ff00.gif) 
 
-另一种搜索方式是尝试将图片名称与关键字直接匹配。如果你已经知道你要查找的图片的名称，这尤其有用。例如，如果你只想查找名称中包含“虎克船长”的图片，则可以使用“按名称搜索”按钮：
-
-![s7.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/e4114b20-eb20-4488-b918-550941e47d19.gif) 
-
-
-
-&nbsp;
-&nbsp;
-## 步骤 5 - 生成你自己的角色
-&nbsp;
-
-如果你找不到需要的角色，可以使用“**生成**”按钮创建一个新的角色。有 2 个模型可供选择：
-* **模型 1** 速度更快，并且可以更好地理解你的描述。但是，你无法从模型 1 生成图片的变体（请参阅下面的“高级主题 2”）。
-* **模型 2** 速度较慢，有时可能会误解你的描述。此外，你可以使用模型 2 中的图片作为参考来生成其变体。
-
-&nbsp;
-![40112882-d2b6-44f0-aa45-c8815bdda598-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d3f1d004-feb2-43a9-a3af-136ebde8edc5.png) 
-
-
-
 &nbsp;
-请注意，为角色提供**详细描述**至关重要，而不要只使用一两个词。
-
-例如，假设你需要一个挥手的穿蓝色衬衫的男孩，你可能在现有库中找不到它。你可以将描述设置为“一个男孩，蓝色衬衫，向观众挥手”，然后单击“生成”按钮。你不需要指定“人物”或“非人物”，因为我们的模型将根据你的描述确定其类型。稍等片刻，将显示新角色：
-
-ccimg||300||https://ccdn.creaticode.com/newimages/fg2/friendly_boy_waving_hello_9779537_369219.webp
-
 &nbsp;
-再举一个例子，假设我们需要一辆红色汽车用于一个新的游戏项目，但现有的红色汽车都不是水平的，那么我们可以使用以下描述生成一个新的：“一辆红色汽车，面向右侧，游戏图标”：
-
-ccimg||400||https://ccdn.creaticode.com/newimages/fg1/red_car_game_icon_86496909_214381.webp
-
+## Step 1 - Create a new project
 &nbsp;
-请注意，**你可以在描述中提供更多详细信息，我们的人工智能模型将尝试将所有这些信息都纳入图片中**。例如，这里有一个更详细的男孩描述：**一个穿蓝色衬衫、黄色牛仔裤、黑色鞋子、短发、南亚人、深色皮肤的男孩**。结果如下：
 
-ccimg||300||https://ccdn.creaticode.com/newimages/fg2/south_asian_boy_in_blue_27056530_379922.webp
+Go to the CreatiCode playground, and create a new project. Name it "Journey of a waterdrop", and remove the existing sprites.
 
-&nbsp;
-一般来说，**强烈建议在描述中使用至少 %(#ee1717)[10] 个单词。**这将迫使你提供有关你要查找的角色类型的信息。
 
 &nbsp;
 &nbsp;
-## 步骤 6 - 搜索你生成的图片
-&nbsp;
-
-由于你生成的所有内容都与社区共享，因此你可以以相同的方式搜索你生成的图片：
-
-ccimg||800||https://cdn.creaticode.com/scratch-gui-projects/forum/838c7bde-a877-4b59-ad15-cacb5747f7f5.gif
-
+## Step 2 - Add the waterdrop sprite
 &nbsp;
-但是，如果你只想查找你生成的图片，则可以选择“**由我创建**”选项，并且只会搜索你的图片：
 
-![s9.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/406992dc-2948-4f0e-b59a-9333f356dfcb.gif) 
+Click the AI button for searching or generating sprite images:
 
+![wa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/bc3719d7-727e-4e55-9f2b-bf3ee6c8ef3f.gif) 
 
-
-&nbsp;
 &nbsp;
-## 步骤 7 - 重新生成你的图片
-&nbsp;
-
-如果你对已生成的图片不满意，可以使用不同的描述生成另一个图片，或者你可以简单地“重新生成”此图片：将使用相同的描述，但将使用不同的随机“种子”，因此新图片将有所不同。当你认为你的描述没问题但人工智能模型运行不佳时，此功能最有用。
+In the library window that pops up, input a short description of how you want the waterdrop to look like, such as "**a waterdrop character facing the viewer, cartoon style**". Then click the "generate" button to generate a new sprite image like this:
 
-例如，为“一辆小型校车”生成了一张图片，但结果并不理想。如下所示，当你单击“重新生成”并确认后，现有图片将被删除。一段时间后，你可以再次搜索你的图片，你将找到新生成的图片：
+![alt text](https://ccdn.creaticode.com/newimages/fg1/cartoon_waterdrop_character_65366902_746414.webp)
 
-![p1.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/0ee1316b-1553-4fe7-8dcf-7c7b3137a3d1.gif) 
-
-&nbsp;
 &nbsp;
-## 步骤 8 - 优化你的图片描述
-&nbsp;
-
-尽管当前的角色生成模型已经可以生成漂亮而有趣的图片，但它们仍然远非完美。%(#e70808)[它们有时无法理解请求或遗漏关键细节]。%(#e60505)[因此，我们经常不得不优化我们的描述并多次重新生成图片]。
+Feel free to regenerate the image, or improve your description. When you are happy with the image, select it so it is added to your project.
 
-以下是一些有关如何使角色 AI 模型更好地理解我们的描述的有用提示：
+Note that if you want the waterdrop to look perfect, you might need to remove the shadow under it. You can use the eraser tool in the costume editor for that:
 
-* **使用几个简短的短语**：我们当前的图片生成模型无法很好地理解复杂的句子，并且它们主要是使用由简短关键字组成的请求进行训练的。例如，与其说“画一个穿蓝色衬衫的男孩，他正在向我们挥手”，不如使用“一个男孩，蓝色衬衫，向观众挥手”这种更好的格式。
+![0a3cff48-7ba1-44f1-ad9c-ee82ff9e9f3f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/2560286f-d674-4f8f-ba10-95f113f850e5.png) 
 
-* **从示例中学习**：当你在社区库中找到你喜欢的任何图片时，你可以通过将鼠标指针悬停在该图片的名称上来了解用于生成该图片的描述。随着时间的推移，你将发现哪些关键字可以用来实现特定的结果：
 
-ccimg||800||https://cdn.creaticode.com/scratch-gui-projects/forum/c391c47f-9cd9-482f-8818-5dd31cd2c0f9.gif||40
-
-
-
-
-
-&nbsp;
-&nbsp;
-## 步骤 9 - 删除你的图片
 &nbsp;
-
-如果你对已生成的图片不满意，还可以将其从库中删除：
-
-![p3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/dcc55e5d-ad9e-4e9c-bc0a-6bf4d431569f.gif)
-
-&nbsp;
 &nbsp;
-## 步骤 10 - 检查图片生成请求状态
+## Step 3 - Generate an ocean backdrop
 &nbsp;
 
-与生成背景图片不同，生成角色图片的过程要慢得多，并且请求也多得多。因此，**你的请求可能排在其他用户的请求之后**。此外，有时，生成的图片可能存在问题并被删除。例如，它可能不合适，或者它可能模糊或畸形。
+The first backdrop will be an ocean. You can open the AI tool for searching or generating the backdrops, then generate a new backdrop with a description like this: **surface of a large ocean, cartoon style**. You will get a backdrop like this:
 
-因此，要了解你的请求的进度，你可以单击“请求状态”按钮，该按钮将显示你最近的请求列表。你可以查看它们的描述、图片名称、创建时间和当前状态。此外，如果你想取消排队的请求，可以单击“取消”按钮：
+![alt text](https://ccdn.creaticode.com/newimages/bg1/cartoon_style_ocean_surface_73963283_388689.webp)
 
-![g33.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/f147a487-9ef2-4578-bc77-7fc36dc37a0a.gif) 
-
-&nbsp;
 &nbsp;
-## 订阅与免费帐户
-&nbsp;
+If you are happy with it, select it to add it as a backdrop of the stage. You can also change its name to "Ocean" to keep it simple:
 
-基于 AI 的角色生成工具对所有用户免费提供。但是，对于订阅用户，有一些优势：
-1. 当队列中有许多请求时，高级用户的等待时间要短得多。
-2. 在需求高峰期，免费用户可能会受到每小时可以生成多少图片的速率限制。
 
 &nbsp;
 &nbsp;
-## 高级主题 1 - 不同的生成样式
+## Step 4 - Add code to show the ocean backdrop
 &nbsp;
-
-到目前为止，你已经学习了使用 AI 生成角色的基本操作。你可能想要探索的一项附加技术是在生成图片时指定不同的**样式**。
 
-默认情况下，将使用 2D 卡通风格来生成背景。但是，你可以在描述中指定任何其他样式。有很多有趣的风格，以下是一些你可以尝试的有趣示例：
+Now switch to the waterdrop sprite, and add the following code, which will show the ocean backdrop when the user clicks the green flag button:
 
+![5586bdea-71c0-48ee-bee6-396a8af9c174-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1ace38d7-2480-4ad1-882e-415faa963189.png) 
 
 
 
 &nbsp;
-### - 2D 平面绘图
-
-**描述**：一架蓝色飞机，2D 平面绘图
-&nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_airplane_76064006_216487.webp
-
 &nbsp;
-
-**描述**：一位穿着粉色连衣裙的公主，看着观众，2D 平面绘图
+## Step 5 - Say a sentence
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_dress_3923609_962303.webp
-
-
-
 
+Next, we will make the waterdrop sprite explain this scene by saying a sentence like this: **I'm a waterdrop in a big ocean**.
 
-&nbsp;
-### - 动漫风格
-
-**描述**：一架蓝色飞机，动漫风格
-&nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg2/anime_style_blue_airplane_5853866_938318.webp
+We can use the new "say" block with colorful text and background:
 
-&nbsp;
+![3a0f6176-4417-434c-b96c-2d5cf2698008-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/6b2f0076-943f-4d36-b9e1-b0fd9062ff83.png) 
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，动漫风格
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/anime_princess_in_pink_dress_32699151_285922.webp
+Now, this is what we get when we click the green flag button:
 
+![wa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/dd956d59-9cea-43a9-a61d-53594ef143e0.gif) 
 
 
-&nbsp;
-### - 风格化卡通绘图
 
-**描述**：一架蓝色飞机，风格化卡通绘图
 &nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_airplane_53575713_335459.webp
-
-**描述**：一位穿着粉色连衣裙的公主，看着观众，风格化卡通绘图
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_dress_25228835_468403.webp
-
-
-
+## Step 6 - Add a cloud backdrop
 &nbsp;
-### - 3D 卡通风格
 
-描述：一架蓝色飞机，3D 卡通风格
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_airplane_15536329_24134.webp
-
-**描述**：一位穿着粉色连衣裙的公主，看着观众，3D 卡通风格
-&nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_dress_86230802_942980.webp
+For the next scene, we will show some clouds. Generate a new backdrop using a description like this: **a few clouds in the sky, cartoon style**. The backdrop will look like this:
 
-&nbsp;
-### - 我的世界风格
+![alt text](https://ccdn.creaticode.com/newimages/bg1/cartoon_clouds_in_sky_51838456_747486.webp)
 
-描述：一架蓝色飞机，我的世界风格
 &nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_minecraft_airplane_57133958_335137.webp
+Select this new backdrop, and rename it to "Cloud".
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，方头，我的世界游戏角色
-&nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg1/princess_character_90154049_956279.webp
 
-&nbsp;
-### - 低多边形风格
 
-描述：一架蓝色飞机，低多边形风格
 &nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_airplane_61268210_749460.webp
-
-**描述**：一位穿着粉色连衣裙的公主，看着观众，低多边形风格
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/pink_princess_44171040_168900.webp
-
+## Step 7 - Add code to show the cloud
 &nbsp;
-### - 橡皮泥风格
 
-**描述**：一架蓝色飞机，橡皮泥风格
-&nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_play-doh_airplane_34089707_696702.webp
+Now we can add more code to show and explain the second backdrop, with a description like this: **When it is warn, I rise into the clouds**.
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，橡皮泥风格
-&nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_play-doh_style_49880698_482853.webp
+![1598e5ff-53ec-4598-aa27-eb3102025fea-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c147ede3-4b78-4ba5-b59f-d2dd43427682.png) 
 
 &nbsp;
-### - 胶片摄影
+Now we get this when we run the project:
 
-**描述**：一架蓝色飞机，柯达 Portra 400，胶片摄影
-&nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_airplane_sprite_design_28687979_637691.webp
+![w.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/74843c92-dac4-4c62-8f02-69442e446208.gif) 
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，柯达 Portra 400，胶片摄影
-&nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_dress_90620209_747033.webp
 
-&nbsp;
-### - 漫画书风格
 
-**描述**：一架蓝色飞机，漫画书风格
 &nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_comic_airplane_90365482_255042.webp
-
-**描述**：一位穿着粉色连衣裙的公主，看着观众，漫画书风格
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_dress_81815946_73646.webp
-
-
-
-
+## Step 8 - Add "Rain" and "River" backdrops
 &nbsp;
-### - 像素艺术风格
 
-**描述**：一架蓝色飞机，像素艺术风格
-&nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/pixel_art_blue_airplane_14735555_535163.webp
+Next, try to generate 2 more backdrops using these descriptions:
+* **some light rain over a lake, cartoon style**
+* **a river flows into the ocean, cartoon style**
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，像素艺术风格
-&nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_dress_48373218_728493.webp
+Remember to rename these backdrops as "Rain" and "River".
 
-&nbsp;
-### - 复古游戏风格
 
-**描述**：一架蓝色飞机，复古游戏风格
-&nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_retro_airplane_789300_145343.webp
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，复古游戏风格
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_rose_72235042_3834.webp
-
 &nbsp;
-### - 蒸汽朋克风格
-
-**描述**：一架蓝色飞机，蒸汽朋克风格
+## Step 9 - Add code to show and explain "Rain" and "River"
 &nbsp;
-ccimg||500||https://ccdn.creaticode.com/newimages/fg1/blue_steampunk_airplane_44533758_568271.webp
 
+Similar to earlier steps, we can make the waterdrop explain these 2 scenes like this:
 
+![dac10525-c565-4e21-8ede-2a1c97b36340-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b2c50877-be92-4da3-8ca0-654ce50d4d1f.png) 
 
-**描述**：一位穿着粉色连衣裙的公主，看着观众，蒸汽朋克风格
 &nbsp;
-ccimg||400||https://ccdn.creaticode.com/newimages/fg2/princess_in_pink_steampunk_dress_2121315_162462.webp
-
+That completes this program, with 4 backdrops in total.
 
 
-
-&nbsp;
 &nbsp;
-## 高级主题 2 - 武器作为游戏资产
 &nbsp;
-
-默认情况下，你不能创建任何与暴力相关的图片。例如，如果你尝试生成坦克的图片，你将收到如下错误消息：
+## Creative Ideas
 &nbsp;
-![11e2cac6-80ec-4c87-90be-43fa82fbfbb7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/e3f74d18-9027-48ab-991f-337c26848773.png) 
 
-&nbsp;
+This tutorial shows you a simple way to utilize the new AI image generation tools to create new stories and illustrations. Please try to create a similar program. Here are some suggestions:
 
-但是，我们经常在游戏中需要武器角色，例如坦克或剑。因此，如果你在请求中包含关键字**游戏资产**，则会有一个例外。例如，如果你的请求是“一辆坦克，游戏资产”，那么它将不会被审核过程拒绝：
+* **Story of a tree**: show a tree over backdrops of a sunny day, a cloudy day, a rainy day and a snowy day, explain how the weather affects the tree.
 
-&nbsp;
-![f967fe31-475d-4e8b-9cc3-e5ac2a8d1540-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/818a06bf-136d-4104-bffc-149b475ebab4.png)
+* **Tour of the Solar System**: show a spaceship over a few backdrops of planets, such as Earth, Mars, Saturn, etc. Explains what's unique about each planet.
 
-&nbsp;
-%(#f10404)[请注意，你只能在游戏项目中使用此类图片。如果它们被用于任何其他与暴力相关的项目，该项目将被删除，你的帐户可能会被封禁。]
+* **Voyage of Magellan**: show a ship sprite over a few backdrops of key locations that Magellan visited, such as a port in Spain, then a tropical Island in Guam, and the philippine shoreline.
