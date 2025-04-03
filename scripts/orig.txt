@@ -1,146 +1,114 @@
 ## Introduction
 &nbsp;
-With the AI image generation tools in the CreatiCode playground, it is much easier now to create stories using customized costumes and backdrops. In this tutorial, you will learn how to build a simple animation about the life of a waterdrop:
 
-![wa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/5260aba5-2a38-473d-9921-1e9875f2ff00.gif) 
+CreatiCode XO is a coding assistant running in the CreatiCode playground. It is an AI chatbot trained to help K-12 students learn Scratch programming. It can help students and teachers in many tasks, such as answering questions and writing code.
 
-&nbsp;
-&nbsp;
-## Step 1 - Create a new project
-&nbsp;
+The key benefit of using XO is to get personalized and timely help. You no longer need to wait to ask your teacher some quick questions. Instead, you can ask XO to help you anytime and get a response immediately.
 
-Go to the CreatiCode playground, and create a new project. Name it "Journey of a waterdrop", and remove the existing sprites.
+In addition, learning to code with XO isn't just about coding; it's about developing essential skills for the future. You'll learn how to ask questions clearly and thoughtfully analyze the responses you get. As AI assistants become a part of everyday life and work in the future, these skills will be invaluable.
 
+There are many ways to use XO, and in this tutorial, we will focus on how to ask XO to explain things to us.
 
 &nbsp;
 &nbsp;
-## Step 2 - Add the waterdrop sprite
+## Open and Close the XO Dialog
 &nbsp;
 
-Click the AI button for searching or generating sprite images:
-
-![wa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/bc3719d7-727e-4e55-9f2b-bf3ee6c8ef3f.gif) 
-
-&nbsp;
-In the library window that pops up, input a short description of how you want the waterdrop to look like, such as "**a waterdrop character facing the viewer, cartoon style**". Then click the "generate" button to generate a new sprite image like this:
-
-![alt text](https://ccdn.creaticode.com/newimages/fg1/cartoon_waterdrop_character_65366902_746414.webp)
-
-&nbsp;
-Feel free to regenerate the image, or improve your description. When you are happy with the image, select it so it is added to your project.
-
-Note that if you want the waterdrop to look perfect, you might need to remove the shadow under it. You can use the eraser tool in the costume editor for that:
-
-![0a3cff48-7ba1-44f1-ad9c-ee82ff9e9f3f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/2560286f-d674-4f8f-ba10-95f113f850e5.png) 
+You can click the XO icon at the bottom right of the playground to open the XO dialog window. Here is how to enlarge its window and then close it:
 
 
-&nbsp;
-&nbsp;
-## Step 3 - Generate an ocean backdrop
-&nbsp;
-
-The first backdrop will be an ocean. You can open the AI tool for searching or generating the backdrops, then generate a new backdrop with a description like this: **surface of a large ocean, cartoon style**. You will get a backdrop like this:
-
-![alt text](https://ccdn.creaticode.com/newimages/bg1/cartoon_style_ocean_surface_73963283_388689.webp)
-
-&nbsp;
-If you are happy with it, select it to add it as a backdrop of the stage. You can also change its name to "Ocean" to keep it simple:
 
 
-&nbsp;
-&nbsp;
-## Step 4 - Add code to show the ocean backdrop
-&nbsp;
-
-Now switch to the waterdrop sprite, and add the following code, which will show the ocean backdrop when the user clicks the green flag button:
-
-![5586bdea-71c0-48ee-bee6-396a8af9c174-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1ace38d7-2480-4ad1-882e-415faa963189.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 5 - Say a sentence
+## Explain How to Use a Block
 &nbsp;
 
-Next, we will make the waterdrop sprite explain this scene by saying a sentence like this: **I'm a waterdrop in a big ocean**.
+When you wonder how to use any block, you can ask XO like this:
 
-We can use the new "say" block with colorful text and background:
-
-![3a0f6176-4417-434c-b96c-2d5cf2698008-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/6b2f0076-943f-4d36-b9e1-b0fd9062ff83.png) 
+![h1.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/9eaaf59b-1d75-424e-a65c-9259144aafd4.gif) 
 
 &nbsp;
-Now, this is what we get when we click the green flag button:
+Note that XO will not only explain what the block does but also give you a simple example. You can %(#e70808)[directly copy the example code into the playground] to run it and observe the result.
 
-![wa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/dd956d59-9cea-43a9-a61d-53594ef143e0.gif) 
-
-
-
+Note that you should %(#ed0707)[make sure XO understands exactly which block you are referring to]. For example, if we ask "how to use the touching block?", then XO will not know whether you are referring to the "touching Sprite" block or "touching color" block.
+ 
 &nbsp;
 &nbsp;
-## Step 6 - Add a cloud backdrop
+## Explain How to Do Something
 &nbsp;
 
-For the next scene, we will show some clouds. Generate a new backdrop using a description like this: **a few clouds in the sky, cartoon style**. The backdrop will look like this:
+When you are not sure what block to use, you can simply ask XO how to do something, such as how to implement a feature or how to make the sprite do something. For example, this is the response you get for "**how to draw a star?**":
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/cartoon_clouds_in_sky_51838456_747486.webp)
+
+![81740852-0190-4639-a1af-e3860ce07db1-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/625778e8-f9f7-485f-9a26-458b44d0b43d.png) 
 
 &nbsp;
-Select this new backdrop, and rename it to "Cloud".
-
+Note that %(#e10909)[your request should be as specific as possible], since XO may make mistakes if it has to write a lot of code at once. As a rule of thumb, your request should not require more than 10 blocks to implement.
 
 
 &nbsp;
 &nbsp;
-## Step 7 - Add code to show the cloud
+## Explain A Concept
 &nbsp;
 
-Now we can add more code to show and explain the second backdrop, with a description like this: **When it is warn, I rise into the clouds**.
+XO is also really good at making coding ideas clear, especially when you ask questions starting with "what is [name of something]?" So, if you were to ask, "**what is a clone?**", here's how it would explain it:
 
-![1598e5ff-53ec-4598-aa27-eb3102025fea-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c147ede3-4b78-4ba5-b59f-d2dd43427682.png) 
-
-&nbsp;
-Now we get this when we run the project:
-
-![w.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/74843c92-dac4-4c62-8f02-69442e446208.gif) 
+![bd216f9a-0349-4d68-bb38-57c707544c0d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/807aaa5c-f840-419c-be87-5d0d1d094831.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 8 - Add "Rain" and "River" backdrops
+## Explain Code
 &nbsp;
 
-Next, try to generate 2 more backdrops using these descriptions:
-* **some light rain over a lake, cartoon style**
-* **a river flows into the ocean, cartoon style**
+There are times when you're exploring someone else's project and might not grasp everything about how it functions. This is a great opportunity to seek XO's assistance. You can inquire about broader aspects, such as the interaction between sprites, or delve into more detailed queries about the purpose of a particular block or sequence of blocks. For instance, here is how to ask about user input handling in the "ChatGPT - Chat with Einstein" project:
 
-Remember to rename these backdrops as "Rain" and "River".
-
+![dde20d31-3201-49b3-a073-f2194db03996-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8f1b3428-2272-4ce0-84ed-5b4805609be5.png) 
 
 
 &nbsp;
 &nbsp;
-## Step 9 - Add code to show and explain "Rain" and "River"
-&nbsp;
+## Use a Different Language
 
-Similar to earlier steps, we can make the waterdrop explain these 2 scenes like this:
+XO always responds in the same language as you do. If you use Spanish/Chinese/French, it will also show code blocks in those languages. Here is an example in Spanish:
 
-![dac10525-c565-4e21-8ede-2a1c97b36340-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b2c50877-be92-4da3-8ca0-654ce50d4d1f.png) 
-
-&nbsp;
-That completes this program, with 4 backdrops in total.
+![a3cafd2f-75fd-4c3d-a838-271697d7f87d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/67329071-e0f6-4575-acb7-1eafabecc269.png) 
 
 
 &nbsp;
 &nbsp;
-## Creative Ideas
+## Add Your Personal Flavors
 &nbsp;
 
-This tutorial shows you a simple way to utilize the new AI image generation tools to create new stories and illustrations. Please try to create a similar program. Here are some suggestions:
+XO isn't all serious when answering your questions. If you throw in a fun twist, XO often comes back with unexpected and enjoyable answers. For example, if you ask, "**Explain what is a loop. I'm a pirate.**", here's how it would respond:
 
-* **Story of a tree**: show a tree over backdrops of a sunny day, a cloudy day, a rainy day and a snowy day, explain how the weather affects the tree.
 
-* **Tour of the Solar System**: show a spaceship over a few backdrops of planets, such as Earth, Mars, Saturn, etc. Explains what's unique about each planet.
+![56b543c4-b371-4702-8c52-87705f368c79-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ddbf0a4e-f4ab-4216-8217-ddc074f18bee.png) 
 
-* **Voyage of Magellan**: show a ship sprite over a few backdrops of key locations that Magellan visited, such as a port in Spain, then a tropical Island in Guam, and the philippine shoreline.
+&nbsp;
+The possible ways to twist your questions are endless. Here are some fun examples:
+
+* "Explain what is a variable as if I'm 5 years old."
+* "Explain what is an event listener. You are Harry Potter."
+* "Explain what is a conditional statement. Pretend we're time travelers."
+* "Explain how to use clones. Assume I'm a chef."
+* "Explain what are messages used for. You're a detective solving a case."
+* "Tell me about sprites. We're astronauts on the International Space Station."
+* "What is a list in Scratch? Imagine we're deep-sea explorers."
+* "Explain what is a costume. You're a superhero with transformation powers."
+* "Explain what is a sound effect. Pretend we're in a zombie apocalypse."
+* "Explain what sensing means. Assume I'm a medieval knight."
+* "Explain what is an operator. You're an alien explaining earth technology."
+* "Explain what is a touch event. Imagine we're inside a video game."
+* "Explain what is a backdrop. You're a wizard with a spellbook."
+* "Explain what is a pen tool. We're on a spy mission."
+* "Explain what is direction. Pretend I'm a dragon hoarding knowledge."
+* "Explain what is a boolean. You're a famous inventor from history."
+* "Explain what is a custom block. Imagine we're running a circus."
+* "Explain what is an animation. You're a comedian on stage."
+* "Explain why we have repeat blocks. You're an ancient philosopher."
