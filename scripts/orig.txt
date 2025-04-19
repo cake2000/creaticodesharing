@@ -1,114 +1,82 @@
 ## Introduction
 &nbsp;
 
-CreatiCode XO is a coding assistant running in the CreatiCode playground. It is an AI chatbot trained to help K-12 students learn Scratch programming. It can help students and teachers in many tasks, such as answering questions and writing code.
+CreatiCode extends MIT Scratch by introducing various new block categories, including 3D game engines with physics capabilities, 2D physics, artificial intelligence, app widgets, multiplayer online games, augmented reality, and table variables. These additions enable the creation of a much broader range of projects beyond what is possible with standard MIT Scratch.
 
-The key benefit of using XO is to get personalized and timely help. You no longer need to wait to ask your teacher some quick questions. Instead, you can ask XO to help you anytime and get a response immediately.
+Starting a new project can sometimes be daunting if you're unsure of where to begin. This is when you can ask XO for help. XO has seen many different types of projects, so it can offer suggestions on how to design a new project.
 
-In addition, learning to code with XO isn't just about coding; it's about developing essential skills for the future. You'll learn how to ask questions clearly and thoughtfully analyze the responses you get. As AI assistants become a part of everyday life and work in the future, these skills will be invaluable.
+It's important to remember that %(#f10909)[XO should primarily be treated as an assistant]. While it can provide helpful tips and guidance, it can't create an entire project on its own. **XO is optimized for short, specific responses**, and its performance may decline when you ask it to generate many lines of code. Moreover, as a coding learning tool, XO aims to enhance learning by encouraging students to engage more deeply with the programming process. Providing full-code solutions would be counterproductive to this educational goal.
 
-There are many ways to use XO, and in this tutorial, we will focus on how to ask XO to explain things to us.
+Also, %(#e10909)[XO can not generate truly original ideas]: everything XO says is a response to your idea based on existing projects that XO has seen before. For a project to stand out, %(#e00b0b)[your own creativity and vision are key]. XO's role is to assist in bringing your unique ideas to life, offering support and suggestions based on its vast database of project insights.
 
-&nbsp;
-&nbsp;
-## Open and Close the XO Dialog
-&nbsp;
-
-You can click the XO icon at the bottom right of the playground to open the XO dialog window. Here is how to enlarge its window and then close it:
-
-
-
-
-
-
+In this tutorial, you will learn how to use XO to facilitate new project design.
 
 &nbsp;
 &nbsp;
-## Explain How to Use a Block
+## Generate Project Outline
 &nbsp;
 
-When you wonder how to use any block, you can ask XO like this:
+Whenever you come up with an idea, you can ask XO how to build it. XO would give you an outline of the project. You can use this as a baseline to estimate the complexity of the project.
 
-![h1.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/9eaaf59b-1d75-424e-a65c-9259144aafd4.gif) 
+For example, you can ask "How to build a 3D platformer game?", and here is an example response:
 
-&nbsp;
-Note that XO will not only explain what the block does but also give you a simple example. You can %(#e70808)[directly copy the example code into the playground] to run it and observe the result.
-
-Note that you should %(#ed0707)[make sure XO understands exactly which block you are referring to]. For example, if we ask "how to use the touching block?", then XO will not know whether you are referring to the "touching Sprite" block or "touching color" block.
- 
-&nbsp;
-&nbsp;
-## Explain How to Do Something
-&nbsp;
-
-When you are not sure what block to use, you can simply ask XO how to do something, such as how to implement a feature or how to make the sprite do something. For example, this is the response you get for "**how to draw a star?**":
-
-
-![81740852-0190-4639-a1af-e3860ce07db1-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/625778e8-f9f7-485f-9a26-458b44d0b43d.png) 
+![r3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/8a5afc5e-7740-4513-9d6d-c7f3b9f310a8.gif) 
 
 &nbsp;
-Note that %(#e10909)[your request should be as specific as possible], since XO may make mistakes if it has to write a lot of code at once. As a rule of thumb, your request should not require more than 10 blocks to implement.
+It typically follows this format:
+* Overview of the project
+* Key components (stage and sprites)
+* Key logical steps to implement each component
+* Tutorial or demo project links if any
 
 
 &nbsp;
 &nbsp;
-## Explain A Concept
+## Customize with More Details
 &nbsp;
 
-XO is also really good at making coding ideas clear, especially when you ask questions starting with "what is [name of something]?" So, if you were to ask, "**what is a clone?**", here's how it would explain it:
+If you simply provide a few words for your project idea, XO will respond with a fairly generic outline. To get more original results, you would have to provide more details. As a basic rule, as you provide more details, XO's response will also become more unique.
 
-![bd216f9a-0349-4d68-bb38-57c707544c0d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/807aaa5c-f840-419c-be87-5d0d1d094831.png) 
+For example, here is an updated request: 
 
+%(#0a18db)[Tell me how to design a 3D platformer game, where the player controls an Alien that can both jump and change direction in the air, and the platforms are moving themselves, and there are enemies that fire lasers at the Alien. The Alien can also pick up awards to run faster or jump higher.]
 
+Here is what XO says about it. As explained before, the originality has to come from your input.
 
-&nbsp;
-&nbsp;
-## Explain Code
-&nbsp;
-
-There are times when you're exploring someone else's project and might not grasp everything about how it functions. This is a great opportunity to seek XO's assistance. You can inquire about broader aspects, such as the interaction between sprites, or delve into more detailed queries about the purpose of a particular block or sequence of blocks. For instance, here is how to ask about user input handling in the "ChatGPT - Chat with Einstein" project:
-
-![dde20d31-3201-49b3-a073-f2194db03996-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8f1b3428-2272-4ce0-84ed-5b4805609be5.png) 
+![r4.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/089b4ed4-7b1a-480a-bcab-c77f07088262.gif) 
 
 
 &nbsp;
 &nbsp;
-## Use a Different Language
+## Start Small
+&nbsp;
 
-XO always responds in the same language as you do. If you use Spanish/Chinese/French, it will also show code blocks in those languages. Here is an example in Spanish:
+Since XO can generate outlines for any project idea, it's easy to be ambitious and aim for a project that might be too complex to manage effectively. For instance, numerous students have contemplated building "Minecraft in 3D" only to realize that such a project exceeds the typical scope of school assignments.
 
-![a3cafd2f-75fd-4c3d-a838-271697d7f87d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/67329071-e0f6-4575-acb7-1eafabecc269.png) 
+A key principle to follow is "%(#f00505)[don't bite off more than you can chew]." This means you should aim for projects that are challenging yet still within your capabilities. As you develop your coding skills through continuous practice, you'll be equipped to tackle increasingly complex projects over time.
 
 
 &nbsp;
 &nbsp;
-## Add Your Personal Flavors
+## Ask for Project Ideas
 &nbsp;
 
-XO isn't all serious when answering your questions. If you throw in a fun twist, XO often comes back with unexpected and enjoyable answers. For example, if you ask, "**Explain what is a loop. I'm a pirate.**", here's how it would respond:
+Sometimes you run out of ideas on what to build, you can also ask XO to give you some suggestions. For example, you can say: I want to build a project to practice how to use ChatGPT blocks, can you give me some ideas for small projects?
 
+You will get a list like below, which may inspire you to find your own idea:
 
-![56b543c4-b371-4702-8c52-87705f368c79-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ddbf0a4e-f4ab-4216-8217-ddc074f18bee.png) 
+![5fbe217c-50ee-44dd-8db4-25b177912ebf-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/98d630c2-6c48-4e07-a95f-f74e4f590b76.png) 
 
 &nbsp;
-The possible ways to twist your questions are endless. Here are some fun examples:
+&nbsp;
+## Focus on Specific Steps
+&nbsp;
 
-* "Explain what is a variable as if I'm 5 years old."
-* "Explain what is an event listener. You are Harry Potter."
-* "Explain what is a conditional statement. Pretend we're time travelers."
-* "Explain how to use clones. Assume I'm a chef."
-* "Explain what are messages used for. You're a detective solving a case."
-* "Tell me about sprites. We're astronauts on the International Space Station."
-* "What is a list in Scratch? Imagine we're deep-sea explorers."
-* "Explain what is a costume. You're a superhero with transformation powers."
-* "Explain what is a sound effect. Pretend we're in a zombie apocalypse."
-* "Explain what sensing means. Assume I'm a medieval knight."
-* "Explain what is an operator. You're an alien explaining earth technology."
-* "Explain what is a touch event. Imagine we're inside a video game."
-* "Explain what is a backdrop. You're a wizard with a spellbook."
-* "Explain what is a pen tool. We're on a spy mission."
-* "Explain what is direction. Pretend I'm a dragon hoarding knowledge."
-* "Explain what is a boolean. You're a famous inventor from history."
-* "Explain what is a custom block. Imagine we're running a circus."
-* "Explain what is an animation. You're a comedian on stage."
-* "Explain why we have repeat blocks. You're an ancient philosopher."
+After getting a project outline, most people are tempted to say this: "give me all the code!". However, XO can't simply convert the project design to a fully working project. Most likely, you will get a "disappointing" response like this:
+
+![94ecabea-e76d-48e7-b64d-7650ded38b84-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ba0f4702-c2ca-4952-9c70-c04a461943c9.png) 
+
+&nbsp;
+So, what's the right way to proceed? We simply need to %(#e40101)[focus on individual steps/features]. For example, if we focus on the first step to set up the 3D scene, XO will be happily working with us again:
+
+![9dccd6c8-872e-4672-971e-a8adc57786ec-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/7a3291b3-baf6-4ec4-a138-98e814ceff43.png)
