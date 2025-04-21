@@ -1,198 +1,144 @@
-A video version of this tutorial is available as well:
-
-https://www.youtube.com/watch?v=CxhpS_KZPGA
-
 ## Introduction
-&nbsp;
-ChatGPT is an AI model from OpenAI that can chat with us like a human being. It can answer our questions or help us carry out many tasks (e.g. translation, summarization, etc.).
 
-Many new applications will be built around AI models like ChatGPT. Typically, the application will create a detailed request (called "prompt") based on user needs, send the prompt to the AI model, and then present the response from the AI model in a user-friendly way. 
+In the previous [tutorial](/topic/925/chatgpt-ai-chat-with-einstein-difficulty-3), you learned how to build a simple chat app using ChatGPT. 
 
-In this tutorial, we will create a simple chat program. We will tell ChatGPT to pretend to be Albert Einstein (a famous physicist), so the user can have a chat with "him".
+In this tutorial, you will learn a few tricks to improve that chat program.
 
-&nbsp;
-![h8.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/b5330eb1-dc4f-48fc-8129-4b3175b91be3.gif?raw=true) 
-
+![j3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/87f990ec-639c-4b77-9b2e-dfc229efee24.gif?raw=true) 
 
 &nbsp;
 &nbsp;
-## Step 1 - Start with An Empty Sprite
+## Step 1 - Starting Project
 
-First, create a new project in the CreatiCode.com playground (click "Create" on top), and remove the sprite with the dog in it. Now we have an empty project with an empty sprite.
-
-Note that you need to sign in first. You can create a free account using a valid email address.
-
-&nbsp;
-&nbsp;
-## Step 2 - Add the Chat Window Widget
-
-Now let's use the "[add chat window](/topic/924/the-chat-window-widget)" block from the "widget" category to add a chat window
-
-![df55704b-bc91-4b2d-9110-987bc537c6fa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/996fb917-17df-4737-817c-d0d64594636a.png?raw=true) 
-
-&nbsp;
-Note that you can search for the keyword "chat" to find this block in the flyout:
-
-![h9.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/632e42a2-677b-4558-8102-ebcef2ccac00.gif?raw=true) 
-
-&nbsp;
-The chat window will be located at the center of the stage (x=0 and y=0), with the same width and height as the stage (480 by 360). So it will occupy the entire stage.
-
-You can customize its background and border colors.
-
-The name of this chat window is "chat1", which will be used to refer to it later.
-
-It should look like this:
-
-![d2ba0115-91e3-4c9e-bb93-3f1008be7a41-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/2bf31adf-a9cc-4b02-9a93-2e19495c62cc.png?raw=true) 
-
-
-
-&nbsp;
-&nbsp;
-## Step 3 - Handle the "Click" Event
-
-To use the chat window, the user can type anything in the input box at the bottom, and then click the green send button. 
-
-Let's print out what the user has typed using these blocks. The "value of widget" block will represent the input of the user.
-
-&nbsp;
-![97da84a9-1d44-45d6-a782-3fdd44b8d3b2-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8876d11b-63da-4384-92bc-961516750042.png?raw=true) 
-
-&nbsp;
-If you don't see "chat1" in the dropdown, you just need to run the project first by clicking the green flag.
-
-Note that if the user presses the "Enter" key, the "when widget clicked" block above will also be triggered.
-
-Try to input some text, and you should see them printed out in the **Console Panel** at the bottom of the editor window:
-
-&nbsp;
-![hello.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/faff04f9-9997-4e1c-bb80-6cdeb4b7a151.gif?raw=true) 
-
-&nbsp;
-Note that the text input is cleared out from the input box, but they are %(#e70808)[not] added to the chat history yet. This gives us full control on how or when the input is added to the chat history. For example, we might want to fix the typos in the user input automatically before posting it to the chat history window.
-
-
-
-&nbsp;
-&nbsp;
-## Step 4 - Append the User Input to Chat History
-
-Now let's add the user's input to the chat history, as opposed to printing it out. We can use the "append to chat" block. 
-
-&nbsp;
-![67b57551-5678-4741-8bc9-328e838efd77-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/50338c44-75e1-4251-aff3-d5a14bd06f4a.png?raw=true) 
-
-&nbsp;
-Here we first retrieve the input text using the "value of widget [chat1]" block.
-
-Then the text is appended to the chat history window on top under the name "Me" on the left side with a "USER" icon. You can customize its text color and background color as well. It will look like this:
-
-![h3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/f18aa084-493d-4f66-af03-28cb708e4971.gif?raw=true) 
-
-
-
-
-&nbsp;
-&nbsp;
-## Step 5 - Send the User Input to ChatGPT and Wait
-
-Now we will send the user input to ChatGPT, and wait for its response. Note that this is a strongly moderated version of ChatGPT, which **will not respond to any request that's not appropriate for a school environment**.
-
-You will need to create a new variable to store the response from ChatGPT. You can call this variable "response". Then you can add the [ChatGPT request block](/topic/867/ai-openai-chatgpt) to send the user input, and wait for the response to come back:
-
-&nbsp;
-![95d087aa-9688-427c-a7f4-87edd6675b36-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/a1b1365f-7185-4e28-a1c8-428c630df313.png?raw=true) 
-
-&nbsp;
-We are using the "waiting" mode, which will pause the program at this block until we get the response. The response will be stored in the "response" variable. 
-
-For testing purposes, we will use a **maximum length of 50** for now, so we get the response back quickly.
-
-The **temperature of 1** will make the chatbot more random and creative.
-
-We will **set the session type to "continue"**, so it will remember all the chat history within the current conversation.
-
-
-
-&nbsp;
-&nbsp;
-## Step 6 - Display ChatGPT's Response
-
-After we receive the response from ChatGPT, we can simply append the content of the variable "response" to the chat history window:
-&nbsp;
-![0999cc64-af99-4fcb-b9d2-35682b7fb8d2-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e3889b09-f8dc-4727-8581-15c0713e880d.png?raw=true) 
-
-&nbsp;
-We will use "Einstein" as the name this time, and the message will be aligned to the right with a different background color.
-
-Now we are ready to have a 2-way chat. Since the **ChatGPT chatbot doesn't know we want it to pretend to be Einstein yet, it still responds as itself**:
-
-![h4.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/54aaa87d-a18d-4fe3-86f4-36cf0bd9493c.gif?raw=true) 
-
-
-
-
-&nbsp;
-&nbsp;
-## Step 7 - Make ChatGPT Pretend to be Einstein
-&nbsp;
-To make ChatGPT pretend to be Einstein, we simply need to tell it to do so when we start the project. We can use the same 2 blocks to send the request and display the response. Here is the request: **Pretend you are Albert Einstein and chat with me**
-&nbsp;
-![03a3899d-32c3-457b-9f34-e7c91f8c70f5-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/124fc8cd-1ee2-421e-938b-509c08a90554.png?raw=true)
-
-&nbsp;
-Now we have a fully working chat! The first message will be sent out right away, and we will get a greeting from ChatGPT first. ChatGPT will continue to pretend it is Einstein from this point on:
-
-![h5.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/043ddc80-2b97-4483-8bba-5582ea595a40.gif?raw=true) 
-
-
-
-&nbsp;
-&nbsp;
-## Step 8 - Increase Length Limit for Each Response
-
-Currently, we are using a total length limit of 50, so if the chatbot is trying to say more than this, it will be cut off. In this case, the response will end with "TOKEN LIMIT REACHED".
-
-![a205fdf7-4074-49bc-80bd-6b89503953d5-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/14045870-baf8-4008-b7c6-38c7d3ad0457.png?raw=true) 
-
-&nbsp;
-There are 2 ways to solve this issue. 
-
-First, you can increase the maximum length to a bigger number, such as 100 or 150.
-
-Alternatively, you can tell ChatGPT to use fewer words. Instead of sending the user's input directly to ChatGPT, we can modify it a bit secretly. For example, we can append these words after the user input "Please use 50 words or less."
-
-Here is an example program showing both changes:
-
-&nbsp;
-![1a57a6e1-536d-4dba-8897-27e45d35f7da-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/19abfbf2-c303-4162-99b9-e567fe36ee2c.png?raw=true) 
-
-
-
-
-&nbsp;
-&nbsp;
-## Step 9 - Test Run
-
-Now the chat app is ready. Try to have a chat with it like this:
-
-![h8.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/b5330eb1-dc4f-48fc-8129-4b3175b91be3.gif?raw=true) 
-
-&nbsp;
-You can try the final program here:
+We will use the project from the previous tutorial as the starting point. If you don't have it, you can follow that tutorial to build one, or remix the following project:
 
 play.creaticode.com/projects/1ca634e4193e2b27500be13e
+
+
+&nbsp;
+&nbsp;
+## Step 2 - Test for "Character Breaking"
+
+In the current program, we have assigned a role for ChatGPT to play. However, our users can easily remove that restriction and cause ChatGPT to "break its character".
+
+As shown, ChatGPT will admit it is pretending to be Einstein when we challenge it:
+
+![b94202e0-7229-4996-9006-489cebcd9a43-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/63b7ff40-9249-442c-be35-dbdd2e9412b5.png?raw=true) 
+
+&nbsp;
+There is nothing wrong with this response, since ChatGPT is trying to fully disclose what's happening. However, in many applications, we want to force ChatGPT to stay in its role.
+
+For example, suppose we are using ChatGPT to play an almighty wizard in an adventure game. It will spoil the fun if the wizard suddenly starts to admit it is an "AI language model", right?
+
+For another example, suppose we are using ChatGPT to quiz a student. If the student somehow makes ChatGPT break its character, it may start to give out answers.
+
+
+
+&nbsp;
+&nbsp;
+## Step 3 - Use a "System Request" to Enforce the Role
+
+To make sure ChatGPT stays in its assigned role, we can use a "system request". ChatGPT treats all system requests very seriously, and it will try its best to fulfill such requests.
+
+Replace the original request block with a "system request" block, and clearly instruct ChatGPT to stay in its assigned role in all responses. In addition, there is no response from ChatGPT, so we will simply start with a message of "Hi".
+
+![23c7bc92-6c78-4b62-beb7-19214c10aeb1-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/914eb0a7-f3d0-4c85-9e88-791f8d4611e2.png?raw=true) 
+
+&nbsp;
+Now when we challenge ChatGPT again as a user, it will try to maintain its assigned role:
+
+![j2.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/40b92596-d7a3-4e91-8663-7c407f9aad02.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 4 - Enhance the System Request
+
+Although we are using a system request to enforce the role, the solution is not perfect. 
+
+First of all, the true Einstein does not really know what is ChatGPT, so it should not say "I'm not chatgpt" or "I'm not a chatbot".
+
+In addition, a smart user can still easily make ChatGPT fail its task like this:
+
+![f6d2244e-3cfb-4913-9542-c15a6fd87e20-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8149f9ac-c19e-433b-9542-ecd40b6b1be9.png?raw=true) 
+
+&nbsp;
+
+If we really want to keep our chatbot "realistic", we need to enhance our system request to account for such user challenges. This is often called "**prompt engineering**", since we are trying to find the best prompt to improve ChatGPT's response.
+
+For example, we can add another sentence to the end of our system request: "%(#ef0b0b)[You have never heard of AI models or chatgpt.]". Here are the improved responses:
+
+![14d16fae-85bd-44f0-b72d-78e50538a35e-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/bdd25427-4f6f-4acd-993c-89f81b8e9b6d.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 5 - Switch to "Streaming" Mode
+
+Currently, ChatGPT is not very fast in generating its responses. If a response is long, the user may have to wait several seconds before seeing it.
+
+To solve this problem, most ChatGPT systems use the "streaming" mode, which displays the partial responses from ChatGPT as soon as they are generated. This will allow the user to start reading the response much earlier.
+
+![bddf801d-f8c6-4e05-a062-9653f079364b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ce7a29d7-d109-4c6d-a8f9-5e310afee0f3.png?raw=true) 
+
+&nbsp;
+Note that in streaming mode, this request block will finish immediately, but the content of the "response" variable will be empty at this moment.
+
+&nbsp;
+&nbsp;
+## Step 6 - Repeatedly Refresh the Response
+
+In the streaming mode, the value of the "response" variable will be automatically updated as ChatGPT generates the response. Therefore, to display the response, we need to use the following approach:
+
+1. Append a simple message like "..." to the chat window, which tells the user ChatGPT is thinking.
+2. Repeatedly update this message using the "response" variable.
+
+&nbsp;
+![8dfb559e-b0d3-4e50-86bb-506e59dbba51-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b7447d57-85c0-490f-bdb3-0b3a07a615af.png?raw=true) 
+
+&nbsp;
+Now we are getting the response in the chat window as soon as they are received:
+
+![j3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/87f990ec-639c-4b77-9b2e-dfc229efee24.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Detect the End of the Response
+
+We need to improve the repeat loop a bit. We can not use a forever loop, since it will cause the program to stuck in this loop. 
+
+To find out whether we have received the entire message from ChatGPT, we can look for the emoji of a checkmark ![0b3ff1fa-a891-44ec-92a8-2e318892ef5c-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/28fcaef8-2012-47fe-91eb-1130be2ae5eb.png?raw=true) . You can copy it here https://emojiterra.com/white-heavy-check-mark/.
+
+&nbsp;
+![6dc68900-0061-4c6f-81c2-106888e414ce-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/75fdf459-513c-41bc-8def-2f2c0661915b.png?raw=true) 
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Clean Up the Ending of the Message
+
+After we have received the checkmark in the response, we will exit the "repeat until" loop. At this point, we will still need to update the chat message again, since "response" may contain some content not displayed yet. We should also remove the checkmark emoji.
+
+![ee87dfa5-6569-433b-98da-10f6f4ed4845-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/10dcf60c-318a-4273-9f69-9540ee4b169f.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 9 - Handle Chat Limit Gracefully
+
+Currently, there is a limit on how long the chat can last. If the chat is too long, the response will contain the special phrase "CHAT LIMIT REACHED". When that happens, this chat can no longer continue, so we need to tell the user about it. At this point, the user can not continue with the current chat, but he/she can start a new chat by clicking the green flag.
+
+![785ff5c8-048c-468a-ab4a-b1f21a3169e2-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/665592d9-55fd-46d9-bfa6-47ccc6070054.png?raw=true) 
+
+
 
 &nbsp;
 &nbsp;
 ## Creative Ideas
 
-In this tutorial, you learned how to use the chat window widget, and how to use the ChatGPT chatbot. Here are some ideas for you to try next:
-
-* **Chat with Other People**: You can easily change the first prompt to ask ChatGPT to pretend to be someone else, such as Shakespeare, Napoleon, Lincoln, or Newton. Note that the person you select needs to be well-documented on the web, otherwise, ChatGPT would not "know" much about that person.
-* **Chat with A Professional**: Instead of a specific person, we can ask ChatGPT to pretend to be a professional, such as a firefighter, a lawyer, a computer programmer, etc. This way, users can chat with it to understand the life or work of that profession.
-* **Chat with Other Things**: ChatGPT can also pretend to be an object instead of a person, such as the planet Mars, Mickey Mouse, a molecule or a dolphin, etc.
-* **Give more details in your first prompt**: The first prompt is fairly important, since it tells ChatGPT exactly who to pretend and how. You can refine it in any way you like. For example, you can specify a time period like this: "Pretend you are Einstein chatting with a student, and pretend today's date is January 1st, 1945."
-* **Update Icon**: You can use this image as a costume to the sprite, then use it as the icon for Einstein:
-![Einstein.png](https://github.com/cake2000/creaticodesharing/blob/main/images/d2343c1b-727d-4eeb-a426-396101bc949f.png?raw=true)
+Now please try to extend this chat app more. You can try to enhance the prompt to make it more realistic using the "system request". For example, you can try to pretend the year is 1945 and our Einstein does not know anything that happened after that year.
