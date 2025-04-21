@@ -1,82 +1,198 @@
+A video version of this tutorial is available as well:
+
+https://www.youtube.com/watch?v=CxhpS_KZPGA
+
 ## Introduction
 &nbsp;
+ChatGPT is an AI model from OpenAI that can chat with us like a human being. It can answer our questions or help us carry out many tasks (e.g. translation, summarization, etc.).
 
-CreatiCode extends MIT Scratch by introducing various new block categories, including 3D game engines with physics capabilities, 2D physics, artificial intelligence, app widgets, multiplayer online games, augmented reality, and table variables. These additions enable the creation of a much broader range of projects beyond what is possible with standard MIT Scratch.
+Many new applications will be built around AI models like ChatGPT. Typically, the application will create a detailed request (called "prompt") based on user needs, send the prompt to the AI model, and then present the response from the AI model in a user-friendly way. 
 
-Starting a new project can sometimes be daunting if you're unsure of where to begin. This is when you can ask XO for help. XO has seen many different types of projects, so it can offer suggestions on how to design a new project.
-
-It's important to remember that %(#f10909)[XO should primarily be treated as an assistant]. While it can provide helpful tips and guidance, it can't create an entire project on its own. **XO is optimized for short, specific responses**, and its performance may decline when you ask it to generate many lines of code. Moreover, as a coding learning tool, XO aims to enhance learning by encouraging students to engage more deeply with the programming process. Providing full-code solutions would be counterproductive to this educational goal.
-
-Also, %(#e10909)[XO can not generate truly original ideas]: everything XO says is a response to your idea based on existing projects that XO has seen before. For a project to stand out, %(#e00b0b)[your own creativity and vision are key]. XO's role is to assist in bringing your unique ideas to life, offering support and suggestions based on its vast database of project insights.
-
-In this tutorial, you will learn how to use XO to facilitate new project design.
+In this tutorial, we will create a simple chat program. We will tell ChatGPT to pretend to be Albert Einstein (a famous physicist), so the user can have a chat with "him".
 
 &nbsp;
-&nbsp;
-## Generate Project Outline
-&nbsp;
-
-Whenever you come up with an idea, you can ask XO how to build it. XO would give you an outline of the project. You can use this as a baseline to estimate the complexity of the project.
-
-For example, you can ask "How to build a 3D platformer game?", and here is an example response:
-
-![r3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/8a5afc5e-7740-4513-9d6d-c7f3b9f310a8.gif?raw=true) 
-
-&nbsp;
-It typically follows this format:
-* Overview of the project
-* Key components (stage and sprites)
-* Key logical steps to implement each component
-* Tutorial or demo project links if any
+![h8.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/b5330eb1-dc4f-48fc-8129-4b3175b91be3.gif?raw=true) 
 
 
 &nbsp;
 &nbsp;
-## Customize with More Details
-&nbsp;
+## Step 1 - Start with An Empty Sprite
 
-If you simply provide a few words for your project idea, XO will respond with a fairly generic outline. To get more original results, you would have to provide more details. As a basic rule, as you provide more details, XO's response will also become more unique.
+First, create a new project in the CreatiCode.com playground (click "Create" on top), and remove the sprite with the dog in it. Now we have an empty project with an empty sprite.
 
-For example, here is an updated request: 
-
-%(#0a18db)[Tell me how to design a 3D platformer game, where the player controls an Alien that can both jump and change direction in the air, and the platforms are moving themselves, and there are enemies that fire lasers at the Alien. The Alien can also pick up awards to run faster or jump higher.]
-
-Here is what XO says about it. As explained before, the originality has to come from your input.
-
-![r4.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/089b4ed4-7b1a-480a-bcab-c77f07088262.gif?raw=true) 
-
+Note that you need to sign in first. You can create a free account using a valid email address.
 
 &nbsp;
 &nbsp;
-## Start Small
-&nbsp;
+## Step 2 - Add the Chat Window Widget
 
-Since XO can generate outlines for any project idea, it's easy to be ambitious and aim for a project that might be too complex to manage effectively. For instance, numerous students have contemplated building "Minecraft in 3D" only to realize that such a project exceeds the typical scope of school assignments.
+Now let's use the "[add chat window](/topic/924/the-chat-window-widget)" block from the "widget" category to add a chat window
 
-A key principle to follow is "%(#f00505)[don't bite off more than you can chew]." This means you should aim for projects that are challenging yet still within your capabilities. As you develop your coding skills through continuous practice, you'll be equipped to tackle increasingly complex projects over time.
-
+![df55704b-bc91-4b2d-9110-987bc537c6fa-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/996fb917-17df-4737-817c-d0d64594636a.png?raw=true) 
 
 &nbsp;
-&nbsp;
-## Ask for Project Ideas
-&nbsp;
+Note that you can search for the keyword "chat" to find this block in the flyout:
 
-Sometimes you run out of ideas on what to build, you can also ask XO to give you some suggestions. For example, you can say: I want to build a project to practice how to use ChatGPT blocks, can you give me some ideas for small projects?
-
-You will get a list like below, which may inspire you to find your own idea:
-
-![5fbe217c-50ee-44dd-8db4-25b177912ebf-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/98d630c2-6c48-4e07-a95f-f74e4f590b76.png?raw=true) 
+![h9.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/632e42a2-677b-4558-8102-ebcef2ccac00.gif?raw=true) 
 
 &nbsp;
+The chat window will be located at the center of the stage (x=0 and y=0), with the same width and height as the stage (480 by 360). So it will occupy the entire stage.
+
+You can customize its background and border colors.
+
+The name of this chat window is "chat1", which will be used to refer to it later.
+
+It should look like this:
+
+![d2ba0115-91e3-4c9e-bb93-3f1008be7a41-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/2bf31adf-a9cc-4b02-9a93-2e19495c62cc.png?raw=true) 
+
+
+
 &nbsp;
-## Focus on Specific Steps
 &nbsp;
+## Step 3 - Handle the "Click" Event
 
-After getting a project outline, most people are tempted to say this: "give me all the code!". However, XO can't simply convert the project design to a fully working project. Most likely, you will get a "disappointing" response like this:
+To use the chat window, the user can type anything in the input box at the bottom, and then click the green send button. 
 
-![94ecabea-e76d-48e7-b64d-7650ded38b84-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ba0f4702-c2ca-4952-9c70-c04a461943c9.png?raw=true) 
+Let's print out what the user has typed using these blocks. The "value of widget" block will represent the input of the user.
 
 &nbsp;
-So, what's the right way to proceed? We simply need to %(#e40101)[focus on individual steps/features]. For example, if we focus on the first step to set up the 3D scene, XO will be happily working with us again:
+![97da84a9-1d44-45d6-a782-3fdd44b8d3b2-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8876d11b-63da-4384-92bc-961516750042.png?raw=true) 
 
-![9dccd6c8-872e-4672-971e-a8adc57786ec-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/7a3291b3-baf6-4ec4-a138-98e814ceff43.png?raw=true)
+&nbsp;
+If you don't see "chat1" in the dropdown, you just need to run the project first by clicking the green flag.
+
+Note that if the user presses the "Enter" key, the "when widget clicked" block above will also be triggered.
+
+Try to input some text, and you should see them printed out in the **Console Panel** at the bottom of the editor window:
+
+&nbsp;
+![hello.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/faff04f9-9997-4e1c-bb80-6cdeb4b7a151.gif?raw=true) 
+
+&nbsp;
+Note that the text input is cleared out from the input box, but they are %(#e70808)[not] added to the chat history yet. This gives us full control on how or when the input is added to the chat history. For example, we might want to fix the typos in the user input automatically before posting it to the chat history window.
+
+
+
+&nbsp;
+&nbsp;
+## Step 4 - Append the User Input to Chat History
+
+Now let's add the user's input to the chat history, as opposed to printing it out. We can use the "append to chat" block. 
+
+&nbsp;
+![67b57551-5678-4741-8bc9-328e838efd77-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/50338c44-75e1-4251-aff3-d5a14bd06f4a.png?raw=true) 
+
+&nbsp;
+Here we first retrieve the input text using the "value of widget [chat1]" block.
+
+Then the text is appended to the chat history window on top under the name "Me" on the left side with a "USER" icon. You can customize its text color and background color as well. It will look like this:
+
+![h3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/f18aa084-493d-4f66-af03-28cb708e4971.gif?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 5 - Send the User Input to ChatGPT and Wait
+
+Now we will send the user input to ChatGPT, and wait for its response. Note that this is a strongly moderated version of ChatGPT, which **will not respond to any request that's not appropriate for a school environment**.
+
+You will need to create a new variable to store the response from ChatGPT. You can call this variable "response". Then you can add the [ChatGPT request block](/topic/867/ai-openai-chatgpt) to send the user input, and wait for the response to come back:
+
+&nbsp;
+![95d087aa-9688-427c-a7f4-87edd6675b36-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/a1b1365f-7185-4e28-a1c8-428c630df313.png?raw=true) 
+
+&nbsp;
+We are using the "waiting" mode, which will pause the program at this block until we get the response. The response will be stored in the "response" variable. 
+
+For testing purposes, we will use a **maximum length of 50** for now, so we get the response back quickly.
+
+The **temperature of 1** will make the chatbot more random and creative.
+
+We will **set the session type to "continue"**, so it will remember all the chat history within the current conversation.
+
+
+
+&nbsp;
+&nbsp;
+## Step 6 - Display ChatGPT's Response
+
+After we receive the response from ChatGPT, we can simply append the content of the variable "response" to the chat history window:
+&nbsp;
+![0999cc64-af99-4fcb-b9d2-35682b7fb8d2-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e3889b09-f8dc-4727-8581-15c0713e880d.png?raw=true) 
+
+&nbsp;
+We will use "Einstein" as the name this time, and the message will be aligned to the right with a different background color.
+
+Now we are ready to have a 2-way chat. Since the **ChatGPT chatbot doesn't know we want it to pretend to be Einstein yet, it still responds as itself**:
+
+![h4.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/54aaa87d-a18d-4fe3-86f4-36cf0bd9493c.gif?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Make ChatGPT Pretend to be Einstein
+&nbsp;
+To make ChatGPT pretend to be Einstein, we simply need to tell it to do so when we start the project. We can use the same 2 blocks to send the request and display the response. Here is the request: **Pretend you are Albert Einstein and chat with me**
+&nbsp;
+![03a3899d-32c3-457b-9f34-e7c91f8c70f5-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/124fc8cd-1ee2-421e-938b-509c08a90554.png?raw=true)
+
+&nbsp;
+Now we have a fully working chat! The first message will be sent out right away, and we will get a greeting from ChatGPT first. ChatGPT will continue to pretend it is Einstein from this point on:
+
+![h5.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/043ddc80-2b97-4483-8bba-5582ea595a40.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Increase Length Limit for Each Response
+
+Currently, we are using a total length limit of 50, so if the chatbot is trying to say more than this, it will be cut off. In this case, the response will end with "TOKEN LIMIT REACHED".
+
+![a205fdf7-4074-49bc-80bd-6b89503953d5-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/14045870-baf8-4008-b7c6-38c7d3ad0457.png?raw=true) 
+
+&nbsp;
+There are 2 ways to solve this issue. 
+
+First, you can increase the maximum length to a bigger number, such as 100 or 150.
+
+Alternatively, you can tell ChatGPT to use fewer words. Instead of sending the user's input directly to ChatGPT, we can modify it a bit secretly. For example, we can append these words after the user input "Please use 50 words or less."
+
+Here is an example program showing both changes:
+
+&nbsp;
+![1a57a6e1-536d-4dba-8897-27e45d35f7da-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/19abfbf2-c303-4162-99b9-e567fe36ee2c.png?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 9 - Test Run
+
+Now the chat app is ready. Try to have a chat with it like this:
+
+![h8.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/b5330eb1-dc4f-48fc-8129-4b3175b91be3.gif?raw=true) 
+
+&nbsp;
+You can try the final program here:
+
+play.creaticode.com/projects/1ca634e4193e2b27500be13e
+
+&nbsp;
+&nbsp;
+## Creative Ideas
+
+In this tutorial, you learned how to use the chat window widget, and how to use the ChatGPT chatbot. Here are some ideas for you to try next:
+
+* **Chat with Other People**: You can easily change the first prompt to ask ChatGPT to pretend to be someone else, such as Shakespeare, Napoleon, Lincoln, or Newton. Note that the person you select needs to be well-documented on the web, otherwise, ChatGPT would not "know" much about that person.
+* **Chat with A Professional**: Instead of a specific person, we can ask ChatGPT to pretend to be a professional, such as a firefighter, a lawyer, a computer programmer, etc. This way, users can chat with it to understand the life or work of that profession.
+* **Chat with Other Things**: ChatGPT can also pretend to be an object instead of a person, such as the planet Mars, Mickey Mouse, a molecule or a dolphin, etc.
+* **Give more details in your first prompt**: The first prompt is fairly important, since it tells ChatGPT exactly who to pretend and how. You can refine it in any way you like. For example, you can specify a time period like this: "Pretend you are Einstein chatting with a student, and pretend today's date is January 1st, 1945."
+* **Update Icon**: You can use this image as a costume to the sprite, then use it as the icon for Einstein:
+![Einstein.png](https://github.com/cake2000/creaticodesharing/blob/main/images/d2343c1b-727d-4eeb-a426-396101bc949f.png?raw=true)
