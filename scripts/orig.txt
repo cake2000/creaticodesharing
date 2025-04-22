@@ -1,144 +1,161 @@
 ## Introduction
+&nbsp;
+In the [previous tutorial](https://www.forum.creaticode.com/topic/940/chatgpt-ai-an-improved-chat-app-difficulty-3), you learned how to build a simple chat app with ChatGPT. In this tutorial, we will build a learning game called "Who Am I?". We will make ChatGPT pretend it is a historical figure, and have the user guess who that person is:
 
-In the previous [tutorial](/topic/925/chatgpt-ai-chat-with-einstein-difficulty-3), you learned how to build a simple chat app using ChatGPT. 
 
-In this tutorial, you will learn a few tricks to improve that chat program.
+![b186b8ba-4f69-4a0a-a5ac-5956fc421670-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3c119ffe-5f88-4982-abae-14a6abcea36f.png) 
 
-![j3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/87f990ec-639c-4b77-9b2e-dfc229efee24.gif) 
+&nbsp;
+You will find that **there is almost no code change, and most of the work is in rewriting the prompt**. This may change how you think about "coding". A new skill is needed if you want to build fun projects using ChatGPT: writing great prompts to get ChatGPT to do precisely what you want. In a way, **%(#f50505)[you just need a new prompt to build a new app]**!
 
 &nbsp;
 &nbsp;
-## Step 1 - Starting Project
-
-We will use the project from the previous tutorial as the starting point. If you don't have it, you can follow that tutorial to build one, or remix the following project:
-
-play.creaticode.com/projects/1ca634e4193e2b27500be13e
-
-
+## Step 1 - Create a Starting Project
 &nbsp;
-&nbsp;
-## Step 2 - Test for "Character Breaking"
+We will use the project from the [previous tutorial](https://www.forum.creaticode.com/topic/940/chatgpt-ai-an-improved-chat-app-difficulty-3) as the starting point. If you don’t have it, you can follow that tutorial to build one, or remix the following project:
 
-In the current program, we have assigned a role for ChatGPT to play. However, our users can easily remove that restriction and cause ChatGPT to "break its character".
+play.creaticode.com/projects/1d57389810eb8ce8b178c684
 
-As shown, ChatGPT will admit it is pretending to be Einstein when we challenge it:
-
-![b94202e0-7229-4996-9006-489cebcd9a43-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/63b7ff40-9249-442c-be35-dbdd2e9412b5.png) 
-
-&nbsp;
-There is nothing wrong with this response, since ChatGPT is trying to fully disclose what's happening. However, in many applications, we want to force ChatGPT to stay in its role.
-
-For example, suppose we are using ChatGPT to play an almighty wizard in an adventure game. It will spoil the fun if the wizard suddenly starts to admit it is an "AI language model", right?
-
-For another example, suppose we are using ChatGPT to quiz a student. If the student somehow makes ChatGPT break its character, it may start to give out answers.
 
 
 
 &nbsp;
 &nbsp;
-## Step 3 - Use a "System Request" to Enforce the Role
-
-To make sure ChatGPT stays in its assigned role, we can use a "system request". ChatGPT treats all system requests very seriously, and it will try its best to fulfill such requests.
-
-Replace the original request block with a "system request" block, and clearly instruct ChatGPT to stay in its assigned role in all responses. In addition, there is no response from ChatGPT, so we will simply start with a message of "Hi".
-
-![23c7bc92-6c78-4b62-beb7-19214c10aeb1-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/914eb0a7-f3d0-4c85-9e88-791f8d4611e2.png) 
-
+## Step 2 - Clean Up
 &nbsp;
-Now when we challenge ChatGPT again as a user, it will try to maintain its assigned role:
+Before we add a new prompt to the project, let's clean it up:
+1. Remove the prompt in the system request. We will work on this later.
+2. Change the name of ChatGPT from "Einstein" to "AI" or some other name you like.
 
-![j2.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/40b92596-d7a3-4e91-8663-7c407f9aad02.gif) 
+![9714d5b3-f615-44d1-88c8-2f90372f7735-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/49aa0e9b-3599-422d-9e5b-5be309539868.png) 
+
+
 
 
 
 &nbsp;
 &nbsp;
-## Step 4 - Enhance the System Request
-
-Although we are using a system request to enforce the role, the solution is not perfect. 
-
-First of all, the true Einstein does not really know what is ChatGPT, so it should not say "I'm not chatgpt" or "I'm not a chatbot".
-
-In addition, a smart user can still easily make ChatGPT fail its task like this:
-
-![f6d2244e-3cfb-4913-9542-c15a6fd87e20-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8149f9ac-c19e-433b-9542-ecd40b6b1be9.png) 
-
+## Step 3 - First Part of the Prompt: Describe the Scenario
 &nbsp;
+The entire project will involve writing a new prompt, which can be completed in a few steps.
 
-If we really want to keep our chatbot "realistic", we need to enhance our system request to account for such user challenges. This is often called "**prompt engineering**", since we are trying to find the best prompt to improve ChatGPT's response.
+For the first step, it is essential to describe the scenario so that ChatGPT knows its role and what it is expected to do.
 
-For example, we can add another sentence to the end of our system request: "%(#ef0b0b)[You have never heard of AI models or chatgpt.]". Here are the improved responses:
+For our game, we can describe it like this:
 
-![14d16fae-85bd-44f0-b72d-78e50538a35e-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/bdd25427-4f6f-4acd-993c-89f81b8e9b6d.png) 
+```html
+You are a 5th-grade history teacher, and the user is a 5th-grade student. You need to test how well the student knows about historical figures by playing a game.
+```
 
+Feel free to adjust the student's grade level or the role of the chatbot. You need to type or copy the description into the request box of the system request block. Note that when the request is long, it will automatically be folded into multiple lines.
+
+![c85e15a5-dc70-4e92-ba3a-3f7f5639f532-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c5587af3-3787-4ab3-b558-44c83e1a061e.png)
 
 
 &nbsp;
 &nbsp;
-## Step 5 - Switch to "Streaming" Mode
-
-Currently, ChatGPT is not very fast in generating its responses. If a response is long, the user may have to wait several seconds before seeing it.
-
-To solve this problem, most ChatGPT systems use the "streaming" mode, which displays the partial responses from ChatGPT as soon as they are generated. This will allow the user to start reading the response much earlier.
-
-![bddf801d-f8c6-4e05-a062-9653f079364b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ce7a29d7-d109-4c6d-a8f9-5e310afee0f3.png) 
-
+## Step 4 - Second part of the Prompt: Describe the Game Rules
 &nbsp;
-Note that in streaming mode, this request block will finish immediately, but the content of the "response" variable will be empty at this moment.
+With the scenario described above, ChatGPT knows it needs to test a student's historical knowledge through a game. However, it still doesn't know the exact rules of the game. We need to give it clear rules on what it should and should not do, such as:
 
-&nbsp;
-&nbsp;
-## Step 6 - Repeatedly Refresh the Response
+```html
+In this game, you pretend to be a historical figure, but you do not tell the student who you are pretending to be. The student has to guess who you are by asking you questions.
+```
 
-In the streaming mode, the value of the "response" variable will be automatically updated as ChatGPT generates the response. Therefore, to display the response, we need to use the following approach:
+Again, put this into the request input box. Note that you can hold down the SHIFT key and then press the ENTER key, which will start a new line in the request input.
 
-1. Append a simple message like "..." to the chat window, which tells the user ChatGPT is thinking.
-2. Repeatedly update this message using the "response" variable.
 
-&nbsp;
-![8dfb559e-b0d3-4e50-86bb-506e59dbba51-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b7447d57-85c0-490f-bdb3-0b3a07a615af.png) 
-
-&nbsp;
-Now we are getting the response in the chat window as soon as they are received:
-
-![j3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/87f990ec-639c-4b77-9b2e-dfc229efee24.gif) 
+![3237ca1e-502e-4e5f-8b2f-063b386859d0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/afdcc542-68cc-406b-bbf3-f5a3704cad98.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 7 - Detect the End of the Response
-
-We need to improve the repeat loop a bit. We can not use a forever loop, since it will cause the program to stuck in this loop. 
-
-To find out whether we have received the entire message from ChatGPT, we can look for the emoji of a checkmark ![0b3ff1fa-a891-44ec-92a8-2e318892ef5c-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/28fcaef8-2012-47fe-91eb-1130be2ae5eb.png) . You can copy it here https://emojiterra.com/white-heavy-check-mark/.
-
+## Step 5 - Part 3 of the Prompt: What to Do Next
 &nbsp;
-![6dc68900-0061-4c6f-81c2-106888e414ce-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/75fdf459-513c-41bc-8def-2f2c0661915b.png) 
+Now our chatbot is ready to play the game. However, we still need to tell it what to do to get the game started. For example, we can make it wait for the user to start asking the first question:
 
+```html
+Now wait for the student's question, then answer the question as if you were that historical figure.
+```
 
-&nbsp;
-&nbsp;
-## Step 8 - Clean Up the Ending of the Message
+Again, add it to the request input box:
 
-After we have received the checkmark in the response, we will exit the "repeat until" loop. At this point, we will still need to update the chat message again, since "response" may contain some content not displayed yet. We should also remove the checkmark emoji.
-
-![ee87dfa5-6569-433b-98da-10f6f4ed4845-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/10dcf60c-318a-4273-9f69-9540ee4b169f.png) 
-
+![a4227ffa-5c25-4687-821d-01b66b7d92fa-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/9156a1f6-8a06-42df-bd9a-3382b8b7b777.png) 
 
 
 &nbsp;
 &nbsp;
-## Step 9 - Handle Chat Limit Gracefully
+## Step 6 - Instruct the User
+&nbsp;
+Now our chatbot is ready, we still need to explain to the user how to play the game. We will apply a small trick here: we can tell the user to start asking questions with a new chat message like the one below, as if the historical figure is talking to the user directly:
 
-Currently, there is a limit on how long the chat can last. If the chat is too long, the response will contain the special phrase "CHAT LIMIT REACHED". When that happens, this chat can no longer continue, so we need to tell the user about it. At this point, the user can not continue with the current chat, but he/she can start a new chat by clicking the green flag.
-
-![785ff5c8-048c-468a-ab4a-b1f21a3169e2-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/665592d9-55fd-46d9-bfa6-47ccc6070054.png) 
-
+![a40929a9-c7c0-41cc-b913-475fdac55113-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0f4cab87-829a-4987-a04e-c09c8e695df2.png) 
 
 
 &nbsp;
 &nbsp;
-## Creative Ideas
+## Step 7 - Test Our Game
+&nbsp;
+Now we have completed the changes. It's very important to test it thoroughly. You need to think about what users would do to break your game.
 
-Now please try to extend this chat app more. You can try to enhance the prompt to make it more realistic using the "system request". For example, you can try to pretend the year is 1945 and our Einstein does not know anything that happened after that year.
+For example, we should test whether the chatbot adheres to the game rules.
+
+![5a96b96e-5c0a-4ff2-93f5-653474228cfc-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1415ead4-e7fe-4a70-8514-0598af2b2559.png) 
+ 
+&nbsp;
+
+Next, we should test if the chatbot can guide the user properly:
+
+![f588abae-4253-4fca-9629-a9fdf4234585-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/60a795d2-8b09-4391-a506-e04a2b6aba59.png) 
+
+&nbsp;
+Lastly, test if our chatbot knows when to end the game. Note that even if we have a typo ("Jeferson" instead of "Jefferson"), ChatGPT can still correctly guess what we meant:
+
+![b186b8ba-4f69-4a0a-a5ac-5956fc421670-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3c119ffe-5f88-4982-abae-14a6abcea36f.png) 
+
+&nbsp;
+If you encounter any issues during the test, consider how to refine the prompt to prevent them. For example, if you do not want ChatGPT to discuss anything besides the game, you can add this to the prompt: 
+
+```html
+Do not respond to any topic unrelated to this game.
+```
+
+&nbsp;
+&nbsp;
+## Step 8 - Fix the "First Name" Issue
+&nbsp;
+One possible "hack" you may find is that when the user asks, "What's your first name?", our AI will give out the answer right away:
+
+
+![663aed90-b933-4a3d-837a-603f760f5913-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/6c43c1c2-40ae-4be1-8291-904f83406284.png) 
+
+&nbsp;
+To fix this issue, we need to add some additional rules to our prompt. For example, we can append this sentence:
+
+```html
+Do not give out your first name or last name in any format.
+```
+
+Now if you try to ask for the first name, you will get an answer like this:
+
+![557de689-e6ee-4aa5-b6e2-ee8a4cc9dfbb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1d0a617e-865c-4ade-a7e7-7b61fd6415d5.png) 
+
+&nbsp;
+&nbsp;
+## Further Enhancements
+&nbsp;
+Besides historical figures, you can modify the prompt to test the user on other topics. Here are some fun examples:
+
+* Guess a planet in our solar system
+* Guess an invention or inventor
+* Guess an animal or a plant
+* Guess a literary character
+* Guess a country or a place on Earth
+* Guess a chemical element
+* Guess a word or a number
+
+&nbsp;
+You should also continue to find other ways to improve the prompt and make the game more robust against trick questions.
+
+A more challenging task is to **make the historical figure more random**. Currently, ChatGPT is likely to pick the few famous presidents, making the game extremely easy to play. One way to do this is to generate a random condition on the historical figure: you can write code to pick a random time period (from a list of time periods) and a random country (from a list of countries), then add both of them as additional requirements on the historical figure. For example, suppose the random time period is "A.D. 1400 to A.D. 1500", and the random country is "China", then insert this sentence into the prompt: This historical figure you choose must be born between A.D. 1400 and A.D. 1500 in China.
