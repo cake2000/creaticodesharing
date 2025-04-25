@@ -1,339 +1,351 @@
 ## Introduction
 &nbsp;
-You have learned how to utilize ChatGPT to develop smart chatbots. However, it can be used in many other types of projects, and the interface does not have to be a chat window.
 
-In this tutorial, you will learn to build a smart "quiz writer". The user can specify any topic, then our program will use ChatGPT to generate a quiz question on that topic, and then evaluate the user's answer. You can even use this tool to help yourself prepare for an upcoming test!
+Have you ever wanted to let two chatbots take opposite sides in a debate while you sit back and watch? Giving each bot a different job can make your program easier to build and tweak.
 
-&nbsp;
-![w5.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/06afbdb1-59c4-4693-88cf-677925eb5cf8.gif) 
+In this project, you’ll create two chatbots that debate any topic the user chooses. It will be interesting to see both sides of an argument, and also a great practice in working with chatbots.
+
+![debateaidemo.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/0a0ac4c0-dc71-499e-880a-1609be3cfbc7.gif) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 1 - An Empty Starting Project
+## Step 1 - Prepare the Stage
 &nbsp;
-Create a new project, and name it "ChatGPT- Quiz Writer". Delete the sprite with the dog, as we will only use the "Empty1" sprite for coding.
+
+1. Start a new project in the CreatiCode playground.
+2. Delete the default dog sprite.
+3. Pick a backdrop. Try the AI image generator with a prompt such as
+
+```html
+Two cute robots having a debate behind podiums on a stage, cartoon style
+```
+You’ll get something like this:
 
- 
+![alt text](https://ccdn.creaticode.com/newimages/bg1/robot_debate_on_stage_25467333_596176.webp)
 
 
 &nbsp;
 &nbsp;
-## Step 2 - The Topic Input
+## Step 2 - Add a Topic Input Box
 &nbsp;
-First, let's add a label that says "Topic", and an input textbox for the user to write the topic. We'll name these 2 widgets "topiclabel" and "topicinput". Note that the Y position of the label is 100, so they won't overlap on the stage.
 
-![a5af3123-d1b0-4220-8ba3-ef3491c4d1b4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/288cbed8-a1fa-42f2-b743-25b5a08f5bd1.png) 
+Place an input **textbox** in the top-left corner so the user can type the debate topic.
 
-&nbsp;
-They will look like this:
+
+
+![35b63c34-0af0-45ed-a804-44001eec77e6-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0332caa9-274f-4a48-9be5-b388736867af.png) 
+
 &nbsp;
+Here is the widget block you can use. Feel free to adjust the parameters manually or use the Widget Position tool.
 
-![0db0e06a-208a-4a87-a822-48bef4fefead-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0b825052-fa36-4323-a6a1-2503f935d9c4.png) 
+![79afa67c-bac6-481f-a125-e50f56e834b0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/67c42aee-1bfb-4045-9f24-184589b020f4.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 3 - Move Widgets Using the "Widget Position" Tool
+## Step 3 - Give the Input Box a Default Value
 &nbsp;
-Now we need to move these two widgets to the top row of the stage window, so we can add other widgets below them. You can manually specify the position and size of each widget if you are comfortable with math. However, for a more visual solution, you can utilize the "Widget Position" tool like this: click it once to turn it on, drag/resize the widgets, then turn off the Widget Position tool.
+
+While you’re testing, you won’t want to retype the topic every time. Set a default value, for example, “AI will automate every job.” We can remove this block when the project is published.
 
-![w1.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/a53c64bf-d94a-4cce-8709-ce7dda11af72.gif) 
+![b2de945b-9f5d-44e5-abec-86c6c5b3a6fd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/271dd4de-e36c-411d-8514-bb1702597600.png) 
 
+
+
 &nbsp;
-As you drag and resize a widget, the X/Y/Width/Height values in the corresponding block are automatically changed, so the next time you run the program, the widgets will directly appear in the new positions:
+&nbsp;
+## Step 4 - Create the Start and Continue Buttons
+&nbsp;
+
+Next, please add 2 buttons to the right: "Start" and "Continue":
 
-![4b2f9e30-3da0-4ed0-a044-f3229e983ba2-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/28d70fe9-4f6b-4328-8f20-c90de23799e0.png) 
+![9277bde1-dca0-41d0-a000-a948cc5ae215-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b33c1cb4-073e-4c32-98a1-cce728006e6e.png) 
 
 &nbsp;
-Of course, you can still manually adjust the position and size numbers at any time. For example, if the Y positions of these two widgets are off by a small value, you can manually set them to be the same value.
+Here are the blocks for adding them:
 
+![78be7bcb-6a94-49f4-b1f8-8ccff55e8924-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/9658d157-bdce-4021-82a8-9e5145fa40c9.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 4 - Add a "Go" Button
+## Step 5 - Add a chat window when the Start button is clicked
 &nbsp;
-Next, we will add another button that says "Go", which will tell ChatGPT to generate the quiz. 
 
-![dc587fb9-9c90-4508-a29b-c8d4a5807335-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/75b4be5a-c0a1-4743-af6b-a6cbde845b3d.png) 
+When the user clicks the Start button, we will add a chat window widget. However, we **do not** want to show the input box at the bottom of the chat window, since both parties debating are AI chatbots.
 
-&nbsp;
-By default, the button will appear at the center. As a practice, please place it in the top right like this:
+One simple solution is to place the chat window lower on the stage, so its bottom section is hidden below the bottom edge of the stage:
 
-&nbsp;
-![45e9ce04-0717-45b9-8071-0526ec5b80b6-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1e883489-c89d-4ffd-b08a-ca948d8d0b63.png) 
+![54a83dc6-ea84-4b80-b8b4-03b0427a0718-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/abbc6ea2-d335-4633-b6ea-7dcd2c0b2621.png) 
 
-&nbsp;
-%(#f20707)[Feel free to update the block directly or use the Widget Position tool. Try to complete the change before looking at the solution code below.]
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-Your program should be similar to this afterward:
+Below is the block for adding the chat window with a lower Y position of -60:
 
-![cb2440f4-2d55-4afe-aba3-e4476af77a4a-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d177fbcc-6443-4a8d-b281-380ecd496fa5.png) 
+![3e4fbe05-a201-4b81-a95d-c8c563249cd6-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a1d2647b-ce64-400c-a7f4-d30276663c7d.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 5 - Add the Question Box
+## Step 6 - Write the shared instruction
 &nbsp;
-Now we need to add a large text box to display the quiz generated by ChatGPT. It should allow multiple lines of text, but does not allow any user input (so it is "read-only"), since the user should never be allowed to change the quiz question. Practice positioning this textbox yourself.
 
-&nbsp;
+Now we will work on the first prompt that will be given to both chatbots. Since the prompt will be the same for both chatbots, we can store it in a variable named "instruction". The prompt will specify the topic/thesis for the debate.
 
-![76f05a5b-0931-4fea-821f-1dd5fa47ae86-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b7323dd0-2928-4032-9eaa-d387c6cba202.png) 
+![973e55e9-7735-4795-8393-c5c412d6bc26-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/12427a89-2c91-4836-9f6b-a9c453e79fc2.png) 
 
 
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
+
 &nbsp;
 &nbsp;
+## Step 7 - Write the **Pro-side** prompt
 &nbsp;
+
+Next, let's write the prompt for the first chatbot, which will debate on the "pro" side (agreeing with the thesis):
+
+![43e18687-f5fa-4283-87d1-dcc97c3759ee-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/71cd765c-cc67-4c54-a89b-9727281dd940.png) 
+
+The request will start with the shared instruction, and then ask the chatbot to write an opening statement. Note that we are asking the chatbot to use fewer than 100 words, as we are still developing the program. We can change it to a larger value when the project is published.
+
+
 &nbsp;
 &nbsp;
-Your program should be similar to this:
+## Step 8 - Call the first chatbot
 &nbsp;
-![d0bcc16c-9532-4457-994e-a4431357687e-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a66c56e4-9cf7-4639-9ac6-170f513694ce.png) 
 
+Send the prompt to Chat-Bot 1 using these two blocks:
 
-&nbsp;
-&nbsp;
-## Step 6 - 2 New Custom Blocks
+![ab2331fa-304e-47ef-9683-51fc10d892b7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d307d77d-5b5a-4d2c-a3fc-0d650fdc0601.png) 
+
 &nbsp;
-Before we add more widgets, it looks like this stack of blocks may be getting too long. Therefore, it is a good time to define two new custom blocks to help organize the program. 
+Explanations:
+1. The "**select chatbot**" block ensures that the AI request below it is sent to the chatbot with ID 1. The ID can be 1 to 4, so there can be at most 4 chatbots.
 
-Please define two new blocks, "add question widgets" and "add answer widgets", and place them right below the green flag block. Then, please move all the existing blocks for adding the widgets into the definition of "add question widgets".
+2. We are using the "LLM model" block with a "**small**" size. This is a relatively small AI model that runs very fast and is smart enough for this use case.
 
-![129af87e-cdd1-477b-9c09-25d42d34cdfc-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3f316d51-39a2-41a6-84d6-c1399cd97014.png) 
+3. We are using the "**waiting**" mode, so this block will pause the program until we get a response from the AI model and store it in the "result" variable.
 
+4. We are using a **maximum length of 1000**, which means 1000 tokens, or about 750 words. That's more than enough, since we are asking the chatbot to use fewer than 100 words in our prompt.
 
+5. We are using a **temperature of 1**, which makes the chatbot the most creative.
 
+6. We are starting a "**new chat**" session, since this is the first request and we do not need to rely on any previous chat messages for context.
 
-&nbsp;
+
+
 &nbsp;
-## Step 7 - 4 Answer Buttons
 &nbsp;
-Now we will add blocks to add 4 buttons in the definition of "add answer widgets". Their names are simply A/B/C/D. Feel free to practice positioning all remaining widgets on your own.
-
+## Step 9 - Show the Pro Opening Statement
 &nbsp;
 
-![10e86166-dfe0-4749-a140-be9ea0baa091-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/37246b10-0198-4a63-b19f-508126b688db.png) 
+Once we have received the opening statement, we will add it to the chat window. We will name this chatbot the "Pro" bot, and display the statement as white text over a green background on the left:
 
+![7ce4e7f0-1261-4bc6-af08-e4acc29f6eda-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/17107809-ef7d-463c-8c3e-4a890dbb4e6a.png) 
 &nbsp;
-They look like this:
 
-![f7b474e6-4b42-402d-8e51-aa973a280ba4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/174911d1-cfc2-45dc-8975-6ace53e2c6aa.png) 
+This is what it looks like when we click the Start button:
 
+![openstatement.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/d5c0514d-f870-469a-b026-7c971a6944d9.gif) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 8 - The Feedback Box
+## Step 10 - Build the Con-Side Prompt
 &nbsp;
-When the user clicks one of the 4 buttons, we will ask ChatGPT to check if the user's answer is correct. Therefore, we need to add another text box at the bottom to display ChatGPT's feedback. Please add it as a multi-line, read-only textbox.
 
-![1b923cdd-1c6c-48d4-b63e-ff8e5ce905f1-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ccd50a00-0a1a-44f1-b42e-da779e17b812.png) 
+Next, we will write the prompt for getting the opening statement of the con side. One difference is that now we have received the pro side opening statement (still stored in the "result" variable), so that should be inserted into the request for the con-side chatbot as well. In other words, if this is a real debate between 2 persons, the con-side debator should already know the opening statement of the pro-side debator.
 
-&nbsp;
-Now the interface is ready:
+![4f3f672f-2711-4b7e-9b98-135549a6ce56-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0de6637e-ccc9-4ffc-85d6-25babcd88c69.png) 
+
 
-![b9152c3e-6ebc-4f19-a552-499d4901fd5b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d6b77c8f-582a-4172-b356-db9bb4c1a4d1.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 9 - Compose the ChatGPT Request
+## Step 11 - Call the second chatbot
 &nbsp;
-Suppose the user inputs a topic at the top, then clicks the "Go" button. At this point, we need to compose a request and send it to ChatGPT. The request should include the topic written by the user. We can write our request first, then join it with the user's input.
 
-To store our request, we can define a variable "request", and set its value when the "Go" button is clicked. The request will start with "**write a quiz question with 4 choices of A/B/C/D. The topic is:** ", which is joined by the value of the input box. Notice that we are forcing ChatGPT to always give us a question with exactly 4 choices.
+Now we are ready to get the opening statement from the second chatbot. The 2 blocks are very similar:
 
-![0c8680c9-2529-422f-9ed8-dd290dba8488-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/041d04ff-8244-430d-9605-29ecc5789e23.png) 
+![b885c9bc-73e8-4743-8ad1-2cc6e51a34a5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b9aa3879-3682-42ad-967e-bf1e56d62763.png) 
 
+Explanations:
+1. We are selecting the chatbot with ID 2, so any chatbot requests after this block will be sent to the second chatbot.
 
+2. **This is still a "new chat", since this is the first message we send to the second chatbot**. 
 
 &nbsp;
 &nbsp;
-## Step 10 - Send Request to ChatGPT in Streaming Mode
+## Step 12 - Display the con-side opening statement
 &nbsp;
-Now we are ready to let ChatGPT do the magic and give us a random question. To show the question as soon as possible, we will use the "streaming" mode. To allow a fairly complex question, we can set the max length to 400. 
 
-Additionally, this should be a **new chat**, as each time we click "Go", we do not need ChatGPT to recall the previous questions. If we use the **continue** mode, we will reach the token limit of ChatGPT after a few questions and have to restart. 
+Now we can add the response from the second chatbot to the chat window. This time we will make it aligned to the right, and show the text as white over purple:
 
-We will need to create a new variable called "question" to store the question generated by ChatGPT.
+![c01fd26d-d9b9-4ff5-ac67-5b4a5a97083f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1180af33-3799-4295-bfff-09ce2867799a.png) 
 
 &nbsp;
-![54078a8c-cc62-4e0c-9cbf-55d5bf94c0f0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/298d48a2-2c95-4a91-80d0-08b6d1fbd31e.png) 
+Now, when we press the Start button, we will get opening statements from both sides:
 
+![both.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/b9f63028-bc4e-47a7-80b0-10ef3508f39e.gif) 
 
 
 &nbsp;
 &nbsp;
-## Step 11 - Show the Question
+## Step 13 - Refactor the code
+&nbsp;
+
+Before we continue to get more debate messages, this is a good time to **refactor** (reorganize) our code a bit. It is already clear that every time we ask a chatbot to say something, we always use these 3 blocks:
+1. select a chatbot
+2. ask the chatbot to generate response
+3. add its output to the chat window.
+
+Therefore, we can bundle these 3 blocks into a custom block. The only changing part is the actual request (prompt) we send, so that can be specified as a block input.
+
+For example, for the first chatbot, we can define a new block like this. Note that **the request block being used is the input from the define block**, %(#f50f0f)[not the "request" variable].
+
+![6f8e79d4-7bf8-47c3-9489-c5705f2385aa-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/900eef03-1f05-4693-b8a7-0c69903bfa3b.png) 
+
 &nbsp;
-Now we need to show the question as ChatGPT generates it. We will use a "repeat until" loop to keep updating the question box with the value of the "question" variable. You can **copy the emoji for the checkmark here** (%(#e10909)[may look grey here but it will be green when pasted into the block]): ✅. Note that we are using a "repeat until" block: the content of the textbox will be updated right before the checkmark emoji is appended to the question.
+Similarly, we can define another block for the con side chatbot:
 
-![781195d0-d748-4401-95d5-969ea7bee2d5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/7ffb8db6-87a3-4f2e-860f-1d56cdda3cc0.png) 
+![65b0ee23-d10b-442d-8d3c-1ccc2868b844-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f971c8e4-0cac-447d-8876-62ffa2632c12.png) 
 
 &nbsp;
-Now we can test if ChatGPT will generate the question properly:
+Now we can rewrite our main logic using these 2 new blocks like this:
 
-![w3.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/2a3c496d-374e-4759-a6f6-e5e6e99da1d9.gif) 
+![428b1761-0675-4fbf-8759-a77bb78919d4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/699db317-487c-4954-88f8-d2c04cd1c2f1.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 12 - Handle the User Answer
+## Step 14 - Start Cross-Examination (Continue Button)
 &nbsp;
-When the user clicks on one of the 4 answer buttons, we need to ask ChatGPT to check it. To do that, define a new custom block named "check answer", which takes the "answer" as input:
 
-&nbsp;
-![89d6225b-4340-4acd-ac3e-49ebc1f9d85f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/21df7d96-ee9b-4c20-a94d-65690cf6e79e.png) 
+After the opening statements, our debate will enter the "cross-examination" phase, in which the pro side asks the con side questions. 
 
-&nbsp;
-We will run this new block when the user clicks any of the 4 buttons:
+When the user clicks the "Continue" button, we need to compose a new request to the **pro side chatbot** with the following information:
 
-![ba3a2799-3b9e-4119-8a90-da0bb158b5b5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c8442931-f6fb-48b6-8ee7-f0aafa7c217a.png) 
+1. The content of the opening statement from the con side (stored in the "result" variable)
+2. The debate is entering the **cross-examination** phase
+3. instruct the pro chatbot to ask the first question
+
+Can you try to compose this request?
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+Below is an example request that's concise and clear:
 
+![cfc8dfcb-d6c6-46bd-b6c2-eee28dd3cfb4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/10a710ef-2812-4ba4-9b07-8fd45fe7e875.png) 
 
+&nbsp;
+Note how easy it is to reuse the "pro chatbot" block. Now, if we click the Continue button, the pro chatbot will ask a question:
 
+![firstq.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/2a6720c5-abf2-4140-ab4a-f11d058e45d5.gif) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 13 - Compose the Feedback Request
+## Step 15 - Switch to **Continue** Session Types
 &nbsp;
-In the "check answer" block's definition, we need to compose a new request to ChatGPT: we will inform ChatGPT of the question, as we are not asking it to remember the question. We also need to tell ChatGPT the user's answer, then ask ChatGPT whether the answer is correct. 
+
+There is an issue we need to fix before continuing. In the "pro chatbot" block's definition, we are using the "new chat" session type. This will cause an issue, since every time we run the "pro chatbot" block, it will start a new chat session, and will not "remember" any previous messages in the debate.
+
+For example, when we click the Continue button, the pro chatbot will start a new session. It will see the con side's opening statement because we include it in our request this time. However, it will **not** see its own opening statement, because we are starting a new session with no history.
+
+To fix this issue, we need to change the session type to "continue". 
+
+**[advanced note]** Here we are using a special feature of the chatbot block: when the green flag button is clicked, the first time this block is used, even if we specify "continue", it will always be a new session with no history. Therefore, it is safe to use "continue" type all the time, so long as the user starts the program by clicking the green flag. 
+
+We can change both blocks like this:
 
-We can compose a 4-part request using the "join" block like this:
+![7f29bcad-2a84-48f1-b62a-81a62dcc3605-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/18ad4bd5-4a02-435a-8b1e-9a7aa7e028fb.png) 
 
-![b5bf53b0-8176-4ce5-9de1-68b8e60fee35-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/28ae59ed-660c-422d-a886-9ecd1fe9c3d9.png) 
 
 
 
+
 &nbsp;
 &nbsp;
-## Step 14 - Display the Feedback from ChatGPT
+## Step 16 - Get the con side's answer
 &nbsp;
-The remaining work is very similar to how we get the question from ChatGPT. We send the request, then display the result in the "feedback" textbox. You can duplicate the previous blocks and make some changes to them. Note that the session type is "new chat", since we don't need ChatGPT to remember the earlier messages about generating the question.
 
-&nbsp;
+Next, let's ask the con side chatbot to answer the question:
 
-![64baa372-c2e0-4b22-840e-c28ca4080ce5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/066f8bce-a4b8-4a9e-86a7-5260a0219b70.png) 
+![9078343c-b85b-48b8-966a-1ec790973abd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ad7ccaa4-a61a-465d-97dd-c65cc9976373.png) 
 
 &nbsp;
+When we click the "Continue" button, we get a question and then an answer:
 
-Now we have a working version of the quiz writer!
+![qa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/e0dea0ee-6c12-43e3-b7bf-2a26eb4d743f.gif) 
 
-![w4.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/50078adb-a375-4e97-b750-bed799facad3.gif)  
 
 
-
 &nbsp;
 &nbsp;
-## Step 15 - Highlight the User's Answer
+## Step 17 - Add a "phase" variable
 &nbsp;
-To make our quiz writer easier to use, we need to improve the user interface slightly. The most important change is to highlight the answer selected by the user.
 
-We can change the button's background color to yellow when it is clicked:
+At this time, the pro side has asked a question and the con side has answered it. If we press the Continue button again, we want them to do another round of Q&A. However, the request has to be a bit different since we no longer need to say, "Now you are in cross-examination," nor do we need to provide the opening statements.
 
-![de953261-2909-4013-b770-28d4027a37b7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/2795cd1f-8743-4b8b-8cbf-64a247f3aa85.png) 
+Essentially, we want a different request to be sent based on whether we are entering the cross-examination for the first time or not. We can use a new variable, "phase," to keep track of the current phase of the debate.
 
+First, when the Start button is pressed, we will **set the phase to "Opening"**:
 
+![b5fe958a-e35c-4559-be12-4fe53d2099c9-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/06019bfd-2fc3-4e7d-8941-8a3ef7905d6c.png) 
 
-&nbsp;
-&nbsp;
-## Step 16 - Reset Button Colors
 &nbsp;
-When the user generates a new quiz question, we need to reset the color of all the answer buttons back to unselected. We can do it when the "Go" button is clicked:
+Second, when the Continue button is clicked, we will check if we are in the "Opening" phase or not. If we are, **then we set the phase to "QA"**, and add our existing logic to that branch:
 
-![846cd626-cc7e-4391-95c3-a5bfeb38c0e0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/6fba76f8-c7fb-4386-b3f8-afa4fcf1ebdd.png) 
+![43212d66-12a0-4973-9d55-9f469ec43521-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/31f46316-342a-4dc8-93be-afa6a55abf12.png) 
 
 
 
+
+&nbsp;
 &nbsp;
+## Step 18 - Keep the Q & A Going
 &nbsp;
-## Step 17 - Testing
+
+Now, we are ready to add the logic to make the 2 chatbots go through another Q&A session whenever we click the "Continue" button. The request will be simpler, since based on the chat history, both chatbots already know they are in the cross-examination phase.
+
+![fe7c7292-ab2c-4a87-a5ac-bd6f89b82884-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f8bd4582-db05-456f-82cd-23886a9e2380.png) 
+
 &nbsp;
-Finally, you need to conduct further testing to ensure the user experience is seamless. Here is a final demo:
+Test it by clicking the "Continue" button, and we can keep going forever if we want to. Here is the complete demo:
 
-![w5.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/06afbdb1-59c4-4693-88cf-677925eb5cf8.gif) 
+![debateaidemo.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/0a0ac4c0-dc71-499e-880a-1609be3cfbc7.gif) 
 
 
 
@@ -342,17 +354,11 @@ Finally, you need to conduct further testing to ensure the user experience is se
 &nbsp;
 ## Additional Challenges
 &nbsp;
-This quiz writer is an elementary version. There are many areas where you can improve it. Here are some ideas for you to try:
 
-* **Other Question Format**: For example, you can change the question format from multiple-choice to short answers. The user would need to enter the answer in another text box.
+There are many ways to extend this project. Here are some examples:
 
-* **Improve the Prompt**: The current request we send to ChatGPT is straightforward, so we may sometimes receive unexpected answers from ChatGPT. For example, in this feedback, the answer is wrong, but ChatGPt still says "Great job!" because it is a "great question". Try to improve the request to avoid such issues.
+1. **Closing Statement**: Add yet another button **"Closing"**, which will trigger both chatbots to give a closing statement.
 
-ccimg||q||https://cdn.creaticode.com/scratch-gui-projects/forum/03c7549b-02a1-49d2-b2e8-df976bcd2118.png||40
+2. **AI Judge**: Add another button **"Judge"**, which will invoke a third chatbot to serve as the judge, and evaluate both sides on their performance. Note that to make this happen, you would have to store all the messages from both chatbots in a list or table.
 
-&nbsp;
-* **Better Styling**: You can change the text style, color, and background color of all widgets to enhance the interface's appearance.
-
-* **Keeping Track of Scores**: You can help the user keep track of how many questions were asked and how many were answered correctly.
-
-* **Pre-generated Questions**: Sometimes, you may not want to generate questions on the fly, since you have no control over what ChatGPT may ask. If you have a fixed topic, you can instruct ChatGPT to create 20 questions for you beforehand, and store these questions and their answers in a list or table. Then, when the user runs the program, you can randomly select a question from your pool of questions.
+3. **Other Debate Formats**: You can modify the flow to accommodate other debate formats, such as Lincoln-Douglas Debate, Public Forum Debate, and Congressional Debate.
