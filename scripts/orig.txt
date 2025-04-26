@@ -1,364 +1,273 @@
-## Introduction
+# Introduction
 &nbsp;
 
-Have you ever wanted to let two chatbots take opposite sides in a debate while you sit back and watch? Giving each bot a different job can make your program easier to build and tweak.
+Prompting AI models like ChatGPT can be frustrating and intimidating sometimes. You may not get what you expect, and don't know what to do.
 
-In this project, you’ll create two chatbots that debate any topic the user chooses. It will be interesting to see both sides of an argument, and also a great practice in working with chatbots.
+In this tutorial, we will introduce a straightforward method for prompting: the TIRE method. Hopefully, it will give you a "tire" for your journey of learning to write effective prompts.
 
-![debateaidemo.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/0a0ac4c0-dc71-499e-880a-1609be3cfbc7.gif) 
 
+![33a8b41a-11f7-4930-905c-078b9443de35-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8920c739-6b05-461c-a437-ae856a88b9bb.png) 
 
 
 &nbsp;
 &nbsp;
-## Step 1 - Prepare the Stage
+# The TIRE Prompting Method
 &nbsp;
 
-1. Start a new project in the CreatiCode playground.
-2. Delete the default dog sprite.
-3. Pick a backdrop. Try the AI image generator with a prompt such as
+Here is an overview of the TIRE method. We will walk through an example task later.
+
+"TIRE" stands for these 4 words: **T**ask, **I**nstruction, **R**efinement, and **E**xample.
+
+&nbsp;
+## 1. Task
+&nbsp;
+The task is simply what you want the AI to do. It usually starts with a **verb** and may include the **result** you expect. For example:
+
+* **Write** a short story about a dog
+* **Explain** this question for me
+* **Give me some feedback** on this essay
+* **Calculate** this equation
+* **Answer** this question
+* **Recommend** a few recipes.
+
+**If you don’t clearly tell the AI what you want, it has to guess, and it might guess wrong.** For example, if you say "my teacher gave me a B on this essay", then the AI has to guess what's its task, which can be "*explain where the essary needs to be improved*", "*how to argue with my teacher*" or "*give me your rating on my essay*".
+
+&nbsp;
+## 2. Instruction
+&nbsp;
+
+The second key component of the prompt is your instruction, which tells the AI model **how to carry out the task**. You can also think of this part as your specific **requirements**.
+
+Why do we need instructions? While an AI may grasp **what needs to be done**, there are still countless ways of **how it could be done**. Instructions help you get the style and details you need.
+
+Below are some common ways to give instructions:
+
+* **Length**: You can tell the AI to give a **detailed** or **concise** answer, or even specify **the number of words**. It will be hard for the AI to use the exact number of words, but it will be pretty close. Therefore, limiting word count is one of the most effective ways to control AI's response length.
+
+* **Tone**: You can ask the AI to use a **formal** or **informal** tone, a **casual** or **serious** tone, a **plain** or **technical** tone, etc.
+
+* **Output Format**: Depending on the task, you can ask AI to respond in various formats, like "return the data as a table", "give me a CSV file", "use markdown format", "give me bullet points", "format your answer in 4 paragraphs", etc.
+
+* **AI's Role**: You can often tell AI its role, which will greatly influence how it answers, such as "Asnwer as if you are a 5th grade teacher", "Pretend you are a corporate lawyer", "You are a professor", etc.
+
+* **Your Role**: You can also tell AI who you are, which is equally effective. Note that it does not have to be really who you are, but think of it as a technique to get different results from the AI. For example, you can say "I am 5-year old", "I am retired", "I am an expert in this topic", etc.
+
+&nbsp;
+There are many other types of instructions, which are highly dependent on the specific task. You can write them in the format of "**Do-It-This-Way**" or "**Don't-Do-It-That-Way**" rules. Below are some examples:
+
+* Write a story about a dog. **The dog must be 2 years old, has no home, enjoys eating fish and playing with rocks. I don't like sad stories.**
+* Summarize this article. **focus on the key problem the author is addressing, and skip the discussion on the solution.**
+* Help me solve this math problem. **don't tell me the answer directly. I want to walk through it myself. Just give me some hints on the first step.**
+
+
+
+&nbsp;
+## 3. Refinement
+&nbsp;
+
+After you have the task and instructions, you can start using them to get an initial response. If the response is perfect, then you can stop here. 
+
+However, most of the time, you may find some issues in the response. When that happens, many people will simply think, "This AI is not smart enough," or "This is the best I can get, so I will accept it."
+
+Such thoughts will leave a lot on the table. Instead, this is the time to **refine** your task description or instruction and keep trying until you get a high-quality response. Think of the AI as a gold mine—keep digging, and you’ll strike gold (the perfect prompt).
+
+
+
+
+
+&nbsp;
+## 4. Example
+&nbsp;
+
+Most of the time, you only need the task and the instructions, and keep refining them. However, **there are times when you don't know how to describe your requirements in words**. 
+
+When this happens, you can try to provide some examples in your prompt, since **AI models are very good at following examples**. 
+
+For instance, suppose you are asking the AI to write a multiple-choice question, but you don't know how to describe the format of the response you need. This would be a good time to provide an example for the format, like this:
 
 ```html
-Two cute robots having a debate behind podiums on a stage, cartoon style
+Give me a multiple-choice question for 6th-grade history. 
+
+Use this format:
+
+QUESTION
+(The quiz question)
+
+CHOICES
+A) ...
+B) ...
+C) ...
+D) ...
+
+ANSWER
+C
+
 ```
-You’ll get something like this:
 
-![alt text](https://ccdn.creaticode.com/newimages/bg1/robot_debate_on_stage_25467333_596176.webp)
+This example ensures the AI responds in the exact format we prefer, which is especially useful if we plan to parse the AI response in code. **It will be much harder to explain such a format in words, right?**
 
 
-&nbsp;
-&nbsp;
-## Step 2 - Add a Topic Input Box
-&nbsp;
-
-Place an input **textbox** in the top-left corner so the user can type the debate topic.
-
-
-
-![35b63c34-0af0-45ed-a804-44001eec77e6-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0332caa9-274f-4a48-9be5-b388736867af.png) 
-
-&nbsp;
-Here is the widget block you can use. Feel free to adjust the parameters manually or use the Widget Position tool.
-
-![79afa67c-bac6-481f-a125-e50f56e834b0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/67c42aee-1bfb-4045-9f24-184589b020f4.png) 
-
-
-
-&nbsp;
-&nbsp;
-## Step 3 - Give the Input Box a Default Value
-&nbsp;
 
-While you’re testing, you won’t want to retype the topic every time. Set a default value, for example, “AI will automate every job.” We can remove this block when the project is published.
 
-![b2de945b-9f5d-44e5-abec-86c6c5b3a6fd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/271dd4de-e36c-411d-8514-bb1702597600.png) 
-
-
-
-&nbsp;
-&nbsp;
-## Step 4 - Create the Start and Continue Buttons
-&nbsp;
-
-Next, please add 2 buttons to the right: "Start" and "Continue":
-
-![9277bde1-dca0-41d0-a000-a948cc5ae215-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b33c1cb4-073e-4c32-98a1-cce728006e6e.png) 
-
-&nbsp;
-Here are the blocks for adding them:
-
-![78be7bcb-6a94-49f4-b1f8-8ccff55e8924-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/9658d157-bdce-4021-82a8-9e5145fa40c9.png) 
-
-
-
 &nbsp;
 &nbsp;
-## Step 5 - Add a chat window when the Start button is clicked
-&nbsp;
-
-When the user clicks the Start button, we will add a chat window widget. However, we **do not** want to show the input box at the bottom of the chat window, since both parties debating are AI chatbots.
-
-One simple solution is to place the chat window lower on the stage, so its bottom section is hidden below the bottom edge of the stage:
-
-![54a83dc6-ea84-4b80-b8b4-03b0427a0718-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/abbc6ea2-d335-4633-b6ea-7dcd2c0b2621.png) 
-
+# A Detailed Example - Writing a "How-To" Guide
 &nbsp;
-Below is the block for adding the chat window with a lower Y position of -60:
-
-![3e4fbe05-a201-4b81-a95d-c8c563249cd6-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a1d2647b-ce64-400c-a7f4-d30276663c7d.png) 
-
 
+Now let's walk through a detailed example to illustrate how to apply the TIRE method. Suppose our task is to create a simple tool that allows the user to specify a goal, such as "becoming great at coding" or "making more friends," and we will use AI to generate a "how-to" guide.
 
 &nbsp;
 &nbsp;
-## Step 6 - Write the shared instruction
+## Step 1 - Describe the Task
 &nbsp;
-
-Now we will work on the first prompt that will be given to both chatbots. Since the prompt will be the same for both chatbots, we can store it in a variable named "instruction". The prompt will specify the topic/thesis for the debate.
-
-![973e55e9-7735-4795-8393-c5c412d6bc26-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/12427a89-2c91-4836-9f6b-a9c453e79fc2.png) 
-
-
 
-&nbsp;
-&nbsp;
-## Step 7 - Write the **Pro-side** prompt
-&nbsp;
+Based on our TIRE method, **we will start with the task**. Since we will allow the user to input any goal, we need to dynamically insert the user goal like this:
 
-Next, let's write the prompt for the first chatbot, which will debate on the "pro" side (agreeing with the thesis):
+```html
+Write a how-to guide for the following goal:
+(insert user input here)
 
-![43e18687-f5fa-4283-87d1-dcc97c3759ee-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/71cd765c-cc67-4c54-a89b-9727281dd940.png) 
+```
 
-The request will start with the shared instruction, and then ask the chatbot to write an opening statement. Note that we are asking the chatbot to use fewer than 100 words, as we are still developing the program. We can change it to a larger value when the project is published.
 
 
-&nbsp;
 &nbsp;
-## Step 8 - Call the first chatbot
 &nbsp;
-
-Send the prompt to Chat-Bot 1 using these two blocks:
-
-![ab2331fa-304e-47ef-9683-51fc10d892b7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d307d77d-5b5a-4d2c-a3fc-0d650fdc0601.png) 
-
+## Step 2 - First Set of Instructions
 &nbsp;
-Explanations:
-1. The "**select chatbot**" block ensures that the AI request below it is sent to the chatbot with ID 1. The ID can be 1 to 4, so there can be at most 4 chatbots.
-
-2. We are using the "LLM model" block with a "**small**" size. This is a relatively small AI model that runs very fast and is smart enough for this use case.
 
-3. We are using the "**waiting**" mode, so this block will pause the program until we get a response from the AI model and store it in the "result" variable.
+Next, suppose our target users are middle-school students, we might want to add a few instructions like this:
 
-4. We are using a **maximum length of 1000**, which means 1000 tokens, or about 750 words. That's more than enough, since we are asking the chatbot to use fewer than 100 words in our prompt.
+```html
 
-5. We are using a **temperature of 1**, which makes the chatbot the most creative.
+Write a how-to guide for the following goal:
+(insert user input here)
 
-6. We are starting a "**new chat**" session, since this is the first request and we do not need to rely on any previous chat messages for context.
+Instructions:
+1. You are talking to a middle-school student.
+2. Be concise and humorous. Use no more than 200 words.
+3. Reject any inappropriate topic
 
+```
 
 
-&nbsp;
-&nbsp;
-## Step 9 - Show the Pro Opening Statement
-&nbsp;
-
-Once we have received the opening statement, we will add it to the chat window. We will name this chatbot the "Pro" bot, and display the statement as white text over a green background on the left:
-
-![7ce4e7f0-1261-4bc6-af08-e4acc29f6eda-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/17107809-ef7d-463c-8c3e-4a890dbb4e6a.png) 
-&nbsp;
-
-This is what it looks like when we click the Start button:
-
-![openstatement.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/d5c0514d-f870-469a-b026-7c971a6944d9.gif) 
 
-
-
 &nbsp;
 &nbsp;
-## Step 10 - Build the Con-Side Prompt
+## Step 3 - Test and Evaluate
 &nbsp;
-
-Next, we will write the prompt for getting the opening statement of the con side. One difference is that now we have received the pro side opening statement (still stored in the "result" variable), so that should be inserted into the request for the con-side chatbot as well. In other words, if this is a real debate between 2 persons, the con-side debator should already know the opening statement of the pro-side debator.
-
-![4f3f672f-2711-4b7e-9b98-135549a6ce56-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0de6637e-ccc9-4ffc-85d6-25babcd88c69.png) 
 
+Now we have both the task and some initial instructions, let's write a simple program to test it out:
 
+play.creaticode.com/projects/679f826a69f04bc3c7cc081e
 
+Open this project, and click "See Inside", and you will find it only has 3 blocks:
 
+![3378d5dc-9b70-4119-a18c-ccf194f9e7b9-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/48d7a230-f450-47d4-a9b5-7b997c3e9b9b.png) 
 
 &nbsp;
-&nbsp;
-## Step 11 - Call the second chatbot
-&nbsp;
-
-Now we are ready to get the opening statement from the second chatbot. The 2 blocks are very similar:
-
-![b885c9bc-73e8-4743-8ad1-2cc6e51a34a5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b9aa3879-3682-42ad-967e-bf1e56d62763.png) 
-
-Explanations:
-1. We are selecting the chatbot with ID 2, so any chatbot requests after this block will be sent to the second chatbot.
+To use it, we just need to add our prompt in the LLM block, and then click the green flag to run it. The response will be printed out in the console panel below. For example, suppose we use "how to become great at coding" as the user goal, then our prompt will look like this:
 
-2. **This is still a "new chat", since this is the first message we send to the second chatbot**. 
+![7cea7f4f-94ec-4a28-b301-08d609c23d55-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/adb965ac-cf0a-462c-a216-a2e14e0ce53b.png) 
 
 &nbsp;
-&nbsp;
-## Step 12 - Display the con-side opening statement
-&nbsp;
+If you run it a few times, you might get responses like these:
 
-Now we can add the response from the second chatbot to the chat window. This time we will make it aligned to the right, and show the text as white over purple:
+![ac0a280c-10c9-4d29-a422-259246375ede-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/805b7f76-c4a7-4d5e-a3fd-b44fb140af26.png) 
 
-![c01fd26d-d9b9-4ff5-ac67-5b4a5a97083f-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1180af33-3799-4295-bfff-09ce2867799a.png) 
-
-&nbsp;
-Now, when we press the Start button, we will get opening statements from both sides:
+![a4be1e26-eef4-4174-a92c-115c9fc3f905-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/be828cc0-8d56-4f9a-b3d5-9d0ca06833ea.png) 
 
-![both.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/b9f63028-bc4e-47a7-80b0-10ef3508f39e.gif) 
 
 
 &nbsp;
 &nbsp;
-## Step 13 - Refactor the code
+## Step 4 - First Refinement of the Instructions
 &nbsp;
 
-Before we continue to get more debate messages, this is a good time to **refactor** (reorganize) our code a bit. It is already clear that every time we ask a chatbot to say something, we always use these 3 blocks:
-1. select a chatbot
-2. ask the chatbot to generate response
-3. add its output to the chat window.
+The responses above are pretty good, but we should not stop here. Instead, we should try to identify any issues in the response and then **refine our prompt** accordingly.
 
-Therefore, we can bundle these 3 blocks into a custom block. The only changing part is the actual request (prompt) we send, so that can be specified as a block input.
-
-For example, for the first chatbot, we can define a new block like this. Note that **the request block being used is the input from the define block**, %(#f50f0f)[not the "request" variable].
-
-![6f8e79d4-7bf8-47c3-9489-c5705f2385aa-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/900eef03-1f05-4693-b8a7-0c69903bfa3b.png) 
-
-&nbsp;
-Similarly, we can define another block for the con side chatbot:
+For example, one issue is that the AI model tends to number the bullet points from 1 to 5. This may be misleading since the actions may not have to be done in the given order. Also, 5 points may be too many. To fix these issues, we can update the prompt by adding an additional instruction:
 
-![65b0ee23-d10b-442d-8d3c-1ccc2868b844-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f971c8e4-0cac-447d-8876-62ffa2632c12.png) 
+![f3811889-5c03-4ac7-bb73-71a19a179c69-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f53c81bd-ba51-4018-84ba-4ad9e9529e0d.png) 
 
 &nbsp;
-Now we can rewrite our main logic using these 2 new blocks like this:
+This time, you should get a response that reflects changes in our instructions pretty well:
 
-![428b1761-0675-4fbf-8759-a77bb78919d4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/699db317-487c-4954-88f8-d2c04cd1c2f1.png) 
+![e854b60d-ddea-4c64-b2b0-0555a52265da-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/36ff4e6c-47f2-4ded-9f26-c1ad35bdc3f4.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 14 - Start Cross-Examination (Continue Button)
+## Step 5 - Second Refinement of the Instructions
 &nbsp;
 
-After the opening statements, our debate will enter the "cross-examination" phase, in which the pro side asks the con side questions. 
+Now let's review the response above, and see if we can improve it further. One idea is to list 3 "Do's" and 3 "Don'ts". This contrast often makes it easier for the user. We can refine the prompt into this:
 
-When the user clicks the "Continue" button, we need to compose a new request to the **pro side chatbot** with the following information:
+![a3b364cc-bebd-4828-85f7-958845466ba8-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ece528c0-8835-450c-9fe1-f7f0927fa44a.png) 
 
-1. The content of the opening statement from the con side (stored in the "result" variable)
-2. The debate is entering the **cross-examination** phase
-3. instruct the pro chatbot to ask the first question
-
-Can you try to compose this request?
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 &nbsp;
-&nbsp;
-&nbsp;
-Below is an example request that's concise and clear:
 
-![cfc8dfcb-d6c6-46bd-b6c2-eee28dd3cfb4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/10a710ef-2812-4ba4-9b07-8fd45fe7e875.png) 
-
-&nbsp;
-Note how easy it is to reuse the "pro chatbot" block. Now, if we click the Continue button, the pro chatbot will ask a question:
+Here is an example output:
 
-![firstq.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/2a6720c5-abf2-4140-ab4a-f11d058e45d5.gif) 
+![d2e3f07b-a734-4120-bdab-9dbd78d0fbee-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/89230af0-5fbb-4d6a-a987-b4387c073b8e.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 15 - Switch to **Continue** Session Types
+## Step 6 - Add an Example
 &nbsp;
-
-There is an issue we need to fix before continuing. In the "pro chatbot" block's definition, we are using the "new chat" session type. This will cause an issue, since every time we run the "pro chatbot" block, it will start a new chat session, and will not "remember" any previous messages in the debate.
-
-For example, when we click the Continue button, the pro chatbot will start a new session. It will see the con side's opening statement because we include it in our request this time. However, it will **not** see its own opening statement, because we are starting a new session with no history.
-
-To fix this issue, we need to change the session type to "continue". 
-
-**[advanced note]** Here we are using a special feature of the chatbot block: when the green flag button is clicked, the first time this block is used, even if we specify "continue", it will always be a new session with no history. Therefore, it is safe to use "continue" type all the time, so long as the user starts the program by clicking the green flag. 
 
-We can change both blocks like this:
+Lastly, to precisely control the output format, we can give the AI an example format like this:
 
-![7f29bcad-2a84-48f1-b62a-81a62dcc3605-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/18ad4bd5-4a02-435a-8b1e-9a7aa7e028fb.png) 
+```html
 
+Write a how-to guide for the following goal:
+how to become great at coding
 
+Instructions:
+1. You are talking to a middle-school student.
+2. Be concise and humorous. Use no more than 200 words.
+3. Reject any inappropriate topic
+4. Give me 3 Do's and 3 Don'ts as bullet points
 
+use this format:
 
-
-&nbsp;
-&nbsp;
-## Step 16 - Get the con side's answer
-&nbsp;
-
-Next, let's ask the con side chatbot to answer the question:
-
-![9078343c-b85b-48b8-966a-1ec790973abd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ad7ccaa4-a61a-465d-97dd-c65cc9976373.png) 
-
-&nbsp;
-When we click the "Continue" button, we get a question and then an answer:
+3 Do's:
+* Do this ... (in 10 words)
+* Do this ... (in 10 words)
+* Do this ... (in 10 words)
 
-![qa.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/e0dea0ee-6c12-43e3-b7bf-2a26eb4d743f.gif) 
+3 Don'ts
+* Don't do this ... (in 10 words)
+* Don't do this ... (in 10 words)
+* Don't do this ... (in 10 words)
 
 
+```
 
 &nbsp;
-&nbsp;
-## Step 17 - Add a "phase" variable
-&nbsp;
-
-At this time, the pro side has asked a question and the con side has answered it. If we press the Continue button again, we want them to do another round of Q&A. However, the request has to be a bit different since we no longer need to say, "Now you are in cross-examination," nor do we need to provide the opening statements.
-
-Essentially, we want a different request to be sent based on whether we are entering the cross-examination for the first time or not. We can use a new variable, "phase," to keep track of the current phase of the debate.
+Here is what you will likely get, which matches our example format pretty well:
 
-First, when the Start button is pressed, we will **set the phase to "Opening"**:
+![2b0861fc-58c3-441a-85d2-acdbf9f70034-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1984c224-b975-4937-9a25-53b0024025ba.png) 
 
-![b5fe958a-e35c-4559-be12-4fe53d2099c9-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/06019bfd-2fc3-4e7d-8941-8a3ef7905d6c.png) 
 
-&nbsp;
-Second, when the Continue button is clicked, we will check if we are in the "Opening" phase or not. If we are, **then we set the phase to "QA"**, and add our existing logic to that branch:
-
-![43212d66-12a0-4973-9d55-9f469ec43521-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/31f46316-342a-4dc8-93be-afa6a55abf12.png) 
 
 
 
 
 &nbsp;
 &nbsp;
-## Step 18 - Keep the Q & A Going
-&nbsp;
-
-Now, we are ready to add the logic to make the 2 chatbots go through another Q&A session whenever we click the "Continue" button. The request will be simpler, since based on the chat history, both chatbots already know they are in the cross-examination phase.
-
-![fe7c7292-ab2c-4a87-a5ac-bd6f89b82884-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f8bd4582-db05-456f-82cd-23886a9e2380.png) 
-
+# Practice
 &nbsp;
-Test it by clicking the "Continue" button, and we can keep going forever if we want to. Here is the complete demo:
-
-![debateaidemo.gif](https://cdn.creaticode.com/scratch-gui-projects/forum/0a0ac4c0-dc71-499e-880a-1609be3cfbc7.gif) 
-
 
-
-
-&nbsp;
-&nbsp;
-## Additional Challenges
-&nbsp;
+You have now learned the basics of the TIRE prompting method. It is very easy to understand, but it will take a lot of practice to master, especially with the continued refinement of the instructions.
 
-There are many ways to extend this project. Here are some examples:
+For more practice, here are some tasks. Please try to compose the best prompt using the TIRE method. Feel free to provide more details to make it fun.
 
-1. **Closing Statement**: Add yet another button **"Closing"**, which will trigger both chatbots to give a closing statement.
+* Ask AI to write an engaging introduction to the city/state/country you live in to attract foreign visitors.
 
-2. **AI Judge**: Add another button **"Judge"**, which will invoke a third chatbot to serve as the judge, and evaluate both sides on their performance. Note that to make this happen, you would have to store all the messages from both chatbots in a list or table.
+* Ask AI to write a short science fiction story that is engaging to read.
 
-3. **Other Debate Formats**: You can modify the flow to accommodate other debate formats, such as Lincoln-Douglas Debate, Public Forum Debate, and Congressional Debate.
+* Ask AI to explain a complex concept that you are learning
