@@ -1,273 +1,208 @@
+
+&nbsp;  
 # Introduction
+&nbsp;  
+
+In many applications, we need to convert what a user says into text. This is called "**speech recognition**" or "**voice recognition**". Note that **this is NOT about understanding what the user is saying**. It is simply guessing what the user is saying based on the speech audio. 
+
+However, this can already be very useful in some applications. For example, for users with disabilities who have difficulty using a mouse or keyboard, being able to input commands with voice is essential.
+
+
+&nbsp;  
+# Basic Speech Recognition
 &nbsp;
-
-Prompting AI models like ChatGPT can be frustrating and intimidating sometimes. You may not get what you expect, and don't know what to do.
-
-In this tutorial, we will introduce a straightforward method for prompting: the TIRE method. Hopefully, it will give you a "tire" for your journey of learning to write effective prompts.
-
-
-![33a8b41a-11f7-4930-905c-078b9443de35-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8920c739-6b05-461c-a437-ae856a88b9bb.png) 
-
-
-&nbsp;
-&nbsp;
-# The TIRE Prompting Method
-&nbsp;
-
-Here is an overview of the TIRE method. We will walk through an example task later.
-
-"TIRE" stands for these 4 words: **T**ask, **I**nstruction, **R**efinement, and **E**xample.
+There are 4 key blocks that work together to carry out a basic speech recognition:
 
 &nbsp;
-## 1. Task
+## Start Speech Recognition
 &nbsp;
-The task is simply what you want the AI to do. It usually starts with a **verb** and may include the **result** you expect. For example:
+To start, we need to run this block:
 
-* **Write** a short story about a dog
-* **Explain** this question for me
-* **Give me some feedback** on this essay
-* **Calculate** this equation
-* **Answer** this question
-* **Recommend** a few recipes.
+![5b680179-60fc-4ee0-9845-dbb755505a01-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8dc34655-d649-41a2-af5b-78f12e71b336.png) 
 
-**If you don’t clearly tell the AI what you want, it has to guess, and it might guess wrong.** For example, if you say "my teacher gave me a B on this essay", then the AI has to guess what's its task, which can be "*explain where the essary needs to be improved*", "*how to argue with my teacher*" or "*give me your rating on my essay*".
+* **Language**: The first input is the language the user will speak. Note that even for the same language, such as English, there is more than one type you can choose from, such as "English (United States)" vs "English (United Kingdom)". If the user talks in a different language, then the recognition result will not be correct.
 
-&nbsp;
-## 2. Instruction
-&nbsp;
+* **Sound Name**: The second input is optional. If it is not empty, then the user's voice will be saved as a sound clip under the "Sounds" tab for this sprite. This will be handy if you need to play back what the user has just said.
 
-The second key component of the prompt is your instruction, which tells the AI model **how to carry out the task**. You can also think of this part as your specific **requirements**.
-
-Why do we need instructions? While an AI may grasp **what needs to be done**, there are still countless ways of **how it could be done**. Instructions help you get the style and details you need.
-
-Below are some common ways to give instructions:
-
-* **Length**: You can tell the AI to give a **detailed** or **concise** answer, or even specify **the number of words**. It will be hard for the AI to use the exact number of words, but it will be pretty close. Therefore, limiting word count is one of the most effective ways to control AI's response length.
-
-* **Tone**: You can ask the AI to use a **formal** or **informal** tone, a **casual** or **serious** tone, a **plain** or **technical** tone, etc.
-
-* **Output Format**: Depending on the task, you can ask AI to respond in various formats, like "return the data as a table", "give me a CSV file", "use markdown format", "give me bullet points", "format your answer in 4 paragraphs", etc.
-
-* **AI's Role**: You can often tell AI its role, which will greatly influence how it answers, such as "Asnwer as if you are a 5th grade teacher", "Pretend you are a corporate lawyer", "You are a professor", etc.
-
-* **Your Role**: You can also tell AI who you are, which is equally effective. Note that it does not have to be really who you are, but think of it as a technique to get different results from the AI. For example, you can say "I am 5-year old", "I am retired", "I am an expert in this topic", etc.
-
-&nbsp;
-There are many other types of instructions, which are highly dependent on the specific task. You can write them in the format of "**Do-It-This-Way**" or "**Don't-Do-It-That-Way**" rules. Below are some examples:
-
-* Write a story about a dog. **The dog must be 2 years old, has no home, enjoys eating fish and playing with rocks. I don't like sad stories.**
-* Summarize this article. **focus on the key problem the author is addressing, and skip the discussion on the solution.**
-* Help me solve this math problem. **don't tell me the answer directly. I want to walk through it myself. Just give me some hints on the first step.**
+When you run this block, the playground will try to get your permission to open the computer's microphone. After getting the consent, it will keep listening until we stop the speech recognition (see below).
 
 
 
 &nbsp;
-## 3. Refinement
+## End Speech Recognition
 &nbsp;
+To stop the speech recognition, you can use this block:
 
-After you have the task and instructions, you can start using them to get an initial response. If the response is perfect, then you can stop here. 
+![e6cb83e0-20ac-4498-a5e7-c0a4ad088df3-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d6942ca2-7581-4c76-8b2c-3e2c816257ad.png) 
 
-However, most of the time, you may find some issues in the response. When that happens, many people will simply think, "This AI is not smart enough," or "This is the best I can get, so I will accept it."
+When this block is executed, the program will stop listening to the microphone, and the text that's recognized will be stored in the reporter block "text from speech" (see below). 
 
-Such thoughts will leave a lot on the table. Instead, this is the time to **refine** your task description or instruction and keep trying until you get a high-quality response. Think of the AI as a gold mine—keep digging, and you’ll strike gold (the perfect prompt).
+**Note that before this block runs, no recognition will be carried out and no result text will be shown**. You can think of it as a 2-step process:
+
+1. Between the "start recognizing speech" block and the "end speech recognition" block, the system will do nothing except record what it hears from the microphone.
+
+2. After the "end speech recognition" block runs, the recorded audio clip will be sent to a server (another computer) that converts the audio to text.
+
+
+&nbsp;
+## Text from Speech
+&nbsp;
+The recognized text will be stored in this reporter block, so you can think of it as a special variable:
+
+![d690c8f6-9602-453e-bd76-fb880d1dee52-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/6861d432-34ef-4479-888a-8dc69ac066dd.png) 
+
+
+&nbsp;
+## Clear Speech Text
+&nbsp;
+This block can be used to clear the value of the previously recognized text that's stored in the "text from speech" block. This way, there is no confusion about whether its value is from a previous session or the current session.
+
+
+
+&nbsp;
+## When to stop?
+&nbsp;
+One of the key design questions for using these speech recognition blocks is **when to stop recording audio**. If we stop too early, then the user may not have enough time to say what they need to say; if we stop too late, then it is a waste of the user's time. 
+
+Next, let's look at a few typical methods to handle this issue.
 
 
 
 
 
 &nbsp;
-## 4. Example
+## Example Design 1 - Wait and Then Stop
 &nbsp;
 
-Most of the time, you only need the task and the instructions, and keep refining them. However, **there are times when you don't know how to describe your requirements in words**. 
+In this example, we will listen to the user for a fixed number of seconds (e.g. 3) and record it as a sound clip named "s1". After ending the recognition, make the dog say the recognized text and also play back the sound clip s1.
 
-When this happens, you can try to provide some examples in your prompt, since **AI models are very good at following examples**. 
 
-For instance, suppose you are asking the AI to write a multiple-choice question, but you don't know how to describe the format of the response you need. This would be a good time to provide an example for the format, like this:
+![speechrec3seconds.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/speechrec1b.gif?raw=true)
 
-```html
-Give me a multiple-choice question for 6th-grade history. 
+&nbsp;
+You can try it out here: play.creaticode.com/projects/67a189b37b46e6c9fc9d7618
 
-Use this format:
-
-QUESTION
-(The quiz question)
-
-CHOICES
-A) ...
-B) ...
-C) ...
-D) ...
-
-ANSWER
-C
-
-```
-
-This example ensures the AI responds in the exact format we prefer, which is especially useful if we plan to parse the AI response in code. **It will be much harder to explain such a format in words, right?**
-
+As you try out this program, test different waiting times. You will likely find that it is challenging to determine a suitable waiting time value that works consistently. Sometimes it is not long enough, and sometimes it is too long. 
 
 
 
 &nbsp;
-&nbsp;
-# A Detailed Example - Writing a "How-To" Guide
-&nbsp;
-
-Now let's walk through a detailed example to illustrate how to apply the TIRE method. Suppose our task is to create a simple tool that allows the user to specify a goal, such as "becoming great at coding" or "making more friends," and we will use AI to generate a "how-to" guide.
-
-&nbsp;
-&nbsp;
-## Step 1 - Describe the Task
+## Example Design 2 - Start and Stop Buttons
 &nbsp;
 
-Based on our TIRE method, **we will start with the task**. Since we will allow the user to input any goal, we need to dynamically insert the user goal like this:
+In the second example, we will show 2 buttons, one for starting the recognition, and another for stopping it. After clicking the start button, we start recording the speech. When the stop button is clicked, we will end the recording and run the recognition.
 
-```html
-Write a how-to guide for the following goal:
-(insert user input here)
+![startandstop.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/startanddstop.gif?raw=true) 
 
-```
+&nbsp;
+Here are the blocks:
+
+![09e27093-18d9-49aa-b121-adcd53be728d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/62c83294-497c-4bfe-a5ec-4650fa489d3c.png) 
+
+&nbsp;
+You can try it here: play.creaticode.com/projects/680e6446955fd2f624f578cd
+
+This method gives the user much more control, as you can say anything of any length before clicking the stop button. For a slightly simpler design, you can also "merge" these 2 buttons into one: when the "start" button is clicked, its text changes to "stop", and when it is clicked again, it changes back to "start".
 
 
 
 &nbsp;
-&nbsp;
-## Step 2 - First Set of Instructions
-&nbsp;
-
-Next, suppose our target users are middle-school students, we might want to add a few instructions like this:
-
-```html
-
-Write a how-to guide for the following goal:
-(insert user input here)
-
-Instructions:
-1. You are talking to a middle-school student.
-2. Be concise and humorous. Use no more than 200 words.
-3. Reject any inappropriate topic
-
-```
-
-
-
-&nbsp;
-&nbsp;
-## Step 3 - Test and Evaluate
+## Example Design 3 - Push to Talk
 &nbsp;
 
-Now we have both the task and some initial instructions, let's write a simple program to test it out:
+When the user only needs to give a very short command, the design 2 may seem "too much work", since the user needs to click 2 times. Therefore, for very short speeches, we can use a "push-to-talk" design, which is similar to how walkie-talkies work: the user presses down a button to start talking, and releases it to stop.
 
-play.creaticode.com/projects/679f826a69f04bc3c7cc081e
+![pushtotalk.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/pushtotalk.gif?raw=true) 
 
-Open this project, and click "See Inside", and you will find it only has 3 blocks:
+Here are the blocks for the button sprite:
 
-![3378d5dc-9b70-4119-a18c-ccf194f9e7b9-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/48d7a230-f450-47d4-a9b5-7b997c3e9b9b.png) 
-
-&nbsp;
-To use it, we just need to add our prompt in the LLM block, and then click the green flag to run it. The response will be printed out in the console panel below. For example, suppose we use "how to become great at coding" as the user goal, then our prompt will look like this:
-
-![7cea7f4f-94ec-4a28-b301-08d609c23d55-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/adb965ac-cf0a-462c-a216-a2e14e0ce53b.png) 
+![1fdf7270-7ffb-49dd-8caf-9517cab5b296-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/e05d9e2c-5315-44d2-bb88-7ea52523cf6c.png) 
 
 &nbsp;
-If you run it a few times, you might get responses like these:
+And here are the blocks for the Dog sprite:
 
-![ac0a280c-10c9-4d29-a422-259246375ede-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/805b7f76-c4a7-4d5e-a3fd-b44fb140af26.png) 
-
-![a4be1e26-eef4-4174-a92c-115c9fc3f905-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/be828cc0-8d56-4f9a-b3d5-9d0ca06833ea.png) 
-
-
+![b673cde0-c6eb-47c0-a296-e6065aacbc6c-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/071b4f8e-dd52-4360-809c-c4d2e192a7a5.png) 
 
 &nbsp;
-&nbsp;
-## Step 4 - First Refinement of the Instructions
-&nbsp;
-
-The responses above are pretty good, but we should not stop here. Instead, we should try to identify any issues in the response and then **refine our prompt** accordingly.
-
-For example, one issue is that the AI model tends to number the bullet points from 1 to 5. This may be misleading since the actions may not have to be done in the given order. Also, 5 points may be too many. To fix these issues, we can update the prompt by adding an additional instruction:
-
-![f3811889-5c03-4ac7-bb73-71a19a179c69-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f53c81bd-ba51-4018-84ba-4ad9e9529e0d.png) 
-
-&nbsp;
-This time, you should get a response that reflects changes in our instructions pretty well:
-
-![e854b60d-ddea-4c64-b2b0-0555a52265da-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/36ff4e6c-47f2-4ded-9f26-c1ad35bdc3f4.png) 
+You can try it here: play.creaticode.com/projects/680e6a9b955fd2f624f57f3e
 
 
 
+
+
+&nbsp;&nbsp;
 &nbsp;
 &nbsp;
-## Step 5 - Second Refinement of the Instructions
+# Continuous Speech Recognition
 &nbsp;
 
-Now let's review the response above, and see if we can improve it further. One idea is to list 3 "Do's" and 3 "Don'ts". This contrast often makes it easier for the user. We can refine the prompt into this:
 
-![a3b364cc-bebd-4828-85f7-958845466ba8-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ece528c0-8835-450c-9fe1-f7f0927fa44a.png) 
+
+As explained earlier, when you use the blocks above, no recognition is done while the user speaks. The recognition work only starts when you run "end speech recognition". If the user talks for a long time, this may be very inconvenient, since we do not have the recognized text while the user is speaking.
+
+There is another way to do speech recognition **continuously**.  In this mode, the speech of the user will be sent to the server in a stream of chunks, so the server will convert them to text while the user speaks and return them sentence by sentence. 
+
+You can use the following 2 blocks for this new method.
 
 &nbsp;
 
-Here is an example output:
-
-![d2e3f07b-a734-4120-bdab-9dbd78d0fbee-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/89230af0-5fbb-4d6a-a987-b4387c073b8e.png) 
-
-
+![Start-Continuous-Speech-Recognition.png](https://cdn.creaticode.com/scratch-gui-projects/forum/aa94e0fe-eae0-4518-b7a0-f1ecd5946c85.png) 
 
 &nbsp;
-&nbsp;
-## Step 6 - Add an Example
-&nbsp;
-
-Lastly, to precisely control the output format, we can give the AI an example format like this:
-
-```html
-
-Write a how-to guide for the following goal:
-how to become great at coding
-
-Instructions:
-1. You are talking to a middle-school student.
-2. Be concise and humorous. Use no more than 200 words.
-3. Reject any inappropriate topic
-4. Give me 3 Do's and 3 Don'ts as bullet points
-
-use this format:
-
-3 Do's:
-* Do this ... (in 10 words)
-* Do this ... (in 10 words)
-* Do this ... (in 10 words)
-
-3 Don'ts
-* Don't do this ... (in 10 words)
-* Don't do this ... (in 10 words)
-* Don't do this ... (in 10 words)
-
-
-```
-
-&nbsp;
-Here is what you will likely get, which matches our example format pretty well:
-
-![2b0861fc-58c3-441a-85d2-acdbf9f70034-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/1984c224-b975-4937-9a25-53b0024025ba.png) 
-
-
+When this block is executed, the system will start listening on the microphone and streaming the audio chunks to the server. When it receives the recognized text (also comes in chunks), the text will be stored in the given list. Each part (usually a new sentence) will be stored as a new item in the list.
 
 
 
 
 &nbsp;
+
+![3ca29306-b30e-4c17-bb78-bc713c098baf-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/481c6459-675e-415c-958f-8031911542cc.png) 
+
 &nbsp;
-# Practice
+
+When this block runs, the system will stop listening on the microphone right away and send all remaining audio chunks to the server. It will also wait for the server to return all the translated text parts and store them in the list.
+
+&nbsp;
+## Example Program 1
 &nbsp;
 
-You have now learned the basics of the TIRE prompting method. It is very easy to understand, but it will take a lot of practice to master, especially with the continued refinement of the instructions.
+In this simple example, we run continuous speech recognition for 10 seconds, and as the user speaks, the recognized text will be appended to the given list part by part. We no longer need to wait until we end the speech recognition to check what the user is saying. 
 
-For more practice, here are some tasks. Please try to compose the best prompt using the TIRE method. Feel free to provide more details to make it fun.
 
-* Ask AI to write an engaging introduction to the city/state/country you live in to attract foreign visitors.
+![continuousspeech.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/speechrec2.gif?raw=true)
 
-* Ask AI to write a short science fiction story that is engaging to read.
+&nbsp;
+You can try it here: play.creaticode.com/projects/680e547e68d8b3054e15aecd
 
-* Ask AI to explain a complex concept that you are learning
+&nbsp;
+Note that we still need to decide when to stop the recognition. Since the speech is usually long when we use continuous recognition, it is probably  best to allow the user to manually start and stop the recognition (example design 2 above).
+
+
+
+&nbsp;
+## Example Program 2
+&nbsp;
+
+Sometimes, when we receive a newly recognized sentence, we need to display it, so the user can see what is being recognized:
+
+
+![continuousrecog.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/continuousrecog.gif?raw=true)
+
+We need to extract the new text from the list "parts". One way to do this is to use a new variable, "row count," to keep track of how many rows of text have been displayed already. So if the number of rows in the list "parts" is more than the "row count", that means there is some new text in the list. Then, we can extract the new text and display it:
+
+![44f9077c-1fc9-43e6-a509-44b93f25ba2a-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a3b2dcf8-b661-4ffb-a04d-848798196418.png) 
+
+&nbsp;
+You can try it here: play.creaticode.com/projects/680e945d955fd2f624f5b075
+
+
+
+&nbsp;
+&nbsp;
+## Exercise
+&nbsp;
+
+Modify the project above so that the user can speak out commands like "turn left" or "turn right", and a car sprite changes its direction accordingly.
+
+
+![leftiright.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/leftright.gif?raw=true)
