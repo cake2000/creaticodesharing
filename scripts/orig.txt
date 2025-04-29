@@ -1,159 +1,233 @@
-&nbsp;  
-## References
-* [AI for speech to text](/topic/338/speech-to-text-premium-only)
-* [AI for text to speech](/topic/341/say-sentences-with-an-ai-speaker-premium-only)
-* [Using the label widget](/topic/66/introduction-to-widgets-with-the-label-widget)
-* [Using variables](/topic/86/introduction-to-variables)
-
-&nbsp;  
 ## Introduction
 &nbsp;
-In this tutorial, you’ll learn how to build an AI program that translates between any two languages!
-For example, you can say something in English, and your project will show and speak the translation in Spanish.
 
-Here’s what we’re aiming for:
+Large language models today are usually **multi-modal**. This means they can not only **chat using words** but also **understand images**.
+This is incredibly useful — sometimes, it's much easier to show a picture than to try to describe something with words!
 
-https://www.youtube.com/watch?v=SHumYtwjmOU
+In this tutorial, you will create an AI assistant that can **see** and **talk**.
+The user just needs to **take a picture** with the camera and then **ask the AI any question about that picture**!
 
-&nbsp;
-&nbsp;
-## Step 1 - Pick a Backdrop
-&nbsp;
-Please create a new project, and remove the dog sprite. [Select a backdrop](/topic/46/working-with-backdrops) for the stage, such as "Stars".
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/c0b16f50-cdcb-4bd3-bff2-0fed886858b2.png
-
-&nbsp;
-&nbsp;
-## Step 2 - Add the First Label
-&nbsp;
-Find the "Widgets" category in the palette, then [add a label widget](/topic/66/introduction-to-widgets-with-the-label-widget). Its text should be "Say something in English", and please try to make it cover the upper half of the stage:
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/9b3cb4e0-9a91-44a5-9f6e-b7461a24e7c6.png
-&nbsp;
-As shown below, you can use the "Widget Position" tool to manually move and resize the label widget. You need to move the mouse slowly to keep dragging the handles. The position and size values in the block will be updated automatically.
-
-![pos](https://cdn.creaticode.com/scratch-gui-projects/forum/bd93daaf-1794-4845-b2b2-f0ad0803faa8.gif)
-
+![448b6d33-2ead-4e45-8773-cc0881336bd5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/0038f976-438e-49f7-b8f1-672df813fcf8.png) 
 
 
 &nbsp;
 &nbsp;
-## Step 3 - Format the Label
+## Step 1 - Create a new project
 &nbsp;
-Let’s make the label look better:
 
-* Set the background to **transparent**.
-* Make the text **larger** so it’s easier to read.
-&nbsp;
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/cb759980-4f3d-4c4f-a3c3-bec72dbe5a82.png
-&nbsp;
-Here are the blocks you need to add. Note that since we have already added the label, you can choose it from the dropdown list.
-
-ccimg3||900||https://cdn.creaticode.com/scratch-gui-projects/forum/bb4e6d03-3d9d-45a2-a36d-32945e58ae1a.png
-
+On CreatiCode.com, log in and create a new project. Remove the dog sprite, and rename the project to "AI Assistant".
 
 
 
 
 &nbsp;
 &nbsp;
-## Step 4 - Recognize Speech
+## Step 2 - Search for or generate a backdrop
 &nbsp;
-Next, let's listen to the user on the microphone and [recognize what the user is saying](/topic/338/speech-to-text-premium-only) for 3 seconds:
 
-ccimg3||950||https://cdn.creaticode.com/scratch-gui-projects/forum/12c27692-89ec-464c-a202-60319fccab1a.png
+When the project starts, we want a cool backdrop to show that this is an AI assistant.
 
-
-
-
+* Switch to the Stage and add a new backdrop.
+* Search for something like "a helpful AI assistant" to find interesting designs:
 &nbsp;
-&nbsp;
-## Step 5 - Display the recognized text
-&nbsp;
-Next, show the recognized text on the label.
-
-* Use the "text from speech" block to grab the words.
-* Then use "set value to" to update the label text.
-
-ccimg3||450||https://cdn.creaticode.com/scratch-gui-projects/forum/c6d52e2a-5c3c-4481-b402-d25a82c69d14.png
-
-Now when you speak in English, the words will appear on the stage:
-
+![b2b538a9-48e3-480c-b4f4-e8e4db00b7d7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/685df1ff-5d1f-4ef6-a531-7f74eb053cab.png) 
 
 &nbsp;
-![eng](https://cdn.creaticode.com/scratch-gui-projects/forum/15d51175-4ba5-4387-9621-de66a9d5b06d.gif)
+You can also generate a new backdrop based on your own idea. For example, suppose we want this assistant to be used as a tour guide, then we can generate the backdrop with a **detailed** description like this:
 
+```text
+a robot tour guide facing the viewer with both arms open, standing in front of a historical site, cartoon style
+```
+
+And you might get a result like this:
+
+![alt text](https://ccdn.creaticode.com/newimages/bg1/robot_tour_guide_cartoon_30352206_663656.webp)
 
 
 
 &nbsp;
 &nbsp;
-## Step 6 - Translate the text
-&nbsp;
-Let's translate the words into Spanish!
-
-First, create two variables:
-* "**English words**" (to store what you said)
-* "**Spanish words**" (to store the translation)
+## Step 3 - Show 2 buttons when the green flag is clicked
 &nbsp;
 
+Now switch to the empty sprite.
 
-ccimg3||800||https://cdn.creaticode.com/scratch-gui-projects/forum/1137207d-7bb1-44b7-b72b-895a584e615d.png
+We’ll **add two buttons** so the user can pick a camera:
+* **Front camera** (for laptops/touchpads/Chromebooks)
+* **Back camera** (for iPads/phones)
+&nbsp;
 
-
-&nbsp;
-**Step 6 Alternative: Use AI for Translation**
-&nbsp;
-Instead of using the "translate" block, we can also use the Large Language Model (LLM) block to do the translation:
-&nbsp;
-![0f316bff-2b31-4b87-8913-ad52421aa3eb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8ee32653-9119-4de4-bb3b-b581c82ba31d.png) 
-&nbsp;
-Notes:
-* In the prompt (request), we ask the AI to only return the translated text and nothing else. Without this requirement, the AI may return some additional words like "Sure, here is the translation:".
-* The session type is "new chat", so that previous messages would not affect the current request.
-
+![6b93ef86-699b-4461-93d8-9dc7dbfb28b9-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3c76e33b-a151-4736-bf6c-15faa05fac8e.png) 
 
 &nbsp;
-&nbsp;
-## Step 7 - Add another label
-&nbsp;
-Now, we need a second label to show the Spanish translation.
+You can use the following code:
 
-* Add a new label.
-* Change its style (make it match the project design).
-* Then update its text to show the Spanish words.
-
-(You have to **add the label first** to see it in the dropdown menus for updating its style!)
-
-![lab](https://cdn.creaticode.com/scratch-gui-projects/forum/a3027b39-e132-47b5-98d4-46deb2ed8b80.gif)
-&nbsp;
-And here are the new blocks you need:
-&nbsp;
-ccimg3||800||https://cdn.creaticode.com/scratch-gui-projects/forum/fdc6d3af-c4da-4626-9dff-f390f7a2890d.png
+![92fe6a32-0f07-4d2c-9ced-bdab9f8d1879-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/e9cc790f-9916-48b1-a16d-59fe6cdc0114.png) 
 
 
 
 &nbsp;
 &nbsp;
-## Step 8 - Speak the Spanish Words
+## Step 4 - Show camera preview
 &nbsp;
-For the last step, we also need to speak out the Spanish words. You can use the "[AI Speaker](/topic/341/say-sentences-with-an-ai-speaker-premium-only)" for this.
 
-ccimg3||900||https://cdn.creaticode.com/scratch-gui-projects/forum/459688d2-cbd8-4f66-b9e6-384a46c1d86f.png
+When a button is clicked, the camera view will show up so the user can aim at the object or scene.
+* The only difference between the two buttons is whether you use the front or back camera.
+* We'll use the same camera widget name ("**camera1**") for both options.
+&nbsp;
 
-This is the final result:
+![0ede859c-0d0f-49c5-8093-825d2e2a97d4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/8cb8b488-1328-488e-a8f1-e51cd0f79a1d.png) 
 
-https://www.youtube.com/watch?v=SHumYtwjmOU
+
+
+&nbsp;
+&nbsp;
+## Step 5 - Prepare to take a picture
+&nbsp;
+
+Besides showing the camera, we also need to get ready for the user to take a picture.
+
+To avoid repeating code, let’s make a custom block called "prepare to take picture":
+
+![8deb6639-60a8-497a-b4f7-fe4897bd642b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/73d7e0de-87e1-4890-b831-34b7bdbd613f.png) 
+
+
+
+&nbsp;
+Inside this custom block:
+
+* Delete the two old buttons.
+* Add a new button to take a picture.
+&nbsp;
+
+![ce8bd9ac-6500-4a4c-88ec-2d9649616ecf-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/94c5e6cf-9c7f-465c-a051-5ffb0bb13a68.png) 
+
+&nbsp;
+Now the stage will look like this when getting ready to snap a photo:
+
+![6cbf3772-ae0f-41b7-a5ed-47722983390d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/9bd771b9-d5ee-43e5-9e13-6c7726d37951.png) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 6 - Take a picture and show it
+&nbsp;
+
+When the user clicks the "Take a picture" button, we will save the current camera view as a costume image named "c". We will also remove all the widgets (the camera view and the button) so that the newly captured costume image is shown to the user:
+
+
+![31dd923b-69e8-4462-a8d1-dc8fbe0f545d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/e002377f-14ee-4840-8dae-83bd3c27831b.png) 
+
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Prepare for the user question
+&nbsp;
+
+After taking the picture, add more blocks to:
+
+* Create a new **button** for the user to **ask a question** using speech.
+* Add a **textbox** to show the recognized question.
+
+👉 Make the textbox background **30% transparent** so the captured costume image stays visible behind it.
+
+![3e36e3a2-82c6-4334-8ce3-4deb6a98d7e4-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f0299ad1-d7f1-4746-a2a2-fe0b2b02f11c.png) 
+&nbsp;
+Result:
+&nbsp;
+
+![6d2508ce-6e56-479b-ad1d-ea953ee611cb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/3ff270ac-7743-4d26-9ecd-b30bc6d30bde.png) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Recognize the user's question
+&nbsp;
+
+When the user clicks "Ask a Question":
+
+* Start speech recognition for **8 seconds**, which should be long enough for most questions.
+* Show the recognized text inside the textbox.
+
+![3249a6ef-db5c-49fe-b819-dd234954bd6b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/ab01e48d-b4d4-46a1-a0b4-e9fee3b71ff3.png) 
+
+&nbsp;
+You can also use "continuous speech recognition", and stop recognition when the user has completed a full sentence. To keep it simple, we will just use the time-based cutoff time.
+
+To test it, click the "Ask a question" button, and ask a question like "what is this?", and then it will be recognized and displayed in the textbox:
+
+![9e6a4111-0c02-42e2-bcd6-ba9155e7e12c-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a381c53f-bb89-4484-bdc1-466c040f720b.png) 
+
+&nbsp;
+&nbsp;
+## Step 9 - Ask AI a question about this image
+&nbsp;
+
+Finally, we can **send the picture and the question to the AI**!
+
+You'll need two blocks (the LLM block is wide, so it’s shown in two rows):
+
+![d5707c1d-36a5-43a8-be00-8fc26effb4f5-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/613208c7-30a1-48cd-8f7c-739b235e6310.png) 
+
+
+![175254db-e5db-493c-9b7d-750af1d91d9b-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/86d4f240-b72e-4992-84e3-249f3ae34c37.png) 
+
+&nbsp;
+
+Here is how it works:
+
+1. Attach the costume image "c" to the chat: this step will **not** send the image to the AI (LLM) yet. It only stores the image as part of the chat. You can attach more than one image to a chat session, but for this project, we only need to attach one image.
+
+2. Send a chat message to AI (LLM): this block will send out the prompt together with the image attached above. We will use a simple prompt: "Answer verbally in 50 words:\n". The keyword "verbally" ensures the AI's answer is conversational and not too formal. We are also limiting it to within 50 words to avoid lengthy answers. %(#f50505)[**Note that you must use the "LLM model" block instead of the "OpenAI ChatGPT" block to send images.**]
+
+After these 2 blocks run, the AI's answer will be stored in the variable "result".
+
+&nbsp;
+&nbsp;
+## Step 10 - Display and say the answer
+&nbsp;
+
+Once the AI responds:
+
+* **Show** the answer in the textbox.
+* **Speak** the answer out loud!
+
+Also, make sure to **stop any earlier speech** when the user asks a new question.
+
+![ee98c2fd-79ce-400e-8ba4-7fb3366f42c2-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/7e225855-358f-42a1-b10b-a3c66021b9ee.png) 
+
+
+
+
+
+
+&nbsp;
+The answer will look like this:
+
+![b3ee2f44-e4e1-4720-a50a-622a83a559dd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/4afd17e9-9f12-4c10-83ca-21c9161faa3f.png) 
+
 
 &nbsp;
 &nbsp;
 ## Additional Challenges
 &nbsp;
-There are many ways you can extend this project. Here are some ideas for your inspiration:
 
-1. **Let the user pick two languages**
-Add two dropdown menus so the user can pick any two languages to translate between.
+This project demonstrates how to combine many useful AI tools into one simple app, but it is kept simple intentionally. Here are some ideas you can explore to enhance this tool further:
 
-2. **Translate in both directions**
-Add buttons so both people can speak and get translations back and forth — one button for English → Spanish, another for Spanish → English.
+* **Handle follow-up questions:**
+Let users keep asking more questions about the same picture.
+Be careful not to re-attach the image again and again. Set the AI to "continue" mode for a smoother conversation.
+
+* **Smarter Speech Recognition:**
+Instead of waiting exactly 8 seconds, detect when the user finishes talking, or use start/stop buttons.
+
+* **Translate the Assistant:**
+Make it work in your native language!
+
+* **Customize the AI’s Behavior:**
+Adjust the prompt to give hints instead of direct answers (for example, for a homework helper version).
