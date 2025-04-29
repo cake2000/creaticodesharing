@@ -1,125 +1,56 @@
 &nbsp;  
+## References
+* [AI for speech to text](/topic/338/speech-to-text-premium-only)
+* [AI for text to speech](/topic/341/say-sentences-with-an-ai-speaker-premium-only)
+* [Using the label widget](/topic/66/introduction-to-widgets-with-the-label-widget)
+* [Using variables](/topic/86/introduction-to-variables)
+
+&nbsp;  
 ## Introduction
-&nbsp;  
-
-You can easily make the computer **"say"** any word or sentence using the "say" block in the AI category! Even better, you can save what the computer says as a sound clip in the Sounds tab. That way, you can replay it whenever you want.
-
-This feature is super helpful for users who can't read text on a screen, and it also makes talking with an app feel much more natural — like chatting with a real person!
-
-&nbsp;  
-&nbsp;  
-## Block Syntax
-&nbsp;  
-
-![420131ee-a7cb-46bb-b4cc-a6b23b7f55d8-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/acb63f65-3217-4dff-9233-4ee8e4276716.png?raw=true) 
-
 &nbsp;
-Let's take a closer look at each input in this block:
+In this tutorial, you’ll learn how to build an AI program that translates between any two languages!
+For example, you can say something in English, and your project will show and speak the translation in Spanish.
 
+Here’s what we’re aiming for:
 
-
-&nbsp; 
-&nbsp;
-### Sentence
-&nbsp;
-
-You should usually put a full sentence or phrase inside the "say" block—not just individual words. This helps the AI figure out how to say the words naturally. Also, remember: each "say" block causes a small delay.
-
-Here’s what happens when you use two blocks for "Good" and "morning" separately:
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/37c1d111-5be2-4ac6-a750-e06e1a03cfc1.png
-
-[audio/VG7-9JiCHO-SUNedpi_eLGOn.m4a]
-
-
-&nbsp;
-On the other hand, this is what you get when you use one block for both words:
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/8b0b033d-77f6-46c6-8ad7-71b441f2d616.png
-
-[audio/52c3dTfA8tF-eTCBd1TjS5AH.m4a]
+https://www.youtube.com/watch?v=SHumYtwjmOU
 
 &nbsp;
 &nbsp;
-## Speaker Language
+## Step 1 - Pick a Backdrop
 &nbsp;
-You can pick which language the AI speaker uses. The most common languages are listed at the top of the list:
+Please create a new project, and remove the dog sprite. [Select a backdrop](/topic/46/working-with-backdrops) for the stage, such as "Stars".
 
-ccimg||450||https://cdn.creaticode.com/scratch-gui-projects/forum/88bf721a-3296-4650-a322-cd3fba79e23f.png
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/c0b16f50-cdcb-4bd3-bff2-0fed886858b2.png
 
-Tip:
-The same language can show up more than once because of different **dialects** (ways of speaking). For example, "Good afternoon" sounds different between English speakers in the USA and the UK:
+&nbsp;
+&nbsp;
+## Step 2 - Add the First Label
+&nbsp;
+Find the "Widgets" category in the palette, then [add a label widget](/topic/66/introduction-to-widgets-with-the-label-widget). Its text should be "Say something in English", and please try to make it cover the upper half of the stage:
 
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/0413ebb1-fa73-44e1-b7de-1f3721513d62.png
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/9b3cb4e0-9a91-44a5-9f6e-b7461a24e7c6.png
+&nbsp;
+As shown below, you can use the "Widget Position" tool to manually move and resize the label widget. You need to move the mouse slowly to keep dragging the handles. The position and size values in the block will be updated automatically.
 
-[audio/S3fvUtKocrpQmG3gmnXJ77KP.m4a]
+![pos](https://github.com/cake2000/creaticodesharing/blob/main/images/bd93daaf-1794-4845-b2b2-f0ad0803faa8.gif?raw=true)
 
-vs
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/d527ac63-af5d-4ec9-907e-a40ef83fe65d.png
-
-[audio/hLQzb_iOKivQ7ZCoJvL0rUBG.m4a]
-
-
-
-Normally, you want to match the sentence and the language.
-But sometimes you might want the same speaker to say things in two languages. Here's an example where a Chinese AI speaker says both Chinese and English:
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/457908ac-ac0a-4f6d-906e-8e7899648ac9.png
-
-[audio/F5gVY0vt5cs1a3-l652Reg5C.m4a]
 
 
 &nbsp;
 &nbsp;
-## Speaker Type
+## Step 3 - Format the Label
 &nbsp;
-Within the same language, you can pick what type of AI speaker to use:
+Let’s make the label look better:
 
-![f31fe66b-5cb4-44e1-b909-c2148da675f1-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/09f63fec-683d-4641-a03f-f361ebcdb4cb.png?raw=true) 
-
+* Set the background to **transparent**.
+* Make the text **larger** so it’s easier to read.
 &nbsp;
-**Important:**
-Not every speaker type is available for every language.
-If the one you picked doesn't work, you'll see a warning message at the bottom of the code editor:
-
-
-![a52a0814-ae0a-4944-beac-5312b0e0e187.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a52a0814-ae0a-4944-beac-5312b0e0e187.gif?raw=true)
-
-
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/cb759980-4f3d-4c4f-a3c3-bec72dbe5a82.png
 &nbsp;
-&nbsp;
-## Talking Speed
-&nbsp;
-You can change how fast the AI talks!
+Here are the blocks you need to add. Note that since we have already added the label, you can choose it from the dropdown list.
 
-* **100** = Normal speed
-* **\> 100** = Faster
-* **< 100** = Slower
-
-&nbsp;
-
-Examples:
-
-* **Normal (100):**
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/4b3628c7-eff9-4b50-86ec-4847c3b93ac0.png
-
-[audio/YZsBrSkdH3D6XYOdK9v6X2yk.m4a]
-
-
-* **Faster (200):**
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/85d6c6d1-9109-4f4d-b737-bf71f401b3fa.png
-
-[audio/xDpkE2Ndvr_iGzoELsI2QKw9.m4a]
-
-
-* **Slower (50):**
-
-ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/adc889d6-cc64-4cc1-8a82-d121f8125eea.png
-
-[audio/d5MxBmV0QvSZ0k3an1QKkhqk.m4a]
+ccimg3||900||https://cdn.creaticode.com/scratch-gui-projects/forum/bb4e6d03-3d9d-45a2-a36d-32945e58ae1a.png
 
 
 
@@ -127,47 +58,102 @@ ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/adc889d6-cc64
 
 &nbsp;
 &nbsp;
-## Pitch
-
-Pitch controls how high or low the voice sounds.
-
-* **100** = Normal pitch
-* **Higher numbers** = Squeakier
-* **Lower numbers** = Deeper
-
-Usually, it's best to leave it at 100 unless you want a funny effect.
-
-
-
+## Step 4 - Recognize Speech
 &nbsp;
-&nbsp;
-## Volume
+Next, let's listen to the user on the microphone and [recognize what the user is saying](/topic/338/speech-to-text-premium-only) for 3 seconds:
 
-Volume controls how loud the AI speaks.
-
-* **100** = Normal loudness
-* **Higher** = Louder (shouting!)
-* **Lower** = Quieter (whispering)
-
-You can even change volume inside a sentence by using multiple blocks!
-
-
-
-&nbsp;
-&nbsp;
-## Sound Clip Name
-&nbsp;
-If you type a name into the Sound Clip Name input, the sound will get saved into the Sounds tab.
-
-This is super useful if you want the computer to say the same thing many times. Instead of making the AI generate speech every time (which takes a little time), you can just play the sound clip instantly.
+ccimg3||950||https://cdn.creaticode.com/scratch-gui-projects/forum/12c27692-89ec-464c-a202-60319fccab1a.png
 
 
 
 
 &nbsp;
 &nbsp;
-## Demo
+## Step 5 - Display the recognized text
 &nbsp;
-In this example, we make the AI say "How are you?" and store it in a sound clip called "greetings". After that, we use the start sound block to play it:
+Next, show the recognized text on the label.
 
-![store.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/8bf8533c-da82-4ad9-8f23-ad7c0da9b30e.gif?raw=true)
+* Use the "text from speech" block to grab the words.
+* Then use "set value to" to update the label text.
+
+ccimg3||450||https://cdn.creaticode.com/scratch-gui-projects/forum/c6d52e2a-5c3c-4481-b402-d25a82c69d14.png
+
+Now when you speak in English, the words will appear on the stage:
+
+
+&nbsp;
+![eng](https://github.com/cake2000/creaticodesharing/blob/main/images/15d51175-4ba5-4387-9621-de66a9d5b06d.gif?raw=true)
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 6 - Translate the text
+&nbsp;
+Let's translate the words into Spanish!
+
+First, create two variables:
+* "**English words**" (to store what you said)
+* "**Spanish words**" (to store the translation)
+&nbsp;
+
+
+ccimg3||800||https://cdn.creaticode.com/scratch-gui-projects/forum/1137207d-7bb1-44b7-b72b-895a584e615d.png
+
+
+&nbsp;
+**Step 6 Alternative: Use AI for Translation**
+&nbsp;
+Instead of using the "translate" block, we can also use the Large Language Model (LLM) block to do the translation:
+&nbsp;
+![0f316bff-2b31-4b87-8913-ad52421aa3eb-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8ee32653-9119-4de4-bb3b-b581c82ba31d.png?raw=true) 
+&nbsp;
+Notes:
+* In the prompt (request), we ask the AI to only return the translated text and nothing else. Without this requirement, the AI may return some additional words like "Sure, here is the translation:".
+* The session type is "new chat", so that previous messages would not affect the current request.
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Add another label
+&nbsp;
+Now, we need a second label to show the Spanish translation.
+
+* Add a new label.
+* Change its style (make it match the project design).
+* Then update its text to show the Spanish words.
+
+(You have to **add the label first** to see it in the dropdown menus for updating its style!)
+
+![lab](https://github.com/cake2000/creaticodesharing/blob/main/images/a3027b39-e132-47b5-98d4-46deb2ed8b80.gif?raw=true)
+&nbsp;
+And here are the new blocks you need:
+&nbsp;
+ccimg3||800||https://cdn.creaticode.com/scratch-gui-projects/forum/fdc6d3af-c4da-4626-9dff-f390f7a2890d.png
+
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Speak the Spanish Words
+&nbsp;
+For the last step, we also need to speak out the Spanish words. You can use the "[AI Speaker](/topic/341/say-sentences-with-an-ai-speaker-premium-only)" for this.
+
+ccimg3||900||https://cdn.creaticode.com/scratch-gui-projects/forum/459688d2-cbd8-4f66-b9e6-384a46c1d86f.png
+
+This is the final result:
+
+https://www.youtube.com/watch?v=SHumYtwjmOU
+
+&nbsp;
+&nbsp;
+## Additional Challenges
+&nbsp;
+There are many ways you can extend this project. Here are some ideas for your inspiration:
+
+1. **Let the user pick two languages**
+Add two dropdown menus so the user can pick any two languages to translate between.
+
+2. **Translate in both directions**
+Add buttons so both people can speak and get translations back and forth — one button for English → Spanish, another for Spanish → English.
