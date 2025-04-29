@@ -1,208 +1,173 @@
+&nbsp;  
+## Introduction
+&nbsp;  
+
+You can easily make the computer **"say"** any word or sentence using the "say" block in the AI category! Even better, you can save what the computer says as a sound clip in the Sounds tab. That way, you can replay it whenever you want.
+
+This feature is super helpful for users who can't read text on a screen, and it also makes talking with an app feel much more natural — like chatting with a real person!
 
 &nbsp;  
-# Introduction
+&nbsp;  
+## Block Syntax
 &nbsp;  
 
-In many applications, we need to convert what a user says into text. This is called "**speech recognition**" or "**voice recognition**". Note that **this is NOT about understanding what the user is saying**. It is simply guessing what the user is saying based on the speech audio. 
-
-However, this can already be very useful in some applications. For example, for users with disabilities who have difficulty using a mouse or keyboard, being able to input commands with voice is essential.
-
-
-&nbsp;  
-# Basic Speech Recognition
-&nbsp;
-There are 4 key blocks that work together to carry out a basic speech recognition:
+![420131ee-a7cb-46bb-b4cc-a6b23b7f55d8-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/acb63f65-3217-4dff-9233-4ee8e4276716.png?raw=true) 
 
 &nbsp;
-## Start Speech Recognition
+Let's take a closer look at each input in this block:
+
+
+
+&nbsp; 
 &nbsp;
-To start, we need to run this block:
+### Sentence
+&nbsp;
 
-![5b680179-60fc-4ee0-9845-dbb755505a01-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8dc34655-d649-41a2-af5b-78f12e71b336.png?raw=true) 
+You should usually put a full sentence or phrase inside the "say" block—not just individual words. This helps the AI figure out how to say the words naturally. Also, remember: each "say" block causes a small delay.
 
-* **Language**: The first input is the language the user will speak. Note that even for the same language, such as English, there is more than one type you can choose from, such as "English (United States)" vs "English (United Kingdom)". If the user talks in a different language, then the recognition result will not be correct.
+Here’s what happens when you use two blocks for "Good" and "morning" separately:
 
-* **Sound Name**: The second input is optional. If it is not empty, then the user's voice will be saved as a sound clip under the "Sounds" tab for this sprite. This will be handy if you need to play back what the user has just said.
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/37c1d111-5be2-4ac6-a750-e06e1a03cfc1.png
 
-When you run this block, the playground will try to get your permission to open the computer's microphone. After getting the consent, it will keep listening until we stop the speech recognition (see below).
-
+[audio/VG7-9JiCHO-SUNedpi_eLGOn.m4a]
 
 
 &nbsp;
-## End Speech Recognition
-&nbsp;
-To stop the speech recognition, you can use this block:
+On the other hand, this is what you get when you use one block for both words:
 
-![e6cb83e0-20ac-4498-a5e7-c0a4ad088df3-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/d6942ca2-7581-4c76-8b2c-3e2c816257ad.png?raw=true) 
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/8b0b033d-77f6-46c6-8ad7-71b441f2d616.png
 
-When this block is executed, the program will stop listening to the microphone, and the text that's recognized will be stored in the reporter block "text from speech" (see below). 
-
-**Note that before this block runs, no recognition will be carried out and no result text will be shown**. You can think of it as a 2-step process:
-
-1. Between the "start recognizing speech" block and the "end speech recognition" block, the system will do nothing except record what it hears from the microphone.
-
-2. After the "end speech recognition" block runs, the recorded audio clip will be sent to a server (another computer) that converts the audio to text.
-
+[audio/52c3dTfA8tF-eTCBd1TjS5AH.m4a]
 
 &nbsp;
-## Text from Speech
 &nbsp;
-The recognized text will be stored in this reporter block, so you can think of it as a special variable:
-
-![d690c8f6-9602-453e-bd76-fb880d1dee52-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/6861d432-34ef-4479-888a-8dc69ac066dd.png?raw=true) 
-
-
+## Speaker Language
 &nbsp;
-## Clear Speech Text
-&nbsp;
-This block can be used to clear the value of the previously recognized text that's stored in the "text from speech" block. This way, there is no confusion about whether its value is from a previous session or the current session.
+You can pick which language the AI speaker uses. The most common languages are listed at the top of the list:
+
+ccimg||450||https://cdn.creaticode.com/scratch-gui-projects/forum/88bf721a-3296-4650-a322-cd3fba79e23f.png
+
+Tip:
+The same language can show up more than once because of different **dialects** (ways of speaking). For example, "Good afternoon" sounds different between English speakers in the USA and the UK:
+
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/0413ebb1-fa73-44e1-b7de-1f3721513d62.png
+
+[audio/S3fvUtKocrpQmG3gmnXJ77KP.m4a]
+
+vs
+
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/d527ac63-af5d-4ec9-907e-a40ef83fe65d.png
+
+[audio/hLQzb_iOKivQ7ZCoJvL0rUBG.m4a]
 
 
 
-&nbsp;
-## When to stop?
-&nbsp;
-One of the key design questions for using these speech recognition blocks is **when to stop recording audio**. If we stop too early, then the user may not have enough time to say what they need to say; if we stop too late, then it is a waste of the user's time. 
+Normally, you want to match the sentence and the language.
+But sometimes you might want the same speaker to say things in two languages. Here's an example where a Chinese AI speaker says both Chinese and English:
 
-Next, let's look at a few typical methods to handle this issue.
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/457908ac-ac0a-4f6d-906e-8e7899648ac9.png
 
-
-
+[audio/F5gVY0vt5cs1a3-l652Reg5C.m4a]
 
 
 &nbsp;
-## Example Design 1 - Wait and Then Stop
 &nbsp;
-
-In this example, we will listen to the user for a fixed number of seconds (e.g. 3) and record it as a sound clip named "s1". After ending the recognition, make the dog say the recognized text and also play back the sound clip s1.
-
-
-![speechrec3seconds.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/speechrec1b.gif?raw=true)
-
+## Speaker Type
 &nbsp;
-You can try it out here: play.creaticode.com/projects/67a189b37b46e6c9fc9d7618
+Within the same language, you can pick what type of AI speaker to use:
 
-As you try out this program, test different waiting times. You will likely find that it is challenging to determine a suitable waiting time value that works consistently. Sometimes it is not long enough, and sometimes it is too long. 
-
-
+![f31fe66b-5cb4-44e1-b909-c2148da675f1-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/09f63fec-683d-4641-a03f-f361ebcdb4cb.png?raw=true) 
 
 &nbsp;
-## Example Design 2 - Start and Stop Buttons
-&nbsp;
+**Important:**
+Not every speaker type is available for every language.
+If the one you picked doesn't work, you'll see a warning message at the bottom of the code editor:
 
-In the second example, we will show 2 buttons, one for starting the recognition, and another for stopping it. After clicking the start button, we start recording the speech. When the stop button is clicked, we will end the recording and run the recognition.
 
-![startandstop.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/startanddstop.gif?raw=true) 
-
-&nbsp;
-Here are the blocks:
-
-![09e27093-18d9-49aa-b121-adcd53be728d-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/62c83294-497c-4bfe-a5ec-4650fa489d3c.png?raw=true) 
-
-&nbsp;
-You can try it here: play.creaticode.com/projects/680e6446955fd2f624f578cd
-
-This method gives the user much more control, as you can say anything of any length before clicking the stop button. For a slightly simpler design, you can also "merge" these 2 buttons into one: when the "start" button is clicked, its text changes to "stop", and when it is clicked again, it changes back to "start".
-
+![a52a0814-ae0a-4944-beac-5312b0e0e187.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/a52a0814-ae0a-4944-beac-5312b0e0e187.gif?raw=true)
 
 
 &nbsp;
-## Example Design 3 - Push to Talk
 &nbsp;
-
-When the user only needs to give a very short command, the design 2 may seem "too much work", since the user needs to click 2 times. Therefore, for very short speeches, we can use a "push-to-talk" design, which is similar to how walkie-talkies work: the user presses down a button to start talking, and releases it to stop.
-
-![pushtotalk.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/pushtotalk.gif?raw=true) 
-
-Here are the blocks for the button sprite:
-
-![1fdf7270-7ffb-49dd-8caf-9517cab5b296-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e05d9e2c-5315-44d2-bb88-7ea52523cf6c.png?raw=true) 
-
+## Talking Speed
 &nbsp;
-And here are the blocks for the Dog sprite:
+You can change how fast the AI talks!
 
-![b673cde0-c6eb-47c0-a296-e6065aacbc6c-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/071b4f8e-dd52-4360-809c-c4d2e192a7a5.png?raw=true) 
-
-&nbsp;
-You can try it here: play.creaticode.com/projects/680e6a9b955fd2f624f57f3e
-
-
-
-
-
-&nbsp;&nbsp;
-&nbsp;
-&nbsp;
-# Continuous Speech Recognition
-&nbsp;
-
-
-
-As explained earlier, when you use the blocks above, no recognition is done while the user speaks. The recognition work only starts when you run "end speech recognition". If the user talks for a long time, this may be very inconvenient, since we do not have the recognized text while the user is speaking.
-
-There is another way to do speech recognition **continuously**.  In this mode, the speech of the user will be sent to the server in a stream of chunks, so the server will convert them to text while the user speaks and return them sentence by sentence. 
-
-You can use the following 2 blocks for this new method.
+* **100** = Normal speed
+* **\> 100** = Faster
+* **< 100** = Slower
 
 &nbsp;
 
-![Start-Continuous-Speech-Recognition.png](https://github.com/cake2000/creaticodesharing/blob/main/images/aa94e0fe-eae0-4518-b7a0-f1ecd5946c85.png?raw=true) 
+Examples:
 
-&nbsp;
-When this block is executed, the system will start listening on the microphone and streaming the audio chunks to the server. When it receives the recognized text (also comes in chunks), the text will be stored in the given list. Each part (usually a new sentence) will be stored as a new item in the list.
+* **Normal (100):**
+
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/4b3628c7-eff9-4b50-86ec-4847c3b93ac0.png
+
+[audio/YZsBrSkdH3D6XYOdK9v6X2yk.m4a]
+
+
+* **Faster (200):**
+
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/85d6c6d1-9109-4f4d-b737-bf71f401b3fa.png
+
+[audio/xDpkE2Ndvr_iGzoELsI2QKw9.m4a]
+
+
+* **Slower (50):**
+
+ccimg2||900||https://cdn.creaticode.com/scratch-gui-projects/forum/adc889d6-cc64-4cc1-8a82-d121f8125eea.png
+
+[audio/d5MxBmV0QvSZ0k3an1QKkhqk.m4a]
+
 
 
 
 
 &nbsp;
-
-![3ca29306-b30e-4c17-bb78-bc713c098baf-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/481c6459-675e-415c-958f-8031911542cc.png?raw=true) 
-
 &nbsp;
+## Pitch
 
-When this block runs, the system will stop listening on the microphone right away and send all remaining audio chunks to the server. It will also wait for the server to return all the translated text parts and store them in the list.
+Pitch controls how high or low the voice sounds.
 
-&nbsp;
-## Example Program 1
-&nbsp;
+* **100** = Normal pitch
+* **Higher numbers** = Squeakier
+* **Lower numbers** = Deeper
 
-In this simple example, we run continuous speech recognition for 10 seconds, and as the user speaks, the recognized text will be appended to the given list part by part. We no longer need to wait until we end the speech recognition to check what the user is saying. 
-
-
-![continuousspeech.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/speechrec2.gif?raw=true)
-
-&nbsp;
-You can try it here: play.creaticode.com/projects/680e547e68d8b3054e15aecd
-
-&nbsp;
-Note that we still need to decide when to stop the recognition. Since the speech is usually long when we use continuous recognition, it is probably  best to allow the user to manually start and stop the recognition (example design 2 above).
-
-
-
-&nbsp;
-## Example Program 2
-&nbsp;
-
-Sometimes, when we receive a newly recognized sentence, we need to display it, so the user can see what is being recognized:
-
-
-![continuousrecog.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/continuousrecog.gif?raw=true)
-
-We need to extract the new text from the list "parts". One way to do this is to use a new variable, "row count," to keep track of how many rows of text have been displayed already. So if the number of rows in the list "parts" is more than the "row count", that means there is some new text in the list. Then, we can extract the new text and display it:
-
-![44f9077c-1fc9-43e6-a509-44b93f25ba2a-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/a3b2dcf8-b661-4ffb-a04d-848798196418.png?raw=true) 
-
-&nbsp;
-You can try it here: play.creaticode.com/projects/680e945d955fd2f624f5b075
+Usually, it's best to leave it at 100 unless you want a funny effect.
 
 
 
 &nbsp;
 &nbsp;
-## Exercise
+## Volume
+
+Volume controls how loud the AI speaks.
+
+* **100** = Normal loudness
+* **Higher** = Louder (shouting!)
+* **Lower** = Quieter (whispering)
+
+You can even change volume inside a sentence by using multiple blocks!
+
+
+
 &nbsp;
+&nbsp;
+## Sound Clip Name
+&nbsp;
+If you type a name into the Sound Clip Name input, the sound will get saved into the Sounds tab.
 
-Modify the project above so that the user can speak out commands like "turn left" or "turn right", and a car sprite changes its direction accordingly.
+This is super useful if you want the computer to say the same thing many times. Instead of making the AI generate speech every time (which takes a little time), you can just play the sound clip instantly.
 
 
-![leftiright.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/leftright.gif?raw=true)
+
+
+&nbsp;
+&nbsp;
+## Demo
+&nbsp;
+In this example, we make the AI say "How are you?" and store it in a sound clip called "greetings". After that, we use the start sound block to play it:
+
+![store.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/8bf8533c-da82-4ad9-8f23-ad7c0da9b30e.gif?raw=true)
