@@ -118,8 +118,8 @@ function findCCimgReferences(text) {
   //   ccimg\d*\|\|\d+\|\|(https:\/\/.*?\.gif)
   //   - ccimg\d*   : "ccimg" followed by zero or more digits
   //   - \|\|\d+\|\| : e.g. "||470||"
-  //   - (https:\/\/.*?\.gif) : group #1 = the entire URL, ending with .gif
-  const ccimgRegex = /ccimg\d*\|\|\d+\|\|(https:\/\/.*?\.gif)/g;
+  //   - (https:\/\/.*?\.(gif|png|webp|jpg))i : group #1 = the entire URL, ending with supported image extension
+  const ccimgRegex = /ccimg\d*\|\|\d+\|\|(https:\/\/.*?\.(gif|png|webp|jpg))/gi;
 
   const results = [];
   let match;
