@@ -1,182 +1,282 @@
-&nbsp;  
+## Key Topics Covered
+* [Video sensing extension](/topic/458/the-video-sensing-extension)
+* [Paint Costumes](/topic/62/painting-a-costume)
+* [Using variables](/topic/86/introduction-to-variables)
+* [Picking a random number](/topic/491/the-pick-random-block)
+* [Printing Text](/topic/525/printing-text-on-stage)
 
+&nbsp;  
+&nbsp;  
 ## Introduction
 &nbsp;  
 
-The Video Sensing Extension lets your project **detect motion using your device’s camera**. This means your program can respond when something moves in front of the camera!
+Motion sensors allow your program to detect movement from the camera and use it as a form of input — no keyboard or mouse needed! This opens up exciting possibilities:
 
-ccimg3||350||https://cdn.creaticode.com/scratch-gui-projects/forum/1506c109-3151-4e44-bf50-6d87646f0207.PNG
+* People with disabilities who can't use a keyboard or mouse can still interact with your project.
+* Patients needing physical rehabilitation can benefit from motion-based games that get them moving.
+* It's a hands-free way to play — all you need is a camera!
+
+In this tutorial, you’ll build a game where the player moves a paddle using body motion to stop a ball from falling off the screen.
+
+
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/6222f604-89c3-4207-803f-0b16260ba7ce.gif
+
 &nbsp;
+&nbsp;
+## Step 1 - Add the Video Sensing Extension
+&nbsp;  
+
+In the CreatiCode playground, create a new project, and add the video sensing extension first. See this page for instructions: 
+
+https://www.forum.creaticode.com/topic/458/the-video-sensing-extension
+
+
+&nbsp;
+&nbsp;
+## Step 2 - Draw a Bouncing Board
+&nbsp;  
+
+Delete the default dog sprite. Then, paint a new costume for the "Empty1" sprite — draw a symmetrical rectangle that will serve as the paddle. Rename the sprite to "Board".
+
+ccimg||600||https://cdn.creaticode.com/scratch-gui-projects/forum/7bc11a0c-7962-4a08-9d25-fc426b688f55.png
+
+
+&nbsp;
+&nbsp;
+## Step 3 - Set Initial Board Position
+&nbsp;  
+
+When the game starts, the board should be moved to the bottom center of the stage: 
+
+ccimg||800||https://cdn.creaticode.com/scratch-gui-projects/forum/80e2fcbf-c075-4160-bf40-1b33eba48762.png
 
 
 
 &nbsp;  
-
-## How to detect motion in the camera video?
+&nbsp;
+## Step 4 - A Forever Loop to Read the Motion Data
 &nbsp;  
 
-Think of a video as a bunch of pictures shown very quickly — like a flipbook. Each picture is called a **frame**. When something moves in front of the camera, it looks different in each frame.
+Since the board will be controlled by the video sensor data, let's use a forever loop to repeatedly read the motion data into 2 variables named "motion" and "direction":
 
-For example, when you move an apple slowly across the camera, the frames will show it shifting positions:
+ccimg3||550||https://cdn.creaticode.com/scratch-gui-projects/forum/cf9906ad-cc7d-4a4e-a4c3-c1ef71bd6ea1.png
 
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/2e530080-acc2-41be-8283-9ba261656506.gif
+Now you can see these 2 variables' values as you move left or right in front of the camera:
+
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/4257e738-c729-478a-b3d8-da90bf70b753.gif
+
 
 &nbsp;
-
-We can compare two frames to **see which parts of the image have changed**. In the two frames below, the apple has moved slightly to the bottom right:
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/c4c731af-73f3-4ac7-9e7b-27357c793b36.gif
 &nbsp;  
-Each image is made up of tiny squares called **pixels**. The apple is just a group of pixels with red and brown colors.
-
-ccimg||450||https://cdn.creaticode.com/scratch-gui-projects/forum/14a86a5d-cd9a-4049-9a1c-9a9ec2c8e0d9.gif
-
-By checking **how many pixels have changed between two frames**, we can measure how much motion has occurred.
-
-
-&nbsp;
-## How to add the Video Sensing Extension?
-&nbsp;
-
-To add the video extension to a project, you click the **"Add Extension"** button ccimg3||150||https://cdn.creaticode.com/scratch-gui-projects/forum/3c3dd44b-a81b-468a-a073-d522d9729320.PNG below the blocks categories and then select **"Video Sensing"** from the extension library. Make sure you give permission to our playground to use your camera.
-
-
-ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/6cb65098-2a5f-4b48-9fde-db25edc30a0d.gif
-
-
-
-&nbsp;
-## 🚫 Can’t See the Camera Video?
+## Step 5 - Set "Board Speed"
 &nbsp;  
 
-If you do not see the camera video, then you should check if the camera is blocked. Try to find this camera icon in the top navigation bar on the right:
+Create a variable named "board speed" to represent **how fast the board moves**. We’ll link it to the "motion" value. If the motion is strong, the board should move faster. For example:
 
-ccimg3||700||https://cdn.creaticode.com/scratch-gui-projects/forum/ad2cb49e-d79b-4f77-bc84-9a7b8e69a7b0.png
+* Set board speed to motion / 8
+* If motion is below 20, set board speed to 0 (to ignore tiny movements or noise)
 
-Once the extension is added and the camera is working, a live video feed should appear on the stage.
+ccimg3||550||https://cdn.creaticode.com/scratch-gui-projects/forum/6c70167b-9f55-404f-baba-6bc6351bd397.png
 
+You can verify that the board speed is 0 when you are not moving:
+
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/8a098993-e94b-4197-8ea6-796836a0f0b6.gif
 
 
 
 &nbsp;
-## Fix Camera Permission Issue
+&nbsp;  
+## Step 6 - Move the Board Left or Right
 &nbsp;  
 
-If the camera is somehow blocked, you can fix it by changing the permission settings and then reloading the page:
+Use "board speed" and "direction" to control the board’s position:
 
-ccimg||1000||https://cdn.creaticode.com/scratch-gui-projects/forum/f6ff0367-94c4-42a5-8b60-388c0c9a1bd1.gif
+* If **direction > 0**, the motion is to the right — move the board right.
+* If **direction < 0**, the motion is to the left — move the board left.
 
+ccimg3||500||https://cdn.creaticode.com/scratch-gui-projects/forum/d2a5874e-f509-4168-8d60-0b24e069e9e9.png
+&nbsp;
+Now your board should follow your body movements smoothly:
+&nbsp;
 
+ccimg||400||https://cdn.creaticode.com/scratch-gui-projects/forum/61b80ee3-1132-4659-9a1b-045a105caa5b.gif
 
 &nbsp;
-&nbsp;
-
-## The Video Sensing Blocks
+&nbsp;  
+## Step 7 - Keep the Board Inside the Stage
 &nbsp;  
 
-The video sensing extension includes:
-* 1 hat block (which triggers scripts),
-* 1 reporter block (which gives a value).
-* 2 stack blocks (blocks you can attach to other blocks),
+The board might drift off the screen edges. Prevent this by checking its X position and keeping it between -150 and 150.
 
-Let's look at each of them below. 
+ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/b6c80370-b04d-4a12-a12f-6db0f7f32913.png
 
-ccimg3||600||https://cdn.creaticode.com/scratch-gui-projects/forum/a90b9136-569b-4773-b6ca-cff84aa1d530.PNG
-&nbsp;
+Now the board will stay within the stage:
 
-
+ccimg||450||https://cdn.creaticode.com/scratch-gui-projects/forum/42079b00-0ceb-4de2-987d-2f273de1ca62.gif
 
 &nbsp;
-&nbsp;
-## "Turn video (On/Off/On Flipped)"
+&nbsp;  
+## Step 8 - Add a New Sprite for the Ball
 &nbsp;  
 
-ccimg3||300||https://cdn.creaticode.com/scratch-gui-projects/forum/9b7e6df6-94a9-44a9-9b97-03d08a3cdb15.png
+Add a new sprite: Beachball
 
-This block lets you control whether the camera video appears on the stage:
-* **On**: shows the live video.
-* **Off**: hides the video.
-* **On flipped**: shows the video, but flips it horizontally (like a mirror).
+* Set its size to 50
+* Move it to the **top of the stage** (y = 160) when the program starts
 
-&nbsp;
-ccimg||600||https://cdn.creaticode.com/scratch-gui-projects/forum/baede7ac-4a5b-4719-a543-1d1ea220878d.gif
+ccimg3||220||https://cdn.creaticode.com/scratch-gui-projects/forum/33b858c3-68ba-4eb3-b236-a0dc49591f60.png
 
 &nbsp;
+It will look like this:
+
+ccimg||500||https://cdn.creaticode.com/scratch-gui-projects/forum/c1ea5d4a-20e7-493b-a4fb-f9e7eb281775.png
+
 &nbsp;
-## Set Video Transparency
+&nbsp;  
+## Step 9 - Point the Ball in a Random Direction
 &nbsp;  
 
-
-When the camera video is shown, it appears behind your sprites but in front of the backdrop. Use this block to change how see-through the video is:
-
-ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/ca68020b-6bed-470d-a475-47f60d7a9c77.png
+Make the ball start by pointing **down-right**, using a random angle between 105 and 165 degrees.
 
 
-* **100** = fully transparent (only the backdrop shows),
-* **0** = fully solid (the video hides the backdrop),
-* **1–99** = a mix—you can see the backdrop through the video.
-
-
-ccimg||800||https://cdn.creaticode.com/scratch-gui-projects/forum/55eac469-b815-4c56-bbbe-2350120ef7ca.gif
-
+ccimg3||500||https://cdn.creaticode.com/scratch-gui-projects/forum/af60b397-2da9-4bc2-af2d-2e5570432e9a.gif
 
 
 &nbsp;
-&nbsp;
-## "Video (motion/direction) on (sprite/stage)"
+&nbsp;  
+## Step 10 - Move and Bounce Forever
 &nbsp;  
 
+Use a forever loop to keep the ball moving. Let it bounce whenever it hits the edge.
 
-This reporter block gives back a number based on what the camera sees:
+ccimg3||440||https://cdn.creaticode.com/scratch-gui-projects/forum/e12f1758-4aef-431d-95a3-1b0da3793b9e.png
 
-ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/26ed9eee-bc64-435e-a9d4-da825a56c546.png
+&nbsp;
+Here’s what it should look like:
 
-
-The **first input** allows you to select if you want to know the value of motion or direction.
-
-ccimg3||390||https://cdn.creaticode.com/scratch-gui-projects/forum/af4cb0aa-5e63-4963-b939-2e4e8b0348f4.PNG
-
-* **Motion**: this block will report a number that represents how many pixels (tiny boxes that compose the image) in the camera video have moved between the last frame and the current frame. **Note that this is not about the distance or speed of the movement, but the size of the area where some motion is detected.**
-
-* **Direction**: this block will tell us the average direction of the detected movement. For example, when most of the pixels are moving to the right, the direction would be around 90 degrees.
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/95e19ca9-d9fc-4fd8-8bae-642f35080222.gif
 
 
 &nbsp;
-The second input allows you to select the current sprite or the entire stage. 
-
-
-ccimg3||320||https://cdn.creaticode.com/scratch-gui-projects/forum/8e435ae8-4ea4-454c-a21d-94b239cb1eb7.PNG
-
-
-* **Sprite**: checks for motion **only under that sprite**. Motion outside this sprite will be ignored.
-
-ccimg||722||https://cdn.creaticode.com/scratch-gui-projects/forum/be1ac278-7f0b-43b7-b0b6-49fc7ef6ab06.gif||40
-
-&nbsp;
-* **Stage**: check for motion **anywhere in the camera video**.
-
-ccimg||722||https://cdn.creaticode.com/scratch-gui-projects/forum/c8635f66-5854-4b66-97ba-e10f72bce77b.gif||40
-
-
-&nbsp;
-&nbsp;
-## When Motion > (threshold)
+&nbsp;  
+## Step 11 - Stop When the Ball Falls to the Bottom
 &nbsp;  
 
-This block runs **only if enough motion is detected**.
+The game ends when the ball hits the bottom of the stage. You can check if its Y position is less than -160 to stop the program.
 
- 
+ccimg3||350||https://cdn.creaticode.com/scratch-gui-projects/forum/1f915cbf-c16b-4d5e-b56a-b68eef40c376.png
+&nbsp;
+Now the ball stops if it falls to the bottom:
 
-ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/126bcffb-9702-4e1b-8e90-5a8737e48a98.png
+ccimg||460||https://cdn.creaticode.com/scratch-gui-projects/forum/d32fd6ed-ada0-497a-bed4-7c35a7c50539.gif
 
-It takes one input: **a threshold number**. If the amount of motion **under the sprite** is greater than this number, the block runs.
 
-* Use something like 10 as the threshold.
-* Don’t use 0, because the camera always sees a little bit of “noise” or tiny changes.
 
 &nbsp;
-### Example Program
-&nbsp;
-In this example, the apple only moves up when your hand moves under it. If your hand isn’t near it, nothing happens.
+&nbsp;  
+## Step 12 - Make the Ball Bounce Off the Board
+&nbsp;  
 
-ccimg||518||https://cdn.creaticode.com/scratch-gui-projects/forum/6b27dd5c-37c5-40c1-ad37-cd297200af5c.gif
+If the ball touches the board, it should bounce upward. The math is simple:
+
+* If the direction is positive (e.g., 160°), the rebound is **180 - direction** (e.g., 20°).
+* If the direction is negative (e.g., -135°), the rebound is **-180 - direction** (e.g., -45°).
+
+&nbsp;
+ccimg3||700||https://cdn.creaticode.com/scratch-gui-projects/forum/60a70435-41b3-40b4-a69d-a3b25606a311.png
+&nbsp;
+
+ccimg3||300||https://cdn.creaticode.com/scratch-gui-projects/forum/cfe25dd6-dd83-4021-94f1-882c41179648.png
+
+&nbsp;
+Therefore, here is the code for the direction calculation:
+
+ccimg3||440||https://cdn.creaticode.com/scratch-gui-projects/forum/1a90e09c-8067-447b-9e71-c23ab75d7f67.png
+&nbsp;
+Now the ball correctly bounces off the board:
+&nbsp;
+ccimg||470||https://cdn.creaticode.com/scratch-gui-projects/forum/c829f942-1970-419b-a16c-b2326c89812d.gif
+
+
+
+&nbsp;
+&nbsp;  
+## Step 13 - Count the Saves
+&nbsp;  
+
+To make it fun, let's keep a score for how many times the ball has been saved by the board. 
+
+* Create a variable called "counter".
+* Set it to 0 at the start.
+* Increase it by 1 every time the ball touches the board.
+* [Display it on the stage](/topic/525/printing-text-on-stage):
+
+&nbsp;
+ccimg3||550||https://cdn.creaticode.com/scratch-gui-projects/forum/b3f40345-4312-4293-a36e-9c54446315bf.png
+&nbsp;
+Now you’ll see the score on the top right:
+&nbsp;
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/6222f604-89c3-4207-803f-0b16260ba7ce.gif
+
+
+
+&nbsp;
+&nbsp;  
+## Step 14 - Hide the Camera Video (Optional)
+&nbsp;  
+
+If you prefer, you can hide the camera video by making it 100% transparent, then you can use a regular backdrop instead.
+
+ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/7b840086-0001-4e15-b16e-9397cd346994.png
+
+
+
+
+&nbsp;  
+&nbsp;
+## Step 15 - Fix a Ball Rebound Bug
+&nbsp;  
+
+If you test the game for a while, you will find a small issue. Sometimes the ball would get stuck on the board like this:
+
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/e95b0253-f36c-4b88-9857-64c592f7b5dc.gif
+
+&nbsp;
+Try to fix this issue yourself before continuing.
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+The problem is that when the ball rebounds off the board and moves up, it might touch the board again in the next update, so it will rebound towards the bottom again.
+
+To fix this, **only allow a rebound if the ball is moving downward**. That means:
+
+* Its direction is between 90° to 180° or -90° to -180°.
+* In other words, if abs(direction) > 90, then allow rebound.
+
+ccimg3||600||https://cdn.creaticode.com/scratch-gui-projects/forum/82e0619f-a327-4357-b331-7a43bc56d842.png
+
+Here is the final result:
+
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/71acc18d-fdeb-4b30-8d9e-7dd559418414.gif
+
+&nbsp;
+&nbsp;  
+## Additional Challenges
+&nbsp;  
+
+You can now customize and improve your game! Here are some fun ideas to try:
+
+* **Increase difficulty**: Make the ball move faster after each bounce.
+* **Smarter bouncing**: Adjust the ball’s rebound direction based on how the board is moving.
+* **Add obstacles**: Include some targets that the player must hit with the ball to win the game.
