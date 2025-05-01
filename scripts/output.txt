@@ -1,229 +1,110 @@
-
-&nbsp;  
-## Key Topics Covered
-&nbsp;  
-
-* [Using variables](/topic/86/introduction-to-variables)
-* [Reading from tables](/topic/81/reading-from-a-table)
-* [AI for Hand Detection](/topic/725/ai-for-hand-detection)
-
-
-&nbsp;  
 &nbsp;  
 ## Introduction
 &nbsp;  
 
-In this project, you’ll build a fun and interactive finger-counting program using AI-powered hand detection. The program will detect how many fingers are stretched out and display that number on the screen.
-
-![07c13483-a83b-4595-be32-dfa45fb875f3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/07c13483-a83b-4595-be32-dfa45fb875f3.gif?raw=true)
+You can use AI to recognize the key body parts of a person standing in front of the camera — such as their eyes, nose, shoulders, arms, and legs. This type of detection can be useful in many applications, especially for estimating a person’s pose (e.g., standing, sitting, or raising a hand).
 
 
-
-&nbsp;
-&nbsp;
-## Step 1 - A New Project
+&nbsp;  
+## The AI Block
 &nbsp;  
 
-Please create a new project in the CreatiCode playground. Remove the sprites named "Sprite1". We will only need to use the "Empty" sprite. 
+To start detecting body parts, run this block:
 
+![48cb84e4-5335-4ece-9976-01496b6be911-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8276becd-1bd3-4617-9768-e89d9b61fd4b.png?raw=true) 
 
 &nbsp;
+This block turns on your computer's **front-facing camera** and begins scanning for one or more people in the frame. Detected body parts are identified and their attributes are stored in a data table.
+
+Let’s break down the 3 input parameters:
+
 &nbsp;
-## Step 2 - Add Number Costumes
+### Single Person
 &nbsp;  
 
-We’ll show the detected finger count by switching between number costumes.
-
-* Go to the Costumes tab.
-* Add the costume "**Glow-0**" and delete the original costume.
-
-![dffcc7ff-29e4-45d1-88cb-4f4490a49134.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/dffcc7ff-29e4-45d1-88cb-4f4490a49134.gif?raw=true)
+* If this is set to "**Yes**", the AI will only track **one person**, even if there are multiple people in view.
+* If set to "**No**", the AI will report **all detected people**.
+* In most cases — especially when the program is intended for a single user — choose "**Yes**".
 
 
-&nbsp;
-Now add "**Glow-1**" through "**Glow-5**", so you have 6 costumes total.
-
-* Costume #1 = Number 0
-* Costume #6 = Number 5
-
-![d2a72caf-64e9-49f1-8b2b-1c84d0c7df60.png](https://github.com/cake2000/creaticodesharing/blob/main/images/d2a72caf-64e9-49f1-8b2b-1c84d0c7df60.png?raw=true)
-
-
-
-&nbsp;
-&nbsp;
-## Step 3 - Start Hand Detection
 &nbsp;  
 
-Now let's switch to the "Code" tab, and add the [hand detection block](/topic/725/ai-for-hand-detection) from the "AI" category.
-
-![0d65cfc5-d1d2-4141-b597-8b5950369323-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b08b154d-4248-4f2b-8321-f6ebaaee6a60.png?raw=true) 
-
 &nbsp;
-Click the green flag to activate the camera and begin detecting hands.
-
-&nbsp;
-![2c45d310-35e8-476c-b26c-f1c61cdb8c15.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/2c45d310-35e8-476c-b26c-f1c61cdb8c15.gif?raw=true)
-
-&nbsp;
-As shown, each detected hand is represented by 21 landmark points: 1 for the wrist, and 4 for each finger.
-
-
-
-
-&nbsp;
-&nbsp;
-## Step 4 - Review the Data Table
+### Result Table
 &nbsp;  
 
-When the hand detection block is added, a new table (named “i”) is created automatically.
+This option determines where the detection results are stored. You can either:
 
-* Go to the Variables category.
-* Check the box next to table “i” (the name of the output table variable) to show it on the stage.
-&nbsp;
-![99491fe7-3db9-4cee-b4d9-7cd56606456a.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/99491fe7-3db9-4cee-b4d9-7cd56606456a.gif?raw=true)
+* Use the **default table** (created automatically), or
+* Select/create a **custom table**.
 
-&nbsp;
-&nbsp;
-Now the table updates live with hand tracking data.
-
-* Each hand generates 47 rows of data.
-* You’ll see a new set of 47 rows added for each additional hand detected.
-&nbsp;
-![b1b35179-d8eb-4eb4-9e8f-5d61afcee58c.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/b1b35179-d8eb-4eb4-9e8f-5d61afcee58c.gif?raw=true)
-
+The table includes **6 columns** and **21 rows per person**: the first 17 rows correspond to individual body parts, and the last 4 rows represent the 4 limbs.
 
 
 &nbsp;
+#### - First 17 Rows (Body Parts)
 &nbsp;
-## Step 5 - Focus on the "Curl" Angle
+These rows store data **only in the first 4 columns**:
+
+* The **ID** column is a unique identifier for each detected person. You can ignore it if your program only works with a single person. 
+
+* The **part** column contains the name of the body part. Here is the full list: **nose, left_eye, right_eye, left_ear, right_ear, left_shoulder, right_shoulder, left_elbow, right_elbow, left_wrist, right_wrist, left_hip, right_hip, left_knee, right_knee, left_ankle, right_ankle**.
+
+* The **X** and **Y** values are the x and y positions of that part in the camera image. For example, if the nose is at the center of the image, then its x and y positions will both be 0. 
+
+![f14892c4-5ace-4cc7-a89b-c474b8f87f00.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f14892c4-5ace-4cc7-a89b-c474b8f87f00.png?raw=true)||40
+
+&nbsp;
+
+&nbsp;
+#### - Next 4 Rows (Limbs)
+&nbsp;
+
+For each person that's detected, the **4 rows below the 17 rows** will use:
+* Columns **1 & 2**: ID and part
+* Columns **5 & 6**: curl and dir
+
+The meanings of these columns:
+
+* The **ID** column is still the unique ID for each detected person. 
+
+* The **part** column contains name of the limb: **"left_arm", "right_arm", "left_leg", "right_leg".** 
+
+* The **curl** column (the 5th column) tells us the curling (bending) angle of that limb. If that limb is extended in a straight line, then its curling angle is close to 180 degrees. If that limb is curled at the elbow or knee, then this angle will be much smaller.
+
+* The **dir** column (the 6th column) tells us the direction of that limb. For arms, this is the direction of the line from the shoulder to the elbow (the wrist is not considered here). For legs, this refers to the direction from the hip to the knee (the ankle is not included).
+
+&nbsp;
+For example, in this picture of Superman, 
+
+* Both arms are bent ≈ 90°, both legs are straight ≈ 180°
+* All limbs are pointing downward.
+
+![dc8c8c86-ee2f-4cd2-9b2c-9be260aee447-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/72fe1bac-81d4-4ea2-bd78-6510ea18043d.png?raw=true) 
+
+![e16981b2-cd42-4ff6-bf41-d91fab2bf758-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/47899dbb-11d2-4a93-80fd-dcb2889bc7ce.png?raw=true) 
+
+
+&nbsp;
+### 🛠️ Debug Mode
 &nbsp;  
 
-To determine if a finger is stretched out, we just need to check its **curl angle**, found in the first 5 rows of the table.
+If Debug is set to "**yes**", visual markers (dots and lines) will be drawn over the camera image to show the detected body parts.
 
-* A stretched finger has a curl angle near **180 degrees**.
-* A bent finger has a curl angle closer to **0**.
-
-Try curling your index finger and watching the change in value:
-
-![1.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/0aa3ffa1-e07a-4c0a-a65a-abd0e2f57447.gif?raw=true) 
-
-&nbsp;
-🧠 Tip: For simplicity, if the curl angle is greater than 150, we will treat that finger as stretched.
-
+If "**no**", the video feed is shown with no overlays.
 
 &nbsp;
 &nbsp;
-## Step 6 - Create a Counter Variable
+## Example - Two People from a Picture
 &nbsp;  
 
-To count how many fingers are stretched, create a new variable named "counter".
-This variable will store the total number of stretched fingers.
+If you set **single-person** to "**no**", the AI will detect and track multiple people at the same time.
+
+![c6807910-4ded-4c84-8f0c-4a26b95c266e.png](https://github.com/cake2000/creaticodesharing/blob/main/images/c6807910-4ded-4c84-8f0c-4a26b95c266e.png?raw=true)
 
 
-&nbsp;
-&nbsp;
-## Step 7 - Use a Forever Loop
-&nbsp;  
+If you move the camera, both people will be recognized continuously in real-time.
 
-We want to continuously update the count in real time. Wrap the logic inside a **forever** loop, and reset the counter to 0 each time.
+Each person will generate 21 rows in the table — so with two people, the result table will contain 42 rows.
 
-![a1cf27fc-102d-4e6a-a5ae-5e60aa81388e-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ad733816-6fc6-473c-811b-451884007c18.png?raw=true) 
-
-
-
-&nbsp;
-&nbsp;
-## Step 8 - Check If a Hand Is Detected
-&nbsp;  
-
-We should only check the data in the table if the camera sees at least one hand.
-* Each hand adds **47** rows to the table.
-* Use the “**row count**” block to check if the table has 47 or more rows.
-&nbsp;  
-![356c34cb-b788-4edf-b688-1306a1fb3c2f-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/6233aa3f-e328-47e8-a190-ad5fa9074eaf.png?raw=true)
-
-
-
-&nbsp;
-&nbsp;
-## Step 9 - Loop Through Rows 1 to 5
-&nbsp;  
-
-Create a variable called "**row**", and use a for loop to go from 1 to 5, which represent the five fingers.
-&nbsp;  
-![6a8e12d2-ff26-419e-93e2-82c5f22b7561-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/667adb22-1be3-488d-9b65-98a5273f00ee.png?raw=true) 
-
-
-
-&nbsp;
-&nbsp;
-## Step 10 - Read the "curl" Value for Each Row
-&nbsp;  
-
-We can read the value in the "curl" column for any row like this:
-
-![91cb82ea-9d39-43b1-a14f-cc79e1b43813.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/91cb82ea-9d39-43b1-a14f-cc79e1b43813.gif?raw=true)
-
-&nbsp;
-To read all 5 rows one by one, we just need to use the "row" variable to specify the row number in the block:
-
-![2c39ff15-268a-4cc0-9402-008acd639af5-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/39312b91-6e9f-4596-ba96-8cba4688b093.png?raw=true) 
-
-
-
-
-&nbsp;
-&nbsp;
-## Step 11 - Count the Stretched Fingers
-&nbsp;  
-
-If the curl value is greater than **150**, increase the **counter** by 1.
-
-&nbsp;
-![c1692e1b-24f6-4ec7-9e21-df1829ccc3ad-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/71df905b-e71b-4275-ac4d-a3b9a6897bb4.png?raw=true) 
-
-&nbsp;
-After the loop runs through all 5 rows, "counter" will store the number of fingers that are stretched out.
-
-
-
-&nbsp;
-&nbsp;
-## Step 12 - Show the Count Using Costumes
-&nbsp;  
-
-We’re almost done! Now, just switch to the correct costume based on the counter value.
-
-* Costume 1 = number 0
-* Costume 2 = number 1
-* Costume 3 = number 2
-* ... and so on.
-
-So if "counter" is 2, we should show costume 3, which means the costume number is always **counter + 1**.
-&nbsp;
-![0a9f98ae-795b-4e6e-8f35-3b39f7e63916-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/9cb3c55b-a799-42f2-9a25-616d4804fd6d.png?raw=true) 
-
-&nbsp;
-Here is what you should get:
-
-![07c13483-a83b-4595-be32-dfa45fb875f3.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/07c13483-a83b-4595-be32-dfa45fb875f3.gif?raw=true)
-
-
-
-&nbsp;
-&nbsp;
-## Additional Challenges
-&nbsp;  
-
-This finger-counting program is very simple. There are a lot of places where you can make improvements. Here are some ideas:
-
-* **Recognize Higher Numbers**: When you show the number "6", currently the program still reports "2", since 2 fingers are stretched out. Can you make the program smarter? How about other digits like 7, 8 and 9?
-
-![1e1d99b0-e320-4773-b99b-4052145bd3e3.png](https://github.com/cake2000/creaticodesharing/blob/main/images/1e1d99b0-e320-4773-b99b-4052145bd3e3.png?raw=true)||40
-
-* **Detect 2 Hands**: You can try to recognize 2-digit numbers with 2 hands
-
-* **Recognize Other Gestures**: Besides numbers, you can use the "curl" angle to help recognize other hand gestures, such as "OK", "Peace", "Thumb Up".
-
-![03ff1bb4-e64c-4216-a3b6-3648d1bd35da.png](https://github.com/cake2000/creaticodesharing/blob/main/images/03ff1bb4-e64c-4216-a3b6-3648d1bd35da.png?raw=true)||40
+![9d57ab0b-9ac5-4579-8633-67aed694fbd5.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/9d57ab0b-9ac5-4579-8633-67aed694fbd5.gif?raw=true)
