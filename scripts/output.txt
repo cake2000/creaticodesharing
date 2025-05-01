@@ -1,110 +1,315 @@
+
+&nbsp;  
+## Key Topics Covered
+&nbsp;  
+
+* [Using variables](/topic/86/introduction-to-variables)
+* [Reading from tables](/topic/81/reading-from-a-table)
+* [Graphic Effects](/topic/296/graphic-effects-blocks)
+* [Body Part Detection AI](https://www.forum.creaticode.com/topic/419/ai-for-body-part-recognition-premium-only)
+
+
+&nbsp;  
 &nbsp;  
 ## Introduction
 &nbsp;  
 
-You can use AI to recognize the key body parts of a person standing in front of the camera — such as their eyes, nose, shoulders, arms, and legs. This type of detection can be useful in many applications, especially for estimating a person’s pose (e.g., standing, sitting, or raising a hand).
+In this tutorial, you'll create a fitness game using AI-powered body pose detection. The game will display a target pose on the screen, and the player must quickly match that pose using their body.
 
 
-&nbsp;  
-## The AI Block
-&nbsp;  
 
-To start detecting body parts, run this block:
+![6375abe6-43a0-42e8-b412-921e31f5af5a.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/6375abe6-43a0-42e8-b412-921e31f5af5a.gif?raw=true)
 
-![48cb84e4-5335-4ece-9976-01496b6be911-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/8276becd-1bd3-4617-9768-e89d9b61fd4b.png?raw=true) 
+
 
 &nbsp;
-This block turns on your computer's **front-facing camera** and begins scanning for one or more people in the frame. Detected body parts are identified and their attributes are stored in a data table.
-
-Let’s break down the 3 input parameters:
-
 &nbsp;
-### Single Person
+## Step 1 - Start a New Project
 &nbsp;  
 
-* If this is set to "**Yes**", the AI will only track **one person**, even if there are multiple people in view.
-* If set to "**No**", the AI will report **all detected people**.
-* In most cases — especially when the program is intended for a single user — choose "**Yes**".
+Create a new project in the CreatiCode Playground.
+Delete the sprite named "**Sprite1**" and rename the "Empty1" sprite to "**Main**".
 
 
+&nbsp;
+&nbsp;
+## Step 2 - Enable Body Part Detection
 &nbsp;  
 
+Add the body part detection block. Set debugging to "**yes**" to highlight the key body points on the video feed.
+
+
+![29ec46b8-175b-4b5f-90be-ef68fd78ad3b-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/263d1c4d-fe1d-4193-b928-e19f118d1106.png?raw=true) 
+
+
 &nbsp;
-### Result Table
+A new table named "i" will automatically appear under the Variables category. Check its box to display it on stage.
+
+![0e41c5fa-9538-4ee5-a285-7687d4b08472.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/0e41c5fa-9538-4ee5-a285-7687d4b08472.gif?raw=true)
+
+&nbsp;
+Once you run the program, you’ll see the body part markers on screen, and the table data will update in real time:
+
+![c2890b2e-b478-49f0-84e0-0727fbe2e099.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/c2890b2e-b478-49f0-84e0-0727fbe2e099.gif?raw=true)
+
+&nbsp;
+**Note**: To capture your entire body in the camera frame, you'll need to stand farther away—but this makes it difficult to read the table data on the screen. A good solution is to **work with a classmate**: one person performs the poses in front of the camera, while the other monitors how the data in the table changes.
+
+
+&nbsp;
+&nbsp;
+## Step 3 - Add the Squat Costume
 &nbsp;  
 
-This option determines where the detection results are stored. You can either:
+Now, uncheck the "i" table and add a costume representing a squat pose. Use the costume named "Dorian-d", and rename it "Squat".
 
-* Use the **default table** (created automatically), or
-* Select/create a **custom table**.
+![c54d7698-fb24-4b6f-b6ed-e30cf55bf876.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/c54d7698-fb24-4b6f-b6ed-e30cf55bf876.gif?raw=true)
 
-The table includes **6 columns** and **21 rows per person**: the first 17 rows correspond to individual body parts, and the last 4 rows represent the 4 limbs.
+&nbsp;
+Set its size to **130** and position it at the bottom right of the stage. This will serve as the first target pose.
+
+
+![6f23c3cd-a65e-4cbb-9d74-2fff4fcfef84.png](https://github.com/cake2000/creaticodesharing/blob/main/images/6f23c3cd-a65e-4cbb-9d74-2fff4fcfef84.png?raw=true)
+
 
 
 &nbsp;
-#### - First 17 Rows (Body Parts)
 &nbsp;
-These rows store data **only in the first 4 columns**:
-
-* The **ID** column is a unique identifier for each detected person. You can ignore it if your program only works with a single person. 
-
-* The **part** column contains the name of the body part. Here is the full list: **nose, left_eye, right_eye, left_ear, right_ear, left_shoulder, right_shoulder, left_elbow, right_elbow, left_wrist, right_wrist, left_hip, right_hip, left_knee, right_knee, left_ankle, right_ankle**.
-
-* The **X** and **Y** values are the x and y positions of that part in the camera image. For example, if the nose is at the center of the image, then its x and y positions will both be 0. 
-
-![f14892c4-5ace-4cc7-a89b-c474b8f87f00.png](https://github.com/cake2000/creaticodesharing/blob/main/images/f14892c4-5ace-4cc7-a89b-c474b8f87f00.png?raw=true)||40
-
-&nbsp;
-
-&nbsp;
-#### - Next 4 Rows (Limbs)
-&nbsp;
-
-For each person that's detected, the **4 rows below the 17 rows** will use:
-* Columns **1 & 2**: ID and part
-* Columns **5 & 6**: curl and dir
-
-The meanings of these columns:
-
-* The **ID** column is still the unique ID for each detected person. 
-
-* The **part** column contains name of the limb: **"left_arm", "right_arm", "left_leg", "right_leg".** 
-
-* The **curl** column (the 5th column) tells us the curling (bending) angle of that limb. If that limb is extended in a straight line, then its curling angle is close to 180 degrees. If that limb is curled at the elbow or knee, then this angle will be much smaller.
-
-* The **dir** column (the 6th column) tells us the direction of that limb. For arms, this is the direction of the line from the shoulder to the elbow (the wrist is not considered here). For legs, this refers to the direction from the hip to the knee (the ankle is not included).
-
-&nbsp;
-For example, in this picture of Superman, 
-
-* Both arms are bent ≈ 90°, both legs are straight ≈ 180°
-* All limbs are pointing downward.
-
-![dc8c8c86-ee2f-4cd2-9b2c-9be260aee447-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/72fe1bac-81d4-4ea2-bd78-6510ea18043d.png?raw=true) 
-
-![e16981b2-cd42-4ff6-bf41-d91fab2bf758-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/47899dbb-11d2-4a93-80fd-dcb2889bc7ce.png?raw=true) 
-
-
-&nbsp;
-### 🛠️ Debug Mode
+## Step 4 - Understand the Squat Pose
 &nbsp;  
 
-If Debug is set to "**yes**", visual markers (dots and lines) will be drawn over the camera image to show the detected body parts.
+We know where each body part is, but we don’t yet know **how to consistently recognize the squat pose**. To do that, focus on the X-positions of these 4 parts:
 
-If "**no**", the video feed is shown with no overlays.
+* Left hip
+* Right hip
+* Left knee
+* Right knee
+
+In a squat pose, the **knees spread out wider than the hips**. So:
+
+* **Knee Distance** = Right Knee X - Left Knee X
+* **Hip Distance** = Right Hip X - Left Hip X
+
+After we calculate these 2 distances, we can use them to determine when the player is in a squat pose.
+
+![564edd7e-dbc2-43e3-b030-4bef8cfd2354.png](https://github.com/cake2000/creaticodesharing/blob/main/images/564edd7e-dbc2-43e3-b030-4bef8cfd2354.png?raw=true)
+
+
 
 &nbsp;
 &nbsp;
-## Example - Two People from a Picture
+## Step 5 - Read Data from the Table
 &nbsp;  
 
-If you set **single-person** to "**no**", the AI will detect and track multiple people at the same time.
+Create 4 variables to represent the X positions of these 4 body parts: "left hip x", "left knee x", "right hip x", "right knee x".
 
-![c6807910-4ded-4c84-8f0c-4a26b95c266e.png](https://github.com/cake2000/creaticodesharing/blob/main/images/c6807910-4ded-4c84-8f0c-4a26b95c266e.png?raw=true)
+Display the "i" table and note each part’s row number. For example, the left hip X position is in **row 12**, under the column **x**:
+
+![9fbcfc48-51c3-4c06-8b09-3fe970bdc235.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/9fbcfc48-51c3-4c06-8b09-3fe970bdc235.gif?raw=true)
+
+&nbsp;
+Therefore, we can read this value into the "left hip x" variable like this:
+
+![48ef9065-aa52-4846-a0a0-ece0e53606a2-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b4b307d3-d534-4905-b79e-67e82fa1272a.png?raw=true) 
+
+&nbsp;
+Repeat this process for all 4 variables:
+
+![46aa8f81-a178-4ba0-a59d-ffabf38fa990-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/0be18871-0112-4283-92e7-a51738e1c6b0.png?raw=true) 
 
 
-If you move the camera, both people will be recognized continuously in real-time.
 
-Each person will generate 21 rows in the table — so with two people, the result table will contain 42 rows.
+&nbsp;
+&nbsp;
+## Step 6 - Calculate Distances
+&nbsp;  
 
-![9d57ab0b-9ac5-4579-8633-67aed694fbd5.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/9d57ab0b-9ac5-4579-8633-67aed694fbd5.gif?raw=true)
+Create 2 more variables:
+
+* hip distance
+* knee distance
+
+Now calculate the distances:
+* hip distance = right hip x - left hip x
+* knee distance = right knee x - left knee x
+&nbsp;
+
+![0a66bf99-a1e5-4366-9894-285493778f00-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/6afef777-da64-4740-ac19-d582ceecd6a1.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Determine Pose from Distances
+&nbsp;  
+
+Create a variable called **pose**. Use a simple rule like the one below to classify the pose:
+
+* If knee distance > 2 times of hip distance, then it’s a **Squat**
+* Otherwise, it’s **Unknown**
+
+![6f52d490-a270-45f4-b671-3f643a7f0b1a-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e2180bd6-0c6c-406d-8cb4-89b0b37c422b.png?raw=true) 
+
+
+&nbsp;
+&nbsp;
+## Step 8 - Organize with a Custom Block
+&nbsp;  
+
+Group the logic for pose detection into a new block called "calculate pose", and move the related code into it.
+
+![17815e92-c6fa-44ff-ab73-939e4708d462-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/106172b7-d8d9-42c9-b250-9a7ee68c6672.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 9 - Handle Invalid Data
+&nbsp;  
+
+Sometimes body parts are not detected and return a value of -10000 in the table.
+
+To avoid errors, only calculate pose when all 4 X values are > -250.
+
+![8de3dba3-dc3b-44e5-a4d2-f9abeb9c7c76-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/da78be0a-2bb2-44cd-84a9-4c471f43c4cf.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 10 - Continuously Calculate Pose
+&nbsp;  
+
+Since the table updates continuously as the player moves, wrap the pose calculation inside a forever loop:
+
+![d18a8fac-b1e3-4863-afb8-4da7f244d2ae-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/16f8492c-e66f-481a-a12a-35934babe99e.png?raw=true)
+
+
+
+&nbsp;
+&nbsp;
+## Step 11 - Detect Success
+&nbsp;  
+
+Now check if **pose = "Squat"**. If so, show a success message:
+
+
+![86acf572-f9f1-4fde-8e63-bc70d826472d-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/54a5a239-bac6-4317-ae1b-893b8ed23853.png?raw=true) 
+
+&nbsp;
+Result:
+
+![succ1.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/da8e2ea1-37b8-42a4-bcd5-ea13efe598e4.gif?raw=true) 
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 12 - Set the Target Pose
+&nbsp;  
+
+Now we have the basic game mechanics worked out. The next step is to make it more fun. We will give the player more than one target pose, so the player has to try to complete these poses to earn points.
+
+As a first step, we should create a new variable "target pose", which will represent the next target pose the player needs to make.
+
+We can rewrite our code using this new variable:
+
+![f1930974-4250-489f-a3f2-63893c63b721-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/e6bfc84e-3b9b-465a-be37-aac0a11d0025.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 13 - Switch Between Squat and Stand
+&nbsp;  
+
+When the user has completed the target pose, we should change the target to a new pose. To keep it simple, let's make the target toggle between 2 poses: "Squat" and "Stand". 
+
+We can define a new block "change target pose" for this purpose. If the value of "target pose" is "Squat", then the next target should be "Stand". Otherwise, if the value of "target pose" is not "Squat", it must be "Stand".
+
+![3f92d377-3152-473b-bcfd-532376dc2faf-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/9fe0582b-3bb8-49e4-a361-9211dc041ccc.png?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 14 - Create the Stand Pose Costume
+&nbsp;  
+
+To show that the target pose has changed, we should change the costume of the sprite as well.
+
+Please find the "Dorian-c" costume and add it to your sprite. Rename it as "Stand".
+
+![ccbb49ba-1841-4bbd-bdeb-91790727ddf6-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/3d6287ea-0e49-48c3-a7dc-22ae6afdf1d7.png?raw=true) 
+
+&nbsp;
+We need to make some small adjustments to the costume. The leg on the left is reaching out sideways. We can select the whole leg and rotate it to an upright position:
+
+![leg.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/95c44680-a969-43d9-9720-23d2ffbb178c.gif?raw=true) 
+
+&nbsp;
+In addition, the head is looking sideways, which may confuse the player. We can remove this head, and copy the head from the "Squat" costume:
+
+![head.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/1c525d7f-c9c4-45c6-b4e5-6a90c6418e46.gif?raw=true) 
+
+
+
+&nbsp;
+&nbsp;
+## Step 15 - Switch Costume with Target Pose
+&nbsp;  
+
+When changing the target pose, also update the costume accordingly:
+
+![ffaa0bc1-4366-4650-ba05-315bbdd2cf40-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/310f0323-ac61-46f1-b448-b8ecc45815d4.png?raw=true) 
+
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 16 - Add Visual/Sound Effects
+&nbsp;  
+
+To give the player clear feedback that the target pose has been completed, we should show some visual effects. For example, we can make the sprite brighter for a short time before changing to the next costume. Also, we can play a sound for collecting a coin as well:
+
+![7b07560d-03f8-41fc-b935-9ab4b946f189-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/ca656302-bac9-4bdd-b694-8fed9a6001e8.png?raw=true) 
+
+
+&nbsp;
+&nbsp;
+## Step 17 - Detect the Stand Pose
+&nbsp;  
+
+In the "calculate pose" block's definition, currently we only check for the "Squat" pose. We also need to check if the player is in "Stand" pose. To keep it simple, we can still look at the distance between the knees and the distance between the hips. If the player is standing up, the knee distance should just be slightly more than the hip distance. For example, we can require that the knee distance is less than 1.2 times the hip distance:
+
+![1e58e459-0f12-44e7-93e9-f605f171133f-image.png](https://github.com/cake2000/creaticodesharing/blob/main/images/b0982ae4-833c-4862-8c69-a546a10966d0.png?raw=true) 
+
+&nbsp;
+Now our game is ready. Whenever the player hits a target pose, we switch to the next target:
+
+![6375abe6-43a0-42e8-b412-921e31f5af5a.gif](https://github.com/cake2000/creaticodesharing/blob/main/images/6375abe6-43a0-42e8-b412-921e31f5af5a.gif?raw=true)
+
+
+
+
+
+&nbsp;
+&nbsp;
+## Additional Challenges
+&nbsp;  
+
+Here are some fun ways for you to build upon this project:
+
+* **Game Rules**: You can design different rules for playing the game. For example, you can give the player a time limit (e.g. 1 minute), and whoever earns more coins wins. You can also require the player to complete 60 target poses, and whoever finishes in the shortest time wins.
+
+* **Improve the Pose Detection**: Currently we only look at knees and hips. You can also add additional checks on the arms. For example, you can require the arms to be held horizontally. You can compare the Y position of the wrists with the shoulders.
+
+* **Different Target Poses**: You can try to use some other poses. For example, make the player do an "X" pose like below. You will need to use the X and Y positions of the wrists and ankles to detect such a pose. Note that you can also generate more positions using the AI image generation tool (first [generate an image](https://www.forum.creaticode.com/topic/1154/search-or-generate-sprite-images-using-ai) for a standing person, then [generate a variation](https://www.forum.creaticode.com/topic/1876/ai-editing-images-generate-variation)).
+
+![31cb114d-7979-4809-aa66-c20cecbebd5b.png](https://github.com/cake2000/creaticodesharing/blob/main/images/31cb114d-7979-4809-aa66-c20cecbebd5b.png?raw=true)||40
+
+
+* **2-Player Mode**: When 2 players are standing in front of the camera, both can be detected by the body pose detection engine. This allows you to create 2-player games. For example, whenever player A makes a pose, we set that to be the target for player B. This way, player B has to copy player A's poses.
