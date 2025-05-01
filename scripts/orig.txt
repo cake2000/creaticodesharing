@@ -1,282 +1,116 @@
-## Key Topics Covered
-* [Video sensing extension](/topic/458/the-video-sensing-extension)
-* [Paint Costumes](/topic/62/painting-a-costume)
-* [Using variables](/topic/86/introduction-to-variables)
-* [Picking a random number](/topic/491/the-pick-random-block)
-* [Printing Text](/topic/525/printing-text-on-stage)
-
-&nbsp;  
-&nbsp;  
-## Introduction
-&nbsp;  
-
-Motion sensors allow your program to detect movement from the camera and use it as a form of input — no keyboard or mouse needed! This opens up exciting possibilities:
-
-* People with disabilities who can't use a keyboard or mouse can still interact with your project.
-* Patients needing physical rehabilitation can benefit from motion-based games that get them moving.
-* It's a hands-free way to play — all you need is a camera!
-
-In this tutorial, you’ll build a game where the player moves a paddle using body motion to stop a ball from falling off the screen.
-
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/6222f604-89c3-4207-803f-0b16260ba7ce.gif
-
+## Description
 &nbsp;
-&nbsp;
-## Step 1 - Add the Video Sensing Extension
-&nbsp;  
 
-In the CreatiCode playground, create a new project, and add the video sensing extension first. See this page for instructions: 
+In many AI applications, it's useful for the program to "see" the user's hand gestures and respond to them. For example, hand waves could control a character, or finger poses could trigger actions in a game.
 
-https://www.forum.creaticode.com/topic/458/the-video-sensing-extension
+In the CreatiCode Playground, you can use a special AI block to automatically detect hands using your computer’s front-facing camera:
+
+![a2bbad63-f1fb-465c-9f64-5fb1f12b8bb7-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b525fff3-58e8-4c38-b996-573e8c3a49da.png) 
+
+This block does all the hard work for you — it recognizes the hands, tracks their position, and gives you detailed data to use in your program.
 
 
 &nbsp;
+## ⚙️ Block Inputs Explained
 &nbsp;
-## Step 2 - Draw a Bouncing Board
-&nbsp;  
+This block takes 3 input parameters:
+1. Output Table
+This is where the hand data will be stored.
+* When you add this block to your code, a table will automatically be created for you.
+* You can rename the table if needed.
+* The data inside this table updates in real-time as the camera detects hand movements.
 
-Delete the default dog sprite. Then, paint a new costume for the "Empty1" sprite — draw a symmetrical rectangle that will serve as the paddle. Rename the sprite to "Board".
+2. Debug Mode
+Set this input to "yes" to enable visual debugging:
 
-ccimg||600||https://cdn.creaticode.com/scratch-gui-projects/forum/7bc11a0c-7962-4a08-9d25-fc426b688f55.png
+* The hand will be drawn over the camera feed using **21 tracked points**: 1 for the wrist and 4 for each of the 5 fingers.
+* Red dots show the **left hand**, and blue dots show the **right hand**.
+
+ccimg||600||https://cdn.creaticode.com/scratch-gui-projects/forum/5fa9316b-98a9-4002-8081-72a9e52f1416.png||40
+
+
+* **Show Video**: If this input is "yes", then the video from the camera will be displayed on the stage as a background. If this input is "no", then the video will not be displayed, which will make the program run faster. If your program simply uses the data in the output table, then you can choose not to show the video.
 
 
 &nbsp;
 &nbsp;
-## Step 3 - Set Initial Board Position
-&nbsp;  
-
-When the game starts, the board should be moved to the bottom center of the stage: 
-
-ccimg||800||https://cdn.creaticode.com/scratch-gui-projects/forum/80e2fcbf-c075-4160-bf40-1b33eba48762.png
-
-
-
-&nbsp;  
+## The Output Table
 &nbsp;
-## Step 4 - A Forever Loop to Read the Motion Data
-&nbsp;  
 
-Since the board will be controlled by the video sensor data, let's use a forever loop to repeatedly read the motion data into 2 variables named "motion" and "direction":
+When no hand is detected in the camera video, the output table will be empty. It contains these 7 columns. 
 
-ccimg3||550||https://cdn.creaticode.com/scratch-gui-projects/forum/cf9906ad-cc7d-4a4e-a4c3-c1ef71bd6ea1.png
+![83ce9852-a683-4ccd-ba60-62cccf164888-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b2d7866a-8f51-473d-92d4-c8d3bbd3578b.png) 
 
-Now you can see these 2 variables' values as you move left or right in front of the camera:
+When one hand is detected, the table will be populated with 47 rows of data. If 2 hands are detected, another 47 rows will be added below, making it a total of 94 rows.
 
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/4257e738-c729-478a-b3d8-da90bf70b753.gif
+For each hand, there are 3 types of data, and each type uses a different subset of the columns:
 
 
 &nbsp;
-&nbsp;  
-## Step 5 - Set "Board Speed"
-&nbsp;  
+&nbsp;
+## Finger Pose (Commonly Used)
+&nbsp;
 
-Create a variable named "board speed" to represent **how fast the board moves**. We’ll link it to the "motion" value. If the motion is strong, the board should move faster. For example:
+For each hand, the first 5 rows contain the **curl angle** and **direction of each finger**. **These 5 rows contain enough information for most of the simple use cases.**
+&nbsp;
+ccimg||800||https://cdn.creaticode.com/scratch-gui-projects/forum/4bd2d360-f393-4c32-9c3f-f8bc5c7e6ca1.png
 
-* Set board speed to motion / 8
-* If motion is below 20, set board speed to 0 (to ignore tiny movements or noise)
+&nbsp;
+When a hand is detected, only the first 4 columns are populated with data for these 5 rows:
 
-ccimg3||550||https://cdn.creaticode.com/scratch-gui-projects/forum/6c70167b-9f55-404f-baba-6bc6351bd397.png
+* **Hand**: This column tells you whether this is the left hand or the right hand.
+&nbsp;
+* **Part**: This column tells you which finger this row is describing.
+&nbsp;
+* **Curl**: This is the curl angle of that finger, or how much the finger is bending. It should be a number between 0 and 180. For example, for the index finger, when it is straight, the curling angle is 180 degrees. As you curl your finger, this angle drops down to as low as about 40 degrees. 
+&nbsp;
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/f07b820c-a644-4c27-a9be-389cc387f1e0.gif||40
+&nbsp;
+* **Dir**: This is the pointing direction of this finger. It uses the same direction system as the "point in direction" motion block. For example, **when the finger is pointing up, the direction is about 0 degrees**. When the finger is pointing to the right, the direction is about 90 degrees. For the left direction, it is about -90 degrees. For the down direction, it is about 180 or -180 degrees. Of course, the actual direction value will not be exact, so your program needs to check if the value is in a range. For example, if the direction is more than -30 or less than 30, you can treat it as pointing up.
 
-You can verify that the board speed is 0 when you are not moving:
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/2ca11f04-3821-4726-a66d-25f3e5be7df5.gif||40
 
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/8a098993-e94b-4197-8ea6-796836a0f0b6.gif
 
 
 
 &nbsp;
-&nbsp;  
-## Step 6 - Move the Board Left or Right
-&nbsp;  
-
-Use "board speed" and "direction" to control the board’s position:
-
-* If **direction > 0**, the motion is to the right — move the board right.
-* If **direction < 0**, the motion is to the left — move the board left.
-
-ccimg3||500||https://cdn.creaticode.com/scratch-gui-projects/forum/d2a5874e-f509-4168-8d60-0b24e069e9e9.png
 &nbsp;
-Now your board should follow your body movements smoothly:
+## 2D Finger Position On Stage (Advanced)
 &nbsp;
 
-ccimg||400||https://cdn.creaticode.com/scratch-gui-projects/forum/61b80ee3-1132-4659-9a1b-045a105caa5b.gif
+Below the 5 rows of finger pose data, there are **21 rows** of data describing the X and Y positions of the 21 tracking points. 4 columns are populated with data:
 
+* **Hand**: This column tells you whether this is the left hand or the right hand.
 &nbsp;
-&nbsp;  
-## Step 7 - Keep the Board Inside the Stage
-&nbsp;  
-
-The board might drift off the screen edges. Prevent this by checking its X position and keeping it between -150 and 150.
-
-ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/b6c80370-b04d-4a12-a12f-6db0f7f32913.png
-
-Now the board will stay within the stage:
-
-ccimg||450||https://cdn.creaticode.com/scratch-gui-projects/forum/42079b00-0ceb-4de2-987d-2f273de1ca62.gif
-
+* **Part**: This column tells you which of the 21 points this row is describing. The first row represents the "wrist" point, followed by four rows for each of the five fingers. For example, for the thumb, the 4 points are "thumb 1", "thumb 2", "thumb 3" and "thumb 4", from bottom up.
 &nbsp;
-&nbsp;  
-## Step 8 - Add a New Sprite for the Ball
-&nbsp;  
-
-Add a new sprite: Beachball
-
-* Set its size to 50
-* Move it to the **top of the stage** (y = 160) when the program starts
-
-ccimg3||220||https://cdn.creaticode.com/scratch-gui-projects/forum/33b858c3-68ba-4eb3-b236-a0dc49591f60.png
-
+ccimg||700||https://cdn.creaticode.com/scratch-gui-projects/forum/2f8c64e7-7926-4f67-816d-fffb24b2f361.png||40
 &nbsp;
-It will look like this:
+* **X** and **Y**: These values use the same position system as the sprites, with the center of the stage at X = 0 and Y = 0. For example, in the picture below, the wrist is at the bottom center of the stage window, so its X position is around 0, and its Y position is around -180.
 
-ccimg||500||https://cdn.creaticode.com/scratch-gui-projects/forum/c1ea5d4a-20e7-493b-a4fb-f9e7eb281775.png
-
-&nbsp;
-&nbsp;  
-## Step 9 - Point the Ball in a Random Direction
-&nbsp;  
-
-Make the ball start by pointing **down-right**, using a random angle between 105 and 165 degrees.
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/ff8be04d-964e-44a6-a5a9-adf67874664c.png||40
 
 
-ccimg3||500||https://cdn.creaticode.com/scratch-gui-projects/forum/af60b397-2da9-4bc2-af2d-2e5570432e9a.gif
-
-
-&nbsp;
-&nbsp;  
-## Step 10 - Move and Bounce Forever
-&nbsp;  
-
-Use a forever loop to keep the ball moving. Let it bounce whenever it hits the edge.
-
-ccimg3||440||https://cdn.creaticode.com/scratch-gui-projects/forum/e12f1758-4aef-431d-95a3-1b0da3793b9e.png
-
-&nbsp;
-Here’s what it should look like:
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/95e19ca9-d9fc-4fd8-8bae-642f35080222.gif
-
-
-&nbsp;
-&nbsp;  
-## Step 11 - Stop When the Ball Falls to the Bottom
-&nbsp;  
-
-The game ends when the ball hits the bottom of the stage. You can check if its Y position is less than -160 to stop the program.
-
-ccimg3||350||https://cdn.creaticode.com/scratch-gui-projects/forum/1f915cbf-c16b-4d5e-b56a-b68eef40c376.png
-&nbsp;
-Now the ball stops if it falls to the bottom:
-
-ccimg||460||https://cdn.creaticode.com/scratch-gui-projects/forum/d32fd6ed-ada0-497a-bed4-7c35a7c50539.gif
 
 
 
 &nbsp;
-&nbsp;  
-## Step 12 - Make the Ball Bounce Off the Board
-&nbsp;  
-
-If the ball touches the board, it should bounce upward. The math is simple:
-
-* If the direction is positive (e.g., 160°), the rebound is **180 - direction** (e.g., 20°).
-* If the direction is negative (e.g., -135°), the rebound is **-180 - direction** (e.g., -45°).
-
 &nbsp;
-ccimg3||700||https://cdn.creaticode.com/scratch-gui-projects/forum/60a70435-41b3-40b4-a69d-a3b25606a311.png
+## 3D Finger Position On Stage (Advanced)
 &nbsp;
 
-ccimg3||300||https://cdn.creaticode.com/scratch-gui-projects/forum/cfe25dd6-dd83-4021-94f1-882c41179648.png
+Below the 21 rows of 2D finger position data, there are **another 21 rows** of data describing the 3D positions of the same 21 points. 5 columns are populated with data:
 
+* **Hand**: This column tells you whether this is the left hand or the right hand.
 &nbsp;
-Therefore, here is the code for the direction calculation:
-
-ccimg3||440||https://cdn.creaticode.com/scratch-gui-projects/forum/1a90e09c-8067-447b-9e71-c23ab75d7f67.png
+* **Part**: This column tells you which of the 21 points this row is describing. 
 &nbsp;
-Now the ball correctly bounces off the board:
-&nbsp;
-ccimg||470||https://cdn.creaticode.com/scratch-gui-projects/forum/c829f942-1970-419b-a16c-b2326c89812d.gif
+* **X**/**Y**/**Z**: These values use a 3D position system. If you use a small box to represent each point, then when you hold your hand forward, these boxes will form a 3D hand facing forward (same direction as your real hand):
 
-
-
-&nbsp;
-&nbsp;  
-## Step 13 - Count the Saves
-&nbsp;  
-
-To make it fun, let's keep a score for how many times the ball has been saved by the board. 
-
-* Create a variable called "counter".
-* Set it to 0 at the start.
-* Increase it by 1 every time the ball touches the board.
-* [Display it on the stage](/topic/525/printing-text-on-stage):
-
-&nbsp;
-ccimg3||550||https://cdn.creaticode.com/scratch-gui-projects/forum/b3f40345-4312-4293-a36e-9c54446315bf.png
-&nbsp;
-Now you’ll see the score on the top right:
-&nbsp;
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/6222f604-89c3-4207-803f-0b16260ba7ce.gif
-
-
-
-&nbsp;
-&nbsp;  
-## Step 14 - Hide the Camera Video (Optional)
-&nbsp;  
-
-If you prefer, you can hide the camera video by making it 100% transparent, then you can use a regular backdrop instead.
-
-ccimg3||400||https://cdn.creaticode.com/scratch-gui-projects/forum/7b840086-0001-4e15-b16e-9397cd346994.png
-
-
-
-
-&nbsp;  
-&nbsp;
-## Step 15 - Fix a Ball Rebound Bug
-&nbsp;  
-
-If you test the game for a while, you will find a small issue. Sometimes the ball would get stuck on the board like this:
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/e95b0253-f36c-4b88-9857-64c592f7b5dc.gif
-
-&nbsp;
-Try to fix this issue yourself before continuing.
+ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/cd26fa21-80c0-49a0-9f0c-ed05dae4d5c6.gif||40
 
 &nbsp;
 &nbsp;
+You can open this link to play with this demo:
 &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-The problem is that when the ball rebounds off the board and moves up, it might touch the board again in the next update, so it will rebound towards the bottom again.
-
-To fix this, **only allow a rebound if the ball is moving downward**. That means:
-
-* Its direction is between 90° to 180° or -90° to -180°.
-* In other words, if abs(direction) > 90, then allow rebound.
-
-ccimg3||600||https://cdn.creaticode.com/scratch-gui-projects/forum/82e0619f-a327-4357-b331-7a43bc56d842.png
-
-Here is the final result:
-
-ccimg||480||https://cdn.creaticode.com/scratch-gui-projects/forum/71acc18d-fdeb-4b30-8d9e-7dd559418414.gif
-
-&nbsp;
-&nbsp;  
-## Additional Challenges
-&nbsp;  
-
-You can now customize and improve your game! Here are some fun ideas to try:
-
-* **Increase difficulty**: Make the ball move faster after each bounce.
-* **Smarter bouncing**: Adjust the ball’s rebound direction based on how the board is moving.
-* **Add obstacles**: Include some targets that the player must hit with the ball to win the game.
+play.creaticode.com/projects/ef0d19a26944613ac1805db7
