@@ -1,0 +1,283 @@
+## Introduction
+&nbsp;
+
+In the previous tutorial, you learned how to drive the car forward by setting its engine force (similar to pressing the gas pedal) and how to stop the car by setting its brake level. You have also learned how to read the car's speed and stop accelerating if the speed is fast enough.
+
+In this tutorial, we will look at how to steer the car by controlling its steering wheel. Specifically, we will try to steer the car towards the center of a lane, which is a very common feature in self-driving cars.
+
+
+![fsd2step4](https://github.com/cake2000/creaticodesharing/blob/main/images/fsd2step4.gif?raw=true)
+
+&nbsp;
+&nbsp;
+## Step 1 - Remix and Starting Project
+&nbsp;
+
+Please open and remix the following project:
+play.creaticode.com/projects/67aa4af6ea863449f6972ab5
+
+&nbsp;
+When you run it, it will make the car drive for 15 seconds at a maximum speed of 100:
+
+![1b829175-c955-420c-aecd-1f00569a6a18-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/074d33f9-c76e-4d48-aa96-1ba4fb3eb17d.png) 
+
+&nbsp;
+When you run the project and click Start, the car will drive forward for 15 seconds, then stop. You can see that this car is not driving within the lane, and that's the problem we will fix.
+
+
+
+&nbsp;
+&nbsp;
+## Step 2 - Make the car steer to the right
+&nbsp;
+
+We will build up our solution step by step. First, let's try to simply steer the car to the right to go back into the lane. To do that, we need to set the "set steering" command, and the parameter will be the angle of the steering wheel. For example, to turn the wheel 3 degrees to the right, we just need to set the parameter to 3:
+
+![ab5bf882-3290-48bc-a556-d988907c54c8-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/c5e0d931-6528-4f91-9448-03a663c4ddb2.png) 
+
+&nbsp;
+When you click Start, the car will gradually turn to the right, which means our steering command is working:
+
+
+![fsd2step2](https://github.com/cake2000/creaticodesharing/blob/main/images/fsd2step2.gif?raw=true)
+
+&nbsp;
+Feel free to try other steering angles and observe what happens.
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 3 - Steer the car left and then center
+&nbsp;
+
+Obviously, we do not want to keep the car steering to the right forever. Once the car is back to the center of the lane, we need to steer it to the left, and then keep the car running straight.
+
+We can still rely on a timer-based solution: we steer to the right for 3 seconds, then to the left at 3 degrees for another 3 seconds (so the total timer value will be 6), and then set the steering angle to 0:
+
+![32f3fa7f-89b9-4e0d-a932-58c97d5c78fb-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/d8c33811-f223-488f-9c08-572a14c4a828.png) 
+
+&nbsp;
+When you click Start, the car will do better, but still not perfect: it will stray to the left.
+
+
+![fsd2step3](https://github.com/cake2000/creaticodesharing/blob/main/images/fsd2step3.gif?raw=true)
+
+&nbsp;
+Now, **%(#df0c0c)[before continuing, can you try to adjust the steering commands or the timing of them so the car will stay at the center of the lane?]**
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 4 - A working solution
+&nbsp;
+
+There are many ways to fine-tune the parameters, and one simple solution is to make the car steer to the left for less than 3 seconds. For example, after steering right for 3 seconds, we can make it steer left for another 2.3 seconds (so the total timer value is 5.3):
+
+![0b56be73-51cd-49a9-8674-ecc93387ff21-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/56d1e3d9-9267-4fc6-9696-cd8979d3cf82.png) 
+
+&nbsp;
+Here is the result:
+
+
+![fsd2step4](https://github.com/cake2000/creaticodesharing/blob/main/images/fsd2step4.gif?raw=true)
+
+&nbsp;
+
+Note that although this works, it is only meant to illustrate how to steer the car back to its lane, and it is **%(#e10e0e)[NOT a good solution in general because it relies on the timer values (3s and 5.3s) that are specific to this setup.]** If the car is starting from a different position or heading direction, these timer values would not steer the car into the center of the lane. 
+
+Next, let's work out a more generic solution that works all the time.
+
+&nbsp;
+&nbsp;
+## Step 5 - Display the lane marker
+&nbsp;
+
+In a real-world self-driving system, some sensors will detect the lane borders, and the AI program can make steering decisions based on that sensor information.
+
+![ab82f426-8164-4dc5-995d-321635941b9d-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/f0b9147c-8ef4-4bc4-81c1-10d6c19ad83a.png) 
+
+[image source: [extremetech.com](https://www.extremetech.com/cars/290816-tesla-will-make-some-autopilot-features-always-on-by-default)]
+
+&nbsp;
+In this simulation project we are working with, a similar sensor system is available, and it will calculate a "**lane marker**" based on the position of the lane and the car. As the car moves, the lane marker will always stay ahead of the car at a distance of about 250 units, and it will always be placed at the center of the lane.
+
+To view the lane marker (for testing or debugging purpose), you can make it visible by sending the "show marker" command like this:
+
+![fb93d800-062f-45f7-8949-e74657025673-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/37915834-9293-487c-8801-ff00a53933f7.png) 
+
+
+&nbsp;
+Please also remove all the steering code we added earlier, so the car will go straight ahead:
+
+![401f87d4-c7be-45f3-adc1-ddd6cc71cd4e-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b3702125-3c5f-4fd8-8cec-166bb645d8fc.png) 
+
+&nbsp;
+Now you should see a small cyan sphere at the center of the lane that always stays ahead of the car:
+
+
+![fsd2step5](https://github.com/cake2000/creaticodesharing/blob/main/images/fsd2step5.gif?raw=true)
+
+The lane marker makes our job much easier: we just need to make sure the car is aligned with the lane marker as much as possible.
+
+
+
+&nbsp;
+&nbsp;
+## Step 6 - Read from the "marker info" table
+&nbsp;
+
+To find out information about the lane marker, you can read from the "marker info" table. Turn on its monitor on the stage, and you will see its content like this:
+
+![66b1418d-c9e8-4d27-88a8-140e97de79c0-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/15b0c632-9f44-4686-a491-cb5db6082ad5.png) 
+
+&nbsp;
+The meaning of the columns are:
+* **name**: The name of the marker. It will be "my marker" for the lane the car is currently in. In the future, you will be working with lane markers for other lanes as well.
+* **x** and **y**: The position of the lane marker.
+* **distance**: The distance between the lane marker and the car.
+* **angle**: The angle between 2 lines: the line from the car to the lane marker and the center line of the lane.
+* **dir**: the direction of the lane.
+
+&nbsp;
+Out of all these columns, which information is the most useful to us if we need to bring the car to the center of the lane?
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+[thinking space ...]
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+Several of the columns can be used to align the car with the lane marker, but the most useful information is the "angle": if the car is going along the center of the lane, then the angle should be 0. On the other hand, if the car is not at the center of the lane, then the angle will not be 0:
+
+![9147c8a8-9fc7-4c7b-a175-a4a5723c1380-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b8b019d7-9741-4144-9dc2-fbc1ca4ac84c.png) 
+
+&nbsp;
+
+You can store the angle value in a new variable like this:
+
+![a4b7bd4c-c453-443b-84a0-9834045602ad-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/a24522d4-1fc0-4315-af6a-8f54d0350ede.png) 
+
+Next, can you add the logic to steer the car to the lane center?
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+[thinking space ...]
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+
+
+&nbsp;
+&nbsp;
+## Step 7 - Steer the car based on the lane marker's angle
+&nbsp;
+
+Here is one example solution: whenever the angle is greater than 1, we steer the car to the left, and whenever the angle is less than -1, we steer to the right. If the angle is in-between -1 and 1, we will not steer the car.
+
+![fb53792e-767c-4b86-a420-c127fb9042bd-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/b3d919dd-6e11-4a45-9071-73deb5ef6f22.png) 
+
+&nbsp;
+You will get a result like this:
+
+
+![fsd2step7](https://github.com/cake2000/creaticodesharing/blob/main/images/fsd2step7.gif?raw=true)
+
+
+
+
+&nbsp;
+&nbsp;
+## Tests
+&nbsp;
+
+Here are some additional tests for you to run to check if this solution still works in general:
+1. Try different speed limit and steering value;
+
+2. Go to the "car" sprite, and change the starting x position of the car in this "move" block below. For example, you can change it to 160 or 234. See if the solution still works
+
+![de265e3b-6b2f-480e-86b3-9954138d5ea1-image.png](https://cdn.creaticode.com/scratch-gui-projects/forum/016053d7-b5c9-44f8-9ed1-e80f82031388.png)
